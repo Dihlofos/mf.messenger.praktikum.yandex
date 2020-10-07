@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>Messenger
+    </title>
+
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon/manifest.json">
+    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <div class="light full-screen">
+            <div class="messenger">
+                <div class="messenger__board">
+                    <div class="messages-board">
+                        <div class="messages-board__top">
+                            <a class="messages-board__link js-focus-visible" href="/profile.html">
+                                Профиль
+                                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 9L5 5L1 1" stroke="#40375C" />
+                                </svg>
+                            </a>
+                            <div class="field field--search messages-board__search js-field">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5922 11.4138C10.1603 12.8457 7.83871 12.8457 6.40679 11.4138C4.97486 9.98187 4.97486 7.66027 6.40679 6.22834C7.83871 4.79642 10.1603 4.79642 11.5922 6.22834C13.0242 7.66027 13.0242 9.98187 11.5922 11.4138ZM12.0326 12.7968C10.0724 14.2961 7.25681 14.1494 5.46398 12.3566C3.51136 10.404 3.51136 7.23816 5.46398 5.28553C7.4166 3.33291 10.5824 3.33291 12.535 5.28553C14.3278 7.07828 14.4746 9.8937 12.9754 11.8539L16.5421 15.4206L15.5993 16.3634L12.0326 12.7968Z" fill="#342D09" />
+                                </svg>
+                                <input id="search" type="search" name="search">
+                                <label for="search">Поиск</label>
+                            </div>
+                        </div>
+                        <ul class="messages-board__list">
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Андрей</p>
+                                            <p class="chat-card__text">Изображение</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">10:49</p>
+                                            <p class="chat-card__new-msg">2</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar2.jpg" alt="avatar2" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Киноклуб</p>
+                                            <p class="chat-card__text"><span>Вы: </span>стикер</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12:00</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar3.jpg" alt="avatar3" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Илья</p>
+                                            <p class="chat-card__text">Друзья, у меня для вас особенный выпуск новостей!...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">15:12</p>
+                                            <p class="chat-card__new-msg">2</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible is-current">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar4.jpg" alt="avatar4" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Вадим</p>
+                                            <p class="chat-card__text"><span>Вы: </span>Круто!</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пт</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar5.jpg" alt="avatar5" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">тет-а-теты</p>
+                                            <p class="chat-card__text">И Human Interface Guidelines и Material Design рекомендуют...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Ср</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar6.jpg" alt="avatar6" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">1,2,3</p>
+                                            <p class="chat-card__text">Миллионы россиян ежедневно проводят десятки часов свое...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пн</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar7.jpg" alt="avatar7" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Design Destroyer</p>
+                                            <p class="chat-card__text">В 2008 году художник Jon Rafman  начал собирать...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пн</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar8.jpg" alt="avatar8" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Day.</p>
+                                            <p class="chat-card__text">Так увлёкся работой по курсу, что совсем забыл его анонсир...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">1 Мая 2020</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar9.jpg" alt="avatar9" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Стас Рогозин</p>
+                                            <p class="chat-card__text">Можно или сегодня или завтра вечером.</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12 Апр 2020</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar10.jpg" alt="avatar10" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Прохвост</p>
+                                            <p class="chat-card__text">Беги, скотина, я тебя найду!</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12 Мая 2013</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Андрей</p>
+                                            <p class="chat-card__text">Изображение</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">10:49</p>
+                                            <p class="chat-card__new-msg">2</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar2.jpg" alt="avatar2" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Киноклуб</p>
+                                            <p class="chat-card__text"><span>Вы: </span>стикер</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12:00</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar3.jpg" alt="avatar3" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Илья</p>
+                                            <p class="chat-card__text">Друзья, у меня для вас особенный выпуск новостей!...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">15:12</p>
+                                            <p class="chat-card__new-msg">2</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar4.jpg" alt="avatar4" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Вадим</p>
+                                            <p class="chat-card__text"><span>Вы: </span>Круто!</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пт</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar5.jpg" alt="avatar5" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">тет-а-теты</p>
+                                            <p class="chat-card__text">И Human Interface Guidelines и Material Design рекомендуют...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Ср</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar6.jpg" alt="avatar6" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">1,2,3</p>
+                                            <p class="chat-card__text">Миллионы россиян ежедневно проводят десятки часов свое...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пн</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar7.jpg" alt="avatar7" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Design Destroyer</p>
+                                            <p class="chat-card__text">В 2008 году художник Jon Rafman  начал собирать...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">Пн</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar8.jpg" alt="avatar8" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Day.</p>
+                                            <p class="chat-card__text">Так увлёкся работой по курсу, что совсем забыл его анонсир...</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">1 Мая 2020</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar9.jpg" alt="avatar9" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Стас Рогозин</p>
+                                            <p class="chat-card__text">Можно или сегодня или завтра вечером.</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12 Апр 2020</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="messages-board__item">
+                                <button class="chat-card js-focus-visible">
+                                    <div class="chat-card__wrapper">
+                                        <div class="chat-card__image">
+                                            <img width="47" height="47" src="assets/images/avatar10.jpg" alt="avatar10" />
+                                        </div>
+                                        <div class="chat-card__content">
+                                            <p class="chat-card__name">Прохвост</p>
+                                            <p class="chat-card__text">Беги, скотина, я тебя найду!</p>
+                                        </div>
+                                        <div class="chat-card__info">
+                                            <p class="chat-card__time">12 Мая 2013</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="messenger__content">
+                    <div class="messenger__current-chat current-chat">
+                        <div class="current-chat__wrapper">
+                            <div class="current-chat__image">
+                                <img width="34" height="34" src="assets/images/avatar.jpg" alt="avatar" />
+                            </div>
+                            <div class="current-chat__content">
+                                <p class="current-chat__name">Вадим</p>
+                                <p class="current-chat__text">Был 5 минут назад</p>
+                            </div>
+                            <div class="current-chat__actives">
+                                <div class="tooltip tooltip--top-right js-tooltip" data-tooltip="chat-options">
+                                    <ul class="icon-buttons">
+                                        <li class="icon-buttons__item">
+                                            <button class="icon-buttons__btn js-focus-visible" type="button">
+                                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="22" height="1.5" transform="matrix(1 0 0 -1 0 19)" fill="#40375C" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2602 0L19.0001 2.73982L16.9452 4.79468L14.2054 2.05487L16.2602 0ZM13.5202 2.73976L16.26 5.47958L6.7394 15.0002H4V12.26L13.5202 2.73976Z" fill="#40375C" />
+                                                </svg>
+
+                                                <span>Переименовать</span>
+                                            </button>
+                                        </li>
+                                        <li class="icon-buttons__item">
+                                            <button class="icon-buttons__btn js-focus-visible" type="button">
+                                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="11" cy="11" r="10.25" stroke="#40375C" stroke-width="1.5" />
+                                                </svg>
+                                                <span>Удалить</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="current-chat__btn js-tooltip-trigger js-focus-visible" data-tooltip="chat-options">
+                                    <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="1.5" cy="2" r="1.5" fill="#40375C" />
+                                        <circle cx="1.5" cy="8" r="1.5" fill="#40375C" />
+                                        <circle cx="1.5" cy="14" r="1.5" fill="#40375C" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="current-chat__rename">
+                            <form class="current-chat__rename-form" method="POST" onSubmit="formConsole(event); return false;">
+                                <input type="text" name="rename-chat" value="Фотография " />
+                                <button class="button button--mini current-chat__rename-btn js-focus-visible">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="messenger__chat chat">
+                        <div class="chat__group">
+                            <p class="chat__date">19 июля</p>
+                            <ul class="chat__dialog-list">
+                                <li class="chat__dialog">
+                                    <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то
+                                        момент
+                                        попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем
+                                        что
+                                        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще
+                                        находятся на
+                                        поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
+
+                                    <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они
+                                        так
+                                        никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на
+                                        аукционе
+                                        за 45000 евро.</p>
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog chat__dialog--image">
+                                    <img class="chat__image" alt="dialog-image" src="assets/images/dialog-image.jpg" />
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog --me">
+                                    <p>Круто</p>
+                                    <div class="chat__time">
+                                        <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <line y1="-0.5" x2="3.765" y2="-0.5" transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33301)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.3584 5)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01611 5)" stroke="#40375C" />
+                                        </svg>
+                                        11:56
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat__group">
+                            <p class="chat__date">19 июля</p>
+                            <ul class="chat__dialog-list">
+                                <li class="chat__dialog">
+                                    <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то
+                                        момент
+                                        попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем
+                                        что
+                                        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще
+                                        находятся на
+                                        поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
+
+                                    <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они
+                                        так
+                                        никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на
+                                        аукционе
+                                        за 45000 евро.</p>
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog chat__dialog--image">
+                                    <img class="chat__image" alt="dialog-image" src="assets/images/dialog-image.jpg" />
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog --me">
+                                    <p>Круто</p>
+                                    <div class="chat__time">
+                                        <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <line y1="-0.5" x2="3.765" y2="-0.5" transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33301)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.3584 5)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01611 5)" stroke="#40375C" />
+                                        </svg>
+                                        11:56
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat__group">
+                            <p class="chat__date">19 июля</p>
+                            <ul class="chat__dialog-list">
+                                <li class="chat__dialog">
+                                    <p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то
+                                        момент
+                                        попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем
+                                        что
+                                        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще
+                                        находятся на
+                                        поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
+
+                                    <p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они
+                                        так
+                                        никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на
+                                        аукционе
+                                        за 45000 евро.</p>
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog chat__dialog--image">
+                                    <img class="chat__image" alt="dialog-image" src="assets/images/dialog-image.jpg" />
+                                    <div class="chat__time">11:56</div>
+                                </li>
+                                <li class="chat__dialog --me">
+                                    <p>Круто</p>
+                                    <div class="chat__time">
+                                        <svg width="11" height="5" viewBox="0 0 11 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <line y1="-0.5" x2="3.765" y2="-0.5" transform="matrix(0.705933 0.708278 -0.705933 0.708278 0.700195 2.33301)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 3.3584 5)" stroke="#40375C" />
+                                            <line y1="-0.5" x2="5.6475" y2="-0.5" transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01611 5)" stroke="#40375C" />
+                                        </svg>
+                                        11:56
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="messenger__bottom sender">
+                        <form class="sender__form" method="POST" onSubmit="formConsole(event); return false;">
+                            <div class="sender__pick">
+                                <div class="tooltip tooltip--bottom-left js-tooltip" data-tooltip="chat-picks">
+                                    <ul class="icon-buttons">
+                                        <li class="icon-buttons__item">
+                                            <button class="icon-buttons__btn js-focus-visible" type="button">
+                                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 1.5H18C19.3807 1.5 20.5 2.61929 20.5 4V14L14.5194 12.4052C13.5108 12.1362 12.4714 12 11.4275 12H10.5725C9.52864 12 8.48921 12.1362 7.48057 12.4052L1.5 14V4C1.5 2.61929 2.61929 1.5 4 1.5ZM0 4C0 1.79086 1.79086 0 4 0H18C20.2091 0 22 1.79086 22 4V18C22 20.2091 20.2091 22 18 22H4C1.79086 22 0 20.2091 0 18V4ZM8 6C8 7.10457 7.10457 8 6 8C4.89543 8 4 7.10457 4 6C4 4.89543 4.89543 4 6 4C7.10457 4 8 4.89543 8 6Z" fill="#40375C" />
+                                                </svg>
+                                                <span>Фото или видео</span>
+                                            </button>
+                                        </li>
+                                        <li class="icon-buttons__item">
+                                            <button class="icon-buttons__btn js-focus-visible" type="button">
+                                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 1.5H18C19.3807 1.5 20.5 2.61929 20.5 4V12H16C13.7909 12 12 13.7909 12 16V20.5H4C2.61929 20.5 1.5 19.3807 1.5 18V4C1.5 2.61929 2.61929 1.5 4 1.5ZM12 22H4C1.79086 22 0 20.2091 0 18V4C0 1.79086 1.79086 0 4 0H18C20.2091 0 22 1.79086 22 4V12V18C22 20.2091 20.2091 22 18 22H12Z" fill="#40375C" />
+                                                </svg>
+                                                <span>Файл</span>
+                                            </button>
+                                        </li>
+                                        <li class="icon-buttons__item">
+                                            <button class="icon-buttons__btn js-focus-visible" type="button">
+                                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 11C20.5 16.2467 16.2467 20.5 11 20.5C5.75329 20.5 1.5 16.2467 1.5 11C1.5 5.75329 5.75329 1.5 11 1.5C16.2467 1.5 20.5 5.75329 20.5 11ZM22 11C22 17.0751 17.0751 22 11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0C17.0751 0 22 4.92487 22 11ZM11 14C12.6569 14 14 12.6569 14 11C14 9.34315 12.6569 8 11 8C9.34315 8 8 9.34315 8 11C8 12.6569 9.34315 14 11 14Z" fill="#40375C" />
+                                                </svg>
+                                                <span>Локация</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="sender__pickBtn js-tooltip-trigger js-focus-visible" type="button" data-tooltip="chat-picks">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.18661 13.5L14.7628 5.92389L15.7056 6.8667L8.12942 14.4428L7.18661 13.5Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.70077 16.014L17.2769 8.43781L18.2197 9.38062L10.6436 16.9568L9.70077 16.014Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0435 21.3567L22.6197 13.7806L23.5625 14.7234L15.9864 22.2995L15.0435 21.3567Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5572 23.8706L25.1334 16.2945L26.0762 17.2373L18.5 24.8134L17.5572 23.8706Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5574 23.8709C14.9423 26.486 10.7118 26.4954 8.10829 23.8919C5.50479 21.2884 5.51421 17.0579 8.12933 14.4428L7.18652 13.5C4.04838 16.6381 4.03708 21.7148 7.16127 24.839C10.2855 27.9632 15.3621 27.9518 18.5002 24.8137L17.5574 23.8709Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6195 13.7806L23.5623 14.7234C26.003 12.2826 26.0118 8.3341 23.5819 5.90417C21.152 3.47424 17.2035 3.48303 14.7627 5.92381L15.7055 6.86662C17.6233 4.94887 20.7257 4.94196 22.6349 6.85119C24.5441 8.76042 24.5372 11.8628 22.6195 13.7806Z" fill="#40375C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.70068 16.0144C7.95727 17.7578 7.95099 20.5782 9.68665 22.3138C11.4223 24.0495 14.2427 24.0432 15.9861 22.2998L15.0433 21.357C13.8229 22.5774 11.8486 22.5818 10.6337 21.3668C9.41871 20.1518 9.4231 18.1776 10.6435 16.9572L9.70068 16.0144Z" fill="#40375C" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="sender__field">
+                                <input type="text" name="message" id="message" placeholder="Сообщение" autocomplete="off" />
+                            </div>
+                            <button class="sender__submit js-focus-visible">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="14" r="14" fill="#40375C" />
+                                    <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
+                                    <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal is-shown">
+                <div class="modal__milk js-milk"></div>
+                <div class="modal__box">
+                    <div class="delete-dialog">
+                        <h3 class="delete-dialog__title">Вы хотите удалить чат</h3>
+                        <div class="delete-dialog__buttons">
+                            <button class="button button--red delete-dialog__button js-focus-visible">Удалить</button>
+                            <button class="button button--grey delete-dialog__button js-focus-visible">Отменить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- /HEADER -->
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/vendor.js"></script>
+</body>
+
+</html>
