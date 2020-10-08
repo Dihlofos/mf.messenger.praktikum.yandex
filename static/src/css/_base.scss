@@ -1,0 +1,128 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 62.5%;
+
+  @media (min-width: 1281px) {
+    font-size: 84%;
+  }
+}
+
+:root {
+  //Переменные
+  --black: #1e1e1e;
+  --main: #40375c;
+  --grey: #6c6c6d;
+  --light: #f3f1fa;
+  --mainHover: #6b5ba0;
+  --white: #fff;
+  --link: #c2b780;
+  --link-hover: #f0e29e;
+  --purple-border: #48397a;
+  --error: #ce5353;
+  --errorHover: #e47070;
+  --hoverTime: 0.15s;
+  --border: #c2ba92;
+  --board: #ebe8e9;
+  --lightBg: #d2cdde;
+  --tooltipBg: #fcfcfd;
+}
+
+body {
+  line-height: 1.5;
+  font-family: 'Noto Sans';
+  color: var(--black);
+}
+
+address {
+  font-style: normal;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+label {
+  cursor: pointer;
+  user-select: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[placeholder] {
+  text-overflow: ellipsis;
+}
+
+input::-moz-placeholder {
+  text-overflow: ellipsis;
+}
+
+input:-moz-placeholder {
+  text-overflow: ellipsis;
+}
+
+input:-ms-input-placeholder {
+  text-overflow: ellipsis;
+}
+
+:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+:focus::-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.content {
+  height: 100%;
+}
+
+.dark {
+  background-color: var(--main);
+}
+
+.light {
+  background-color: var(--light);
+}
+
+.full-screen {
+  height: 100vh;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.js-focus-visible:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.index-links {
+  font-size: 1.2rem;
+  padding: 0;
+  a {
+    font-size: 1.6rem;
+  }
+}

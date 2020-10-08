@@ -1,0 +1,25 @@
+.tooltip {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  padding: 1.5rem;
+  background-color: var(--tooltipBg);
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  transition: opacity var(--hoverTime) ease-in-out;
+
+  &.is-shown {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &--bottom-left {
+    bottom: 6rem;
+    left: 1rem;
+  }
+
+  &--top-right {
+    top: 6rem;
+    right: 1rem;
+  }
+}

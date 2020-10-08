@@ -1,0 +1,16 @@
+{% extends 'templates/base.twig' %}
+
+{% block title %}Messenger - empty
+{% endblock %}
+
+{% block page %}	
+	<div class="light full-screen">
+		<div class="messenger">
+            {% include 'templates/includes/messages-board.twig' %}
+			<div class="messenger__content">				
+				<main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
+			</div>
+		</div>
+		{% include 'templates/includes/modal.twig' %}    		
+	</div> 
+{% endblock %}

@@ -1,0 +1,42 @@
+.messages-board {
+  padding: 7.3rem 0 0;
+  border-right: 1px solid var(--border);
+  height: 100%;
+  overflow: scroll;
+  background-color: var(--board);
+
+  //Hide scrollbar
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__top {
+    position: fixed;
+    top: 0;
+    width: calc(31rem - 1px);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 0;
+    background-color: var(--board);
+    z-index: 2;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-self: flex-end;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--main);
+    margin: 0 0 1rem;
+
+    svg {
+      width: 0.8rem;
+      height: 1.2rem;
+      margin-left: 0.8rem;
+    }
+  }
+}
