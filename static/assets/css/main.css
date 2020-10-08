@@ -628,6 +628,7 @@ input:-ms-input-placeholder {
   font-size: 1.2rem;
   text-align: center;
   margin: 0 0 3rem;
+  font-weight: normal;
 }
 
 .chat__dialog-list {
@@ -745,6 +746,7 @@ input:-ms-input-placeholder {
   font-size: 1.3rem;
   line-height: 1;
   margin: 0 0 0.5rem;
+  font-weight: normal;
 }
 
 .current-chat__text {
@@ -1090,12 +1092,6 @@ input:-ms-input-placeholder {
   z-index: 2;
 }
 
-.messages-board__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .messages-board__link {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1118,6 +1114,12 @@ input:-ms-input-placeholder {
   margin-left: 0.8rem;
 }
 
+.messages-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .messenger {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1137,7 +1139,6 @@ input:-ms-input-placeholder {
 }
 
 .messenger__board {
-  overflow: hidden;
   width: 31rem;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1225,6 +1226,10 @@ input:-ms-input-placeholder {
   width: 100%;
 }
 
+.profile__aside {
+  height: 100%;
+}
+
 .profile__back-link {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1241,6 +1246,7 @@ input:-ms-input-placeholder {
   -webkit-transition: background-color var(--hoverTime) ease-in-out;
   -o-transition: background-color var(--hoverTime) ease-in-out;
   transition: background-color var(--hoverTime) ease-in-out;
+  height: 100%;
 }
 
 .profile__back-link:hover {
@@ -1350,32 +1356,37 @@ input:-ms-input-placeholder {
   border-bottom: 1px solid var(--border);
 }
 
-.profile__field input {
+.profile__field-label {
+  margin: 0;
+}
+
+.profile__field-input {
   font-family: 'Noto Sans';
   width: 50%;
   background: none;
   border: none;
   padding: 0;
+  margin: 0;
   text-align: right;
 }
 
-.profile__field input:active,.profile__field input:focus {
+.profile__field-input:active,.profile__field-input:focus {
   outline: none;
 }
 
-.profile__field input:-moz-read-only + label {
+.profile__field-input:-moz-read-only + label {
   cursor: auto;
 }
 
-.profile__field input:read-only + label {
+.profile__field-input:read-only + label {
   cursor: auto;
 }
 
-.profile__field input:focus:-moz-read-only,.profile__field input:active:-moz-read-only {
+.profile__field-input:focus:-moz-read-only,.profile__field-input:active:-moz-read-only {
   outline: none;
 }
 
-.profile__field input:focus:read-only,.profile__field input:active:read-only {
+.profile__field-input:focus:read-only,.profile__field-input:active:read-only {
   outline: none;
 }
 

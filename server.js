@@ -6,5 +6,5 @@ const PORT = 4000;
 app.use(express.static("./static/"));
 
 app.listen(PORT, function () {
-  console.log(`Look my projetct at port ${PORT}`);
+  console.log(`Look my project at port ${PORT}`);
 });

@@ -22,47 +22,46 @@
 
 <body>
 
-    <!-- CONTENT -->
-    <main class="content">
+    <div class="content">
 
         <div class="light full-screen">
             <div class="profile">
-                <a class="profile__back-link" href="/messenger_default.html">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="14" cy="14" r="14" fill="#40375C" />
-                        <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
-                        <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
-                    </svg>
-                </a>
-                <div class="profile__content">
-                    <form class="profile__form">
-                        <input class="profile__avatar-input js-focus-visible" id="avatar" name="avatar" type="file" disabled />
-                        <label class="profile__avatar" for="avatar">
-                            <img src="assets/images/avatar.jpg" />
-                        </label>
-                        <input class="profile__name-field  js-focus-visible" id="display_name" name="display_name" type="text" value="Евгений" readonly />
+                <aside class="profile__aside">
+                    <a class="profile__back-link" href="/messenger_default.html">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="14" fill="#40375C" />
+                            <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
+                            <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
+                        </svg>
+                    </a>
+                </aside>
+                <main class="profile__content">
+                    <div class="profile__form">
+                        <div class="profile__avatar" for="avatar">
+                            <img width="176" height="176" src="assets/images/avatar.jpg" alt="avatar" />
+                        </div>
+                        <p class="profile__name-field">Евгений</p>
 
                         <ul class="profile__field-list">
                             <li class="profile__field">
-                                <input class="js-focus-visible" id="email" name="email" type="text" value="mail@inbox.com" readonly />
-                                <label for="email">Почта</label>
+                                <p class="profile__field-input">mail@inbox.com</p>
+                                <p class="profile__field-label">Почта</p>
 
                             </li>
                             <li class="profile__field">
-                                <input class="js-focus-visible" id="login" name="login" type="text" value="username" readonly />
-                                <label for="login">Логин</label>
+                                <p class="profile__field-input">username</p>
+                                <p class="profile__field-label">Логин</p>
                             </li>
                         </ul>
 
                         <a class="profile__edit-link js-focus-visible" href="/profile-edit.html">Изменить данные</a>
                         <a class="profile__exit-link js-focus-visible" href="/messenger_default.html">Выйти</a>
-                    </form>
-                </div>
+                    </div>
+                </main>
             </div>
         </div>
 
-    </main>
-    <!-- /HEADER -->
+    </div>
 
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/vendor.js"></script>
