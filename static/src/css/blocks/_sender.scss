@@ -1,0 +1,47 @@
+.sender {
+  &__form {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  &__field {
+    flex-grow: 1;
+  }
+
+  &__pickBtn,
+  &__submit {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  &__field {
+    position: relative;
+    padding: 0 1rem;
+
+    input {
+      width: 100%;
+      font-family: 'Noto Sans';
+      border: none;
+      background-color: var(--board);
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      line-height: 1;
+      border-radius: 30px;
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+
+      &:active + label,
+      &:focus + label {
+        opacity: 0;
+      }
+    }
+  }
+}

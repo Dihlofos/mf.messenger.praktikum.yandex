@@ -1,0 +1,33 @@
+{% extends 'templates/base.twig' %}
+
+{% block title %}Messenger - Login
+{% endblock %}
+
+{% block page %}
+	<main class="dark centered-content ">
+		<div class="entry-box">
+			<h1 class="entry-box__title">Вход</h1>
+			<form class="entry-box__form js-form" method="POST" onSubmit="formConsole(event); return false;">
+				<div class="entry-box__fields">
+					<div class="field entry-box__field js-field">					
+						<input id="login" type="email" name="login">
+						<label for="login">Почта</label>
+						<span class="field__error">Некорректно написано</span>
+					</div>
+					<div class="field entry-box__field js-field">					
+						<input id="password" type="password" name="password" autocomplete="off">
+						<label for="password">Пароль</label>
+						<span class="field__error"></span>
+					</div>
+				</div>
+
+				
+				<div class="entry-box__buttons">
+					<button class="button entry-box__button js-focus-visible" type="submit">Авторизироваться</button>
+					<a class="entry-box__link" href="/registration.html">Нет аккаунта?</a>  
+				</div>		
+			</form>
+
+		</div>		
+	</main> 
+{% endblock %}

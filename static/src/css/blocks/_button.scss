@@ -1,0 +1,58 @@
+.button {
+  display: block;
+  border: none;
+  padding: 1rem 3rem;
+  margin: 0;
+  background-color: var(--main);
+  color: white;
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  border-radius: 3px;
+  transition: background-color var(--hoverTime) ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--mainHover);
+  }
+
+  &:active {
+    background-color: var(--main);
+  }
+
+  &:focus {
+    outline-color: var(--error);
+  }
+
+  &--red {
+    background-color: var(--error);
+
+    &:hover {
+      background-color: var(--errorHover);
+    }
+
+    &:active {
+      background-color: var(--error);
+    }
+  }
+
+  &--grey {
+    background-color: var(--lightBg);
+    color: var(--black);
+
+    &:hover {
+      background-color: var(--board);
+    }
+
+    &:active {
+      background-color: var(--lightBg);
+    }
+  }
+
+  &--mini {
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 0.6rem 1.4rem;
+    border-radius: 40px;
+  }
+}

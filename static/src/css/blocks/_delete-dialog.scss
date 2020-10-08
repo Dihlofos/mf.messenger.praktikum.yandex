@@ -1,0 +1,19 @@
+.delete-dialog {
+  &__title {
+    text-align: center;
+    color: var(--black);
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: normal;
+    margin: 0 0 3rem;
+  }
+
+  &__button {
+    width: 15.5rem;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

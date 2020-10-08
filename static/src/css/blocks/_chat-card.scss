@@ -1,0 +1,121 @@
+.chat-card {
+  margin: 0;
+  border: none;
+  padding: 0 1rem 0;
+  width: 100%;
+  background: none;
+  cursor: pointer;
+  transition: background-color var(--hoverTime) ease-in-out, border var(--hoverTime) ease-in-out;
+
+  &:hover {
+    background-color: var(--light);
+
+    .chat-card__wrapper {
+      border: none;
+    }
+  }
+
+  &.is-current {
+    background-color: var(--main);
+
+    &:hover {
+      background-color: var(--main);
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 0 0.3rem;
+    background: none;
+    text-align: left;
+    height: 7.1rem;
+
+    .messages-board__item:last-child & {
+      border-bottom: 0;
+    }
+
+    .chat-card.is-current & {
+      border: none;
+      color: var(--white);
+    }
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: 0 1.6rem 0 1rem;
+  }
+
+  &__info {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    flex-shrink: 0;
+    position: relative;
+    width: 4.7rem;
+    height: 4.7rem;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    line-height: 1;
+    margin: 0 0 1.3rem;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    margin: 0;
+    color: var(--grey);
+    max-height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .chat-card.is-current & {
+      color: var(--white);
+    }
+  }
+
+  &__time {
+    font-size: 0.9rem;
+    line-height: 1;
+    margin: 0 0 1rem;
+    color: var(--main);
+
+    .chat-card.is-current & {
+      color: var(--white);
+    }
+  }
+
+  &__new-msg {
+    display: inline-flex;
+    align-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--main);
+    font-size: 0.9rem;
+    line-height: 0.9rem;
+    color: var(--white);
+    margin: 0;
+  }
+}

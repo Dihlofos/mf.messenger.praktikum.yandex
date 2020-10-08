@@ -1,0 +1,62 @@
+.chat {
+  &__group {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  &__date {
+    color: var(--main);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 3rem;
+    font-weight: normal;
+  }
+
+  &__dialog-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.9rem;
+
+    .chat__dialog--image & {
+      background-color: var(--main);
+      color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 0.1rem 0.4rem;
+    }
+  }
+
+  &__dialog {
+    position: relative;
+    align-self: flex-start;
+    color: var(--black);
+    font-size: 1.2rem;
+    max-width: 40rem;
+    border-radius: 3px;
+    padding: 1rem;
+    background-color: var(--board);
+    margin: 0 0 1rem;
+
+    &.--me {
+      align-self: flex-end;
+      background-color: var(--lightBg);
+    }
+
+    &--image {
+      background: none;
+      padding: 0;
+    }
+
+    p {
+      margin: 0 0 1.5rem;
+    }
+  }
+}
