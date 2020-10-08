@@ -22,65 +22,66 @@
 
 <body>
 
-    <!-- CONTENT -->
-    <main class="content">
+    <div class="content">
 
 
         <div class="light full-screen">
             <div class="profile">
-                <a class="profile__back-link" href="/messenger_default.html">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="14" cy="14" r="14" fill="#40375C" />
-                        <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
-                        <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
-                    </svg>
-                </a>
-                <div class="profile__content">
+                <aside class="profile__aside">
+                    <a class="profile__back-link" href="/messenger_default.html">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="14" fill="#40375C" />
+                            <rect x="8" y="13.2" width="11" height="1.6" fill="white" />
+                            <path d="M15 9L19 14L15 19" stroke="white" stroke-width="1.6" />
+                        </svg>
+                    </a>
+                </aside>
+
+                <main class="profile__content">
                     <form class="profile__form" method="POST" onSubmit="formConsole(event); return false;">
                         <input class="profile__avatar-input" id="avatar" name="avatar" type="file" />
                         <label class="profile__avatar" for="avatar">
-                            <img src="assets/images/avatar.jpg" />
+                            <img width="176" height="176" src="assets/images/avatar.jpg" alt="avatar" />
                         </label>
                         <input class="profile__name-field" id="display_name" name="display_name" type="text" value="Евгений" />
 
                         <ul class="profile__field-list">
                             <li class="profile__field">
-                                <input id="email" name="email" type="text" value="mail@inbox.com" placeholder="Введите почту" />
-                                <label for="email">Почта</label>
+                                <input class="profile__field-input" id="email" name="email" type="email" value="mail@inbox.com" placeholder="Введите почту" />
+                                <label class="profile__field-label" for="email">Почта</label>
                             </li>
                             <li class="profile__field">
-                                <input id="login" name="login" type="text" value="username" placeholder="Введите логин" />
-                                <label for="login">Логин</label>
+                                <input class="profile__field-input" id="login" name="login" type="text" value="username" placeholder="Введите логин" />
+                                <label class="profile__field-label" for="login">Логин</label>
                             </li>
                             <li class="profile__field">
-                                <input id="first_name" name="first_name" type="text" placeholder="Введите имя" />
-                                <label for="first_name">Имя</label>
+                                <input class="profile__field-input" id="first_name" name="first_name" type="text" placeholder="Введите имя" />
+                                <label class="profile__field-label" for="first_name">Имя</label>
                             </li>
                             <li class="profile__field">
-                                <input id="second_name" name="second_name" type="text" placeholder="Введите фамилию" />
-                                <label for="second_name">Фамилия</label>
+                                <input class="profile__field-input" id="second_name" name="second_name" type="text" placeholder="Введите фамилию" />
+                                <label class="profile__field-label" for="second_name">Фамилия</label>
                             </li>
                             <li class="profile__field">
-                                <input id="phone" name="phone" type="text" placeholder="Введите номер телефона" />
-                                <label for="phone">Номер телефона</label>
+                                <input class="profile__field-input" id="phone" name="phone" type="tel" placeholder="Введите номер телефона" />
+                                <label class="profile__field-label" for="phone">Номер телефона</label>
                             </li>
                             <li class="profile__field">
-                                <input id="oldPassword" name="oldPassword" type="password" placeholder="Введите старый пароль" autocomplete="off" />
-                                <label for="oldPassword">Старый пароль</label>
+                                <input class="profile__field-input" id="oldPassword" name="oldPassword" type="password" placeholder="Введите старый пароль" autocomplete="off" />
+                                <label class="profile__field-label" for="oldPassword">Старый пароль</label>
                             </li>
                             <li class="profile__field">
-                                <input id="newPassword" name="newPassword" type="password" placeholder="Введите новый пароль" autocomplete="off" />
-                                <label for="newPassword">Новый пароль</label>
+                                <input class="profile__field-input" id="newPassword" name="newPassword" type="password" placeholder="Введите новый пароль" autocomplete="off" />
+                                <label class="profile__field-label" for="newPassword">Новый пароль</label>
                             </li>
                         </ul>
-                        <button class="profile__submit-btn button js-focus-visible">Сохранить</button>
+                        <button class="profile__submit-btn button js-focus-visible" type="submit">Сохранить</button>
                     </form>
-                </div>
+                </main>
             </div>
         </div>
 
-    </main>
-    <!-- /HEADER -->
+    </div>
 
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/vendor.js"></script>
