@@ -1368,6 +1368,8 @@ input:-ms-input-placeholder {
   padding: 0;
   margin: 0;
   text-align: right;
+  color: var(--black);
+  text-decoration: none;
 }
 
 .profile__field-input:active,.profile__field-input:focus {
