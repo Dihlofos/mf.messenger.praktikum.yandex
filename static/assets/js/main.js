@@ -1,11 +1,9 @@
-'use strict';
-
 // Wait submit event to input
 // Returns nothing
 function formConsole(event) {
   event.preventDefault();
-  var formData = new FormData(event.target);
-  var result = {};
+  const formData = new FormData(event.target);
+  let result = {};
 
   for (var pair of formData.entries()) {
     result[pair[0]] = pair[1];
@@ -17,10 +15,10 @@ function formConsole(event) {
 // Add 'is-value' class if input has value in it
 // Returns nothing
 function fieldsIsValueClassAdding(selector) {
-  var fields = document.querySelectorAll(selector);
+  const fields = document.querySelectorAll(selector);
 
-  fields.forEach(function (field) {
-    var inputField = field.querySelector('input');
+  fields.forEach((field) => {
+    const inputField = field.querySelector('input');
     addIsValueClassToFields(inputField);
 
     inputField.addEventListener('blur', function (event) {
@@ -40,7 +38,19 @@ function fieldsIsValueClassAdding(selector) {
   }
 }
 
+// Wait for input selector to input ( string - .js-*)
+// Add Event listener on form submit
+// Returns nothing
+function initFormConsole(selector) {
+  document.querySelectorAll(selector).forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      formConsole(event);
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function (event) {
   fieldsIsValueClassAdding('.js-field');
+
+  initFormConsole('.js-form');
 });
-//# sourceMappingURL=main.js.map

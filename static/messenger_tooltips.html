@@ -376,7 +376,7 @@
                             </div>
                         </div>
                         <div class="current-chat__rename ">
-                            <form class="current-chat__rename-form" method="POST" onSubmit="formConsole(event); return false;">
+                            <form class="current-chat__rename-form js-form" method="POST">
                                 <input type="text" name="rename-chat" value="Фотография " />
                                 <button class="button button--mini current-chat__rename-btn js-focus-visible" type="submit">Сохранить</button>
                             </form>
@@ -511,7 +511,7 @@
                         </article>
                     </main>
                     <footer class="messenger__bottom sender">
-                        <form class="sender__form" method="POST" onSubmit="formConsole(event); return false;">
+                        <form class="sender__form js-form" method="POST">
                             <div class="sender__pick">
                                 <div class="tooltip tooltip--bottom-left js-tooltip is-shown" data-tooltip="chat-picks">
                                     <ul class="icon-buttons">
