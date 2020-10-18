@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "messenger by Samsonov Evgeny for Yandex praktikum",
   "main": "server.js",
-  "dependencies": {},
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "sass": "^1.27.0"
+  },
   "devDependencies": {
     "express": "^4.17.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "ts": "tsc --build ./tsconfig.json --watch",
+    "styles": "sass  src/scss/:build/assets/css"
   },
   "repository": {
     "type": "git",
