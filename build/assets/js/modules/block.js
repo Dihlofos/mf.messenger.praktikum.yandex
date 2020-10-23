@@ -1,114 +1,136 @@
-import { EventBus } from './eventBus.js';
-var Block = /** @class */ (function () {
-    function Block(tagName, props) {
-        var _this = this;
-        if (tagName === void 0) { tagName = "div"; }
-        if (props === void 0) { props = {}; }
-        this._meta = { tagName: '', props: {} };
-        this.setProps = function (nextProps) {
+import { EventBus } from './EventBus.js';
+export class Block {
+    constructor(tagName = "div", classNames = '', props = {}) {
+        this._meta = { tagName: '', classNames: '', props: {} };
+        this.hydrate = function () {
+            for (const i of this._instances) {
+                i.setElement(document.querySelector(`[_key=${i.getId()}`));
+            }
+            this.initEvents();
+        };
+        this.setProps = (nextProps) => {
             if (!nextProps) {
                 return false;
             }
-            Object.assign(_this._makePropsProxy(_this.props), nextProps);
-            _this.eventBus(_this.props, nextProps).emit(Block.EVENTS.FLOW_CDU);
+            Object.assign(this._makePropsProxy(this.props), nextProps);
             return false;
         };
-        var eventBus = new EventBus();
+        const eventBus = new EventBus();
         this._meta = {
-            tagName: tagName,
-            props: props
+            classNames,
+            tagName,
+            props
         };
+        this._instances = [];
+        this._id = `uniq_${Math.floor(Math.random() * 1000000)}`;
         this.props = this._makePropsProxy(props);
-        this.eventBus = function () { return eventBus; };
+        this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
-    Block.prototype._registerEvents = function (eventBus) {
+    getId() {
+        return this._id;
+    }
+    setElement(element) {
+        this._element = element;
+    }
+    initEvents() { }
+    renderToString() {
+        const wrapper = document.createElement(this._meta.tagName);
+        this._element.innerHTML = this.render();
+        wrapper.appendChild(this._element);
+        return wrapper.innerHTML;
+    }
+    _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    };
-    Block.prototype._createResources = function () {
-        var tagName = this._meta.tagName;
+    }
+    _createResources() {
+        const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
-    };
-    Block.prototype.init = function () {
+        this._element.setAttribute('_key', this.getId());
+    }
+    init() {
         this._createResources();
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-    };
-    Block.prototype._componentDidMount = function () {
-        this.componentDidMount();
+    }
+    _componentDidMount() {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-    };
-    Block.prototype.componentDidMount = function () { };
-    Block.prototype._componentDidUpdate = function () {
+        this.componentDidMount();
+    }
+    componentDidMount() { }
+    _componentDidUpdate() {
         //oldProps : object, newProps: object
         //this.componentDidUpdate(oldProps, newProps);    
         this.componentDidUpdate();
-    };
+    }
     // Может переопределять пользователь, необязательно трогать
-    Block.prototype.componentDidUpdate = function () {
+    componentDidUpdate() {
         //oldProps : object, newProps: object
         //TODO - разобраться что здесь происходит с пропсами
         //console.log(oldProps)
         //console.log(newProps)
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-        return true;
-    };
-    Object.defineProperty(Block.prototype, "element", {
-        get: function () {
-            return this._element;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Block.prototype._render = function () {
-        var block = this.render();
+    }
+    get element() {
+        return this._element;
+    }
+    _render() {
+        const block = this.render();
         if (block) {
             this._element.innerHTML = block;
         }
-    };
-    Block.prototype.render = function () { };
-    Block.prototype.getContent = function () {
+    }
+    render() {
+        return '';
+    }
+    getContent() {
         return this.element;
-    };
-    Block.prototype._makePropsProxy = function (props) {
-        var proxyData = new Proxy(props, {
-            get: function (target, prop) {
-                if (typeof prop === 'string' && prop.indexOf('_') === 0) {
-                    throw new Error('Нет прав');
+    }
+    _makePropsProxy(props) {
+        const self = this;
+        const proxyData = new Proxy(props, {
+            set(target, prop, value) {
+                const oldProps = Object.assign({}, self._meta.props);
+                if (target[prop] !== value) {
+                    target[prop] = value;
+                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
+                    self.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    return true;
                 }
-                var value = target[prop];
-                return typeof value === "function" ? value.bind(target) : value;
+                else {
+                    return true;
+                }
             },
-            set: function (target, prop, value) {
-                target[prop] = value;
-                return true;
-            },
-            deleteProperty: function () {
+            deleteProperty() {
                 throw new Error('Нет прав');
             },
         });
         return proxyData;
-    };
-    Block.prototype._createDocumentElement = function (tagName) {
+    }
+    _createDocumentElement(tagName) {
+        var _a, _b;
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        return document.createElement(tagName);
-    };
-    Block.prototype.show = function () {
+        const element = document.createElement(tagName);
+        if (!!this._meta.classNames.length) {
+            element.classList.add(...this._meta.classNames.split(' '));
+            if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.mix)
+                element.classList.add(...(_b = this.props) === null || _b === void 0 ? void 0 : _b.mix.split(' '));
+        }
+        return element;
+    }
+    show() {
         this.getContent().style.display = "block";
-    };
-    Block.prototype.hide = function () {
+    }
+    hide() {
         this.getContent().style.display = "none";
-    };
-    Block.EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_RENDER: "flow:render",
-        FLOW_CDU: "flow:component-did-update"
-    };
-    return Block;
-}());
-export { Block };
-//# sourceMappingURL=block.js.map
+    }
+}
+Block.EVENTS = {
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_RENDER: "flow:render",
+    FLOW_CDU: "flow:component-did-update"
+};
+//# sourceMappingURL=Block.js.map

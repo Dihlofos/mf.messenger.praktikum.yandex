@@ -1,40 +1,46 @@
-import { LoginForm } from '../../modules/loginForm.js';
-import { Button } from '../../modules/button.js';
-function loginPage() {
-    var root = document.querySelector(".root");
-    var button = new Button({
+import { Button } from "../../components/Button/Button.js";
+import { Field } from "../../components/Field/Field.js";
+import { Form } from "../../components/Form/Form.js";
+function loginPageRender() {
+    const root = document.querySelector(".root");
+    const fields = [
+        new Field({
+            name: 'login',
+            type: 'email',
+            label: 'Почта',
+            value: '',
+            mix: 'form__field'
+        }),
+        new Field({
+            name: 'password',
+            type: 'password',
+            label: 'Пароль',
+            value: '',
+            mix: 'form__field'
+        })
+    ];
+    const button = new Button({
         text: 'Авторизоваться',
-        class: 'entry-box__button js-focus-visible',
+        mix: 'form__button',
         type: 'submit'
     });
-    var loginForm = new LoginForm({
+    const form = new Form({
         title: 'Вход',
-        fields: [
-            {
-                name: 'login',
-                type: 'email',
-                label: 'Почта',
-                error: 'Не верно набрана почта',
-                value: ''
-            },
-            {
-                name: 'password',
-                type: 'password',
-                label: 'Пароль',
-                error: '',
-                value: ''
-            }
-        ],
-        button: button.render(),
+        fieldInstances: fields,
+        buttonInstance: button,
         linkText: 'Нет аккаунта?',
-        linkHref: '/registration',
+        linkHref: '/registration.html',
     });
     if (root) {
-        root.appendChild(loginForm.getContent());
+        root.appendChild(form.getContent());
+        fields.forEach((item) => {
+            item.hydrate();
+        });
+        form.hydrate();
     }
 }
 document.addEventListener("DOMContentLoaded", function () {
-    loginPage();
+    loginPageRender();
 });
-export default loginPage;
+export default loginPageRender;
 //# sourceMappingURL=login.js.map

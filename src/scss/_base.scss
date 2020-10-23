@@ -37,7 +37,7 @@ body {
 
 body {
   line-height: 1.5;
-  font-family: 'Noto Sans';
+  font-family: "Noto Sans";
   color: var(--black);
 }
 
@@ -105,6 +105,10 @@ input:-ms-input-placeholder {
 
 .full-screen {
   height: 100vh;
+}
+
+.content {
+  overflow: hidden;
 }
 
 .centered-content {

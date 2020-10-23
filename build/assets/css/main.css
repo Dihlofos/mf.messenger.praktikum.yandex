@@ -548,6 +548,10 @@ input:-ms-input-placeholder {
   height: 100vh;
 }
 
+.content {
+  overflow: hidden;
+}
+
 .centered-content {
   display: flex;
   flex-direction: column;
@@ -573,6 +577,7 @@ input:-ms-input-placeholder {
   border: none;
   padding: 1rem 3rem;
   margin: 0;
+  width: 100%;
   background-color: var(--main);
   color: white;
   text-align: center;
@@ -615,6 +620,7 @@ input:-ms-input-placeholder {
   line-height: 1;
   padding: 0.6rem 1.4rem;
   border-radius: 40px;
+  width: auto;
 }
 
 .chat-card {
@@ -776,10 +782,6 @@ input:-ms-input-placeholder {
   margin: 0 0 1.5rem;
 }
 
-.content {
-  overflow: hidden;
-}
-
 .current-chat {
   position: fixed;
   right: 0;
@@ -836,7 +838,8 @@ input:-ms-input-placeholder {
   border: none;
   cursor: pointer;
 }
-.current-chat__rename {
+
+.rename-form {
   opacity: 0;
   pointer-events: none;
   position: absolute;
@@ -847,11 +850,11 @@ input:-ms-input-placeholder {
   background-color: var(--light);
   padding: 0 2rem;
 }
-.current-chat__rename.is-shown {
+.rename-form.is-shown {
   opacity: 1;
   pointer-events: all;
 }
-.current-chat__rename-form {
+.rename-form__form {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -860,7 +863,7 @@ input:-ms-input-placeholder {
   border-bottom: 1px solid var(--border);
   padding: 0.8rem 0;
 }
-.current-chat__rename-form input {
+.rename-form__form input {
   font-family: "Noto Sans";
   flex-grow: 1;
   background-color: transparent;
@@ -869,27 +872,11 @@ input:-ms-input-placeholder {
   line-height: 1;
   color: var(--main);
 }
-.current-chat__rename-form input:active, .current-chat__rename-form input:focus {
+.rename-form__form input:active, .rename-form__form input:focus {
   outline: none;
 }
 
-.delete-dialog__title {
-  text-align: center;
-  color: var(--black);
-  font-size: 1.8rem;
-  line-height: 1;
-  font-weight: normal;
-  margin: 0 0 3rem;
-}
-.delete-dialog__button {
-  width: 15.5rem;
-}
-.delete-dialog__buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.entry-box {
+.form {
   display: flex;
   flex-direction: column;
   width: 34rem;
@@ -899,26 +886,26 @@ input:-ms-input-placeholder {
   background-color: var(--white);
   box-shadow: 0px 0px 6px rgba(4, 3, 5, 0.15);
 }
-.entry-box__form {
+.form__form {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
 }
-.entry-box__title {
+.form__title {
   font-size: 2.6rem;
   line-height: 3rem;
   margin: 0 0 7.5rem;
   font-weight: 400;
 }
-.entry-box__field {
+.form__field {
   margin: 0 0 1.5rem;
 }
-.entry-box__button {
+.form__button {
   width: 100%;
   margin: 0 0 1.5rem;
 }
-.entry-box__link {
+.form__link {
   display: block;
   text-align: center;
   text-decoration: none;
@@ -927,13 +914,13 @@ input:-ms-input-placeholder {
   color: var(--main);
   transition: color var(--hoverTime) ease-in-out;
 }
-.entry-box__link:hover {
+.form__link:hover {
   color: var(--mainHover);
 }
-.entry-box__link:active {
+.form__link:active {
   color: var(--main);
 }
-.entry-box__link:focus {
+.form__link:focus {
   outline-color: var(--error);
 }
 
@@ -1009,6 +996,10 @@ input:-ms-input-placeholder {
 .field__error {
   padding: 7px 0 0;
   color: var(--error);
+  min-height: 23px;
+}
+.field--search .field__error {
+  min-height: 0;
 }
 .field--search svg {
   position: absolute;
@@ -1164,6 +1155,21 @@ input:-ms-input-placeholder {
   padding: 3rem 4rem;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
 }
+.modal__title {
+  text-align: center;
+  color: var(--black);
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: normal;
+  margin: 0 0 3rem;
+}
+.modal__button {
+  width: 15.5rem;
+}
+.modal__buttons {
+  display: flex;
+  justify-content: space-between;
+}
 
 .profile {
   display: flex;
@@ -1222,20 +1228,6 @@ input:-ms-input-placeholder {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.profile__name-field {
-  font-family: "Noto Sans";
-  display: block;
-  margin: 0 auto;
-  font-size: 1.6rem;
-  line-height: 1;
-  text-align: center;
-  background: none;
-  padding: 0;
-  border: none;
-}
-.profile__name-field:active, .profile__name-field:focus {
-  outline: none;
-}
 .profile__form {
   min-width: 51rem;
 }
@@ -1245,37 +1237,9 @@ input:-ms-input-placeholder {
   margin: 0;
   margin: 10rem 0 6rem;
 }
-.profile__field {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  font-size: 1.3rem;
-  line-height: 1;
-  padding: 1rem 0 1rem;
-}
-.profile__field:not(:last-child) {
+.profile__field-item:not(:last-child) {
   border-bottom: 1px solid var(--border);
-}
-.profile__field-label {
-  margin: 0;
-}
-.profile__field-input {
-  font-family: "Noto Sans";
-  width: 50%;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  text-align: right;
-}
-.profile__field-input:active, .profile__field-input:focus {
-  outline: none;
-}
-.profile__field-input:read-only + label {
-  cursor: auto;
-}
-.profile__field-input:focus:read-only, .profile__field-input:active:read-only {
-  outline: none;
+  margin-bottom: 20px;
 }
 .profile__edit-link {
   display: block;
@@ -1311,6 +1275,54 @@ input:-ms-input-placeholder {
 .profile__submit-btn {
   margin: 0 auto;
   width: 28rem;
+}
+
+.profile-field {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 1rem 0 1rem;
+}
+.profile-field__label {
+  margin: 0;
+}
+.profile-field__error {
+  position: absolute;
+  color: var(--error);
+  top: 108%;
+  font-size: 13px;
+}
+.profile-field__input {
+  font-family: "Noto Sans";
+  width: 50%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+.profile-field__input--name {
+  font-family: "Noto Sans";
+  display: block;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  line-height: 1;
+  text-align: center;
+  background: none;
+  padding: 0;
+  border: none;
+}
+.profile-field__input:active, .profile-field__input:focus {
+  outline: none;
+}
+.profile-field__input:read-only + label {
+  cursor: auto;
+}
+.profile-field__input:focus:read-only, .profile-field__input:active:read-only {
+  outline: none;
 }
 
 .sender__form {
@@ -1371,6 +1383,31 @@ input:-ms-input-placeholder {
 .tooltip--top-right {
   top: 6rem;
   right: 1rem;
+}
+
+.avatar__input {
+  display: none;
+}
+.avatar__input:disabled + label {
+  cursor: auto;
+}
+.avatar__image {
+  display: block;
+  position: relative;
+  width: 13.1rem;
+  height: 13.1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 2rem;
+}
+.avatar__image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=main.css.map */

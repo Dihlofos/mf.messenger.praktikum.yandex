@@ -1,4 +1,4 @@
-import { EventBus } from './eventBus.js';
+import { EventBus } from './EventBus.js';
 import { SimpleObject } from '../interface'
 
  export class Block {
@@ -10,20 +10,27 @@ import { SimpleObject } from '../interface'
     };
 
     //types
+    _id:string;
     _element: HTMLElement;
+    _instances: Block[];
     _meta: {
         tagName: string;
+        classNames: string;
         props: SimpleObject
-    } = {tagName: '', props: {}};
+    } = {tagName: '', classNames: '', props: {}};
     props:SimpleObject;
+
     eventBus: (...args: any[] ) => EventBus;
   
-    constructor(tagName:string = "div", props:SimpleObject = {}) {
+    constructor(tagName:string = "div", classNames:string = '', props:SimpleObject = {}) {
       const eventBus = new EventBus();
       this._meta = {
+        classNames,
         tagName,
         props
       };
+      this._instances = [];
+      this._id = `uniq_${Math.floor(Math.random() * 1000000)}`;
   
       this.props = this._makePropsProxy(props);
   
@@ -31,6 +38,31 @@ import { SimpleObject } from '../interface'
   
       this._registerEvents(eventBus);
       eventBus.emit(Block.EVENTS.INIT);
+    }
+
+    getId() {
+      return this._id;
+    }
+
+    setElement(element: HTMLElement) {
+      this._element = element;
+    }
+
+    hydrate = function() {
+      for (const i of this._instances) {
+        i.setElement(document.querySelector(`[_key=${i.getId()}`));
+      }
+      this.initEvents();
+    }
+
+    initEvents():void { }
+    
+
+    renderToString() {
+      const wrapper = document.createElement(this._meta.tagName);
+      this._element.innerHTML = this.render();
+      wrapper.appendChild(this._element);
+      return wrapper.innerHTML;
     }
   
     _registerEvents(eventBus:EventBus):void {
@@ -43,6 +75,7 @@ import { SimpleObject } from '../interface'
     _createResources() {
       const { tagName } = this._meta;
       this._element = this._createDocumentElement(tagName);
+      this._element.setAttribute('_key', this.getId());
     }
   
     init():void {
@@ -50,9 +83,9 @@ import { SimpleObject } from '../interface'
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
   
-    _componentDidMount():void {
-      this.componentDidMount();
+    _componentDidMount():void {      
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this.componentDidMount();
     }
   
     componentDidMount() {}
@@ -64,21 +97,20 @@ import { SimpleObject } from '../interface'
     }
   
     // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate():boolean {
+    componentDidUpdate():void {
       //oldProps : object, newProps: object
       //TODO - разобраться что здесь происходит с пропсами
       //console.log(oldProps)
       //console.log(newProps)
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-      return true;
+      
     }
   
     setProps = (nextProps: object):boolean => {
       if (!nextProps) {
         return false;
-      }
-      Object.assign(this._makePropsProxy(this.props), nextProps);
-      this.eventBus(this.props, nextProps).emit(Block.EVENTS.FLOW_CDU);
+      }    
+
+      Object.assign(this._makePropsProxy(this.props), nextProps);     
       return false;
     };
   
@@ -87,32 +119,33 @@ import { SimpleObject } from '../interface'
     }
   
     _render() {
-      const block = this.render();      
+      const block = this.render();   
       if (block) {
         this._element.innerHTML = block;
-      }
-      
+      }      
     }
   
-    render(): string | void {}
+    render(): string {
+      return '';
+    }
   
     getContent(): HTMLElement {
       return this.element;
     }
   
     _makePropsProxy(props:{[key:string]: unknown}) {
-
+      const self = this;
       const proxyData = new Proxy(props, { 
-        get(target, prop:string | number) {
-          if (typeof prop === 'string' && prop.indexOf('_') === 0) {
-            throw new Error('Нет прав');
-           }
-          const value = target[prop];
-          return typeof value === "function" ? value.bind(target) : value;
-        },
         set(target, prop:string | number, value) {
-          target[prop] = value;
-          return true;
+          const oldProps = { ...self._meta.props };
+          if (target[prop] !== value) {
+            target[prop] = value;
+            self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
+            self.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            return true;
+         } else {
+            return true;
+         }
         },
         deleteProperty() {
            throw new Error('Нет прав');         
@@ -124,7 +157,13 @@ import { SimpleObject } from '../interface'
   
     _createDocumentElement(tagName: string): HTMLElement {
       // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-      return document.createElement(tagName);
+      const element = document.createElement(tagName);
+      if (!!this._meta.classNames.length) {
+        element.classList.add(...this._meta.classNames.split(' ')); 
+        if (this.props?.mix) element.classList.add(...this.props?.mix.split(' '))
+      }   
+     
+      return element
     }
   
     show(): void {

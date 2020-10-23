@@ -1,9 +1,9 @@
-import { ErrorContent } from '../../modules/errorContent.js';
+import { Error } from '../../components/Error/Error.js';
 
 function errorPage():void {
   const root: HTMLElement | null = document.querySelector(".root");
 
-  const errorContent = new ErrorContent({
+  const errorContent = new Error({
     errorText: "404",
     errorDescription: "Не туда попали",
     backText: "Назад к чатам",

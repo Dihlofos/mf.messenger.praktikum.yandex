@@ -1,32 +1,26 @@
-var EventBus = /** @class */ (function () {
-    function EventBus() {
+export class EventBus {
+    constructor() {
         this.listeners = {};
     }
-    EventBus.prototype.on = function (event, callback) {
+    on(event, callback) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
         this.listeners[event].push(callback);
-    };
-    EventBus.prototype.off = function (event, callback) {
+    }
+    off(event, callback) {
         if (!this.listeners[event]) {
-            throw new Error("\u041D\u0435\u0442 \u0441\u043E\u0431\u044B\u0442\u0438\u044F: " + event);
+            throw new Error(`Нет события: ${event}`);
         }
-        this.listeners[event] = this.listeners[event].filter(function (listener) { return listener !== callback; });
-    };
-    EventBus.prototype.emit = function (event) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
+        this.listeners[event] = this.listeners[event].filter(listener => listener !== callback);
+    }
+    emit(event, ...args) {
         if (!this.listeners[event]) {
-            throw new Error("\u041D\u0435\u0442 \u0441\u043E\u0431\u044B\u0442\u0438\u044F: " + event);
+            throw new Error(`Нет события: ${event}`);
         }
         this.listeners[event].forEach(function (listener) {
-            listener.apply(void 0, args);
+            listener(...args);
         });
-    };
-    return EventBus;
-}());
-export { EventBus };
-//# sourceMappingURL=eventBus.js.map
+    }
+}
+//# sourceMappingURL=EventBus.js.map
