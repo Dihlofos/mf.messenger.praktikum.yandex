@@ -1,0 +1,5 @@
+declare const Handlebars: any;
+
+
+
+

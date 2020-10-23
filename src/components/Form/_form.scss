@@ -1,0 +1,55 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 34rem;
+  min-height: 46rem;
+  padding: 3rem;
+  border-radius: 3px;
+  background-color: var(--white);
+  box-shadow: 0px 0px 6px rgba(4, 3, 5, 0.15);
+
+  &__form {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 2.6rem;
+    line-height: 3rem;
+    margin: 0 0 7.5rem;
+    font-weight: 400;
+  }
+
+  &__field {
+    margin: 0 0 1.5rem;
+  }
+
+  &__button {
+    width: 100%;
+    margin: 0 0 1.5rem;
+  }
+
+  &__link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--main);
+    transition: color var(--hoverTime) ease-in-out;
+
+    &:hover {
+      color: var(--mainHover);
+    }
+
+    &:active {
+      color: var(--main);
+    }
+
+    &:focus {
+      outline-color: var(--error);
+    }
+  }
+}

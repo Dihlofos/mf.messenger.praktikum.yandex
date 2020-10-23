@@ -1,0 +1,53 @@
+import { Block } from '../../modules/Block.js';
+import { RenameForm } from '../RenameForm/RenameForm.js';
+import { Tooltip } from '../Tooltip/Tooltip.js';
+
+export type CurrentChatProps = {
+  imageLink: string;
+  imageAlt: string;
+  name: string;
+  time: string;
+  mix?: string;
+  tooltipInstance: Tooltip;
+  renameFormInstance: RenameForm;
+}
+
+export class CurrentChat extends Block {
+  tooltip:Tooltip;
+  renameForm: RenameForm;
+  constructor(props:CurrentChatProps) {
+    super("header", 'current-chat', props);
+  }
+
+  render() {
+    const Handlebars = window.Handlebars;
+
+    let template = `
+        <div class="current-chat__wrapper">
+          <div class="current-chat__image">
+            <img width="34" height="34" src="{{imageLink}}" alt="{{imageAlt}}" />
+          </div>
+          <div class="current-chat__content">
+            <h1 class="current-chat__name">{{name}}</h1>
+            <p class="current-chat__text">{{time}}</p>
+          </div>
+          <div class="current-chat__actives">
+              {{{tooltip}}}
+              <button class="current-chat__btn js-tooltip-trigger js-focus-visible" data-tooltip="chat-options" type="button">
+                <svg width="3" height="16" viewBox="0 0 3 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="1.5" cy="2" r="1.5" fill="#40375C" />
+                  <circle cx="1.5" cy="8" r="1.5" fill="#40375C" />
+                  <circle cx="1.5" cy="14" r="1.5" fill="#40375C" />
+                </svg>
+              </button>
+          </div>
+        </div>
+        {{{renameForm}}}
+        `
+    this.tooltip = this.props.tooltipInstance.renderToString();
+    this.renameForm = this.props.renameFormInstance.renderToString();
+    return Handlebars.compile(template)({...this.props, tooltip: this.tooltip, renameForm: this.renameForm})
+  }
+}
+
+

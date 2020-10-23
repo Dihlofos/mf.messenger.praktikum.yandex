@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./build/assets/js",
+      "target": "ES6",
+      "lib": ["esnext", "dom", "dom.iterable"],
+      "outDir": "./build/assets/js",
+      "declaration": false,
+      "module": "ES6",
+      "noImplicitAny": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "alwaysStrict": true,
+      "sourceMap": true,
+      "strictNullChecks": true
+    },
+    "include": ["src/**/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts", "src/interface.ts"]
+  }

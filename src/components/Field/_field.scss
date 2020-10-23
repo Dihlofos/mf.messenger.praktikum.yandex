@@ -1,0 +1,81 @@
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  label {
+    position: absolute;
+    top: 1rem;
+    padding: 0 0 1rem;
+    left: 0;
+    width: 100%;
+    transition: font-size 0.2s ease-in-out, transform 0.2s ease-in-out;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--grey);
+  }
+
+  input {
+    font-family: 'Noto Sans';
+    width: 100%;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid var(--purple-border);
+    padding: 0.7rem 0;
+    font-size: 1.3rem;
+    line-height: 1;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:active + label,
+    &:focus + label,
+    &.is-value + label {
+      font-size: 0.9rem;
+      transform: translateY(-1.5rem);
+    }
+
+    &.is-error {
+      color: var(--error);
+    }
+  }
+
+  &__error {
+    padding: 7px 0 0;
+    color: var(--error);
+    min-height: 23px;
+
+    .field--search & {
+      min-height: 0;
+    }
+  }
+
+  &--search {
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    label {
+      left: 2.5rem;
+    }
+
+    input {
+      padding-left: 2.5rem;
+
+      &:active + label,
+      &:focus + label,
+      &.is-value + label {
+        opacity: 0;
+        font-size: 1.3rem;
+        transform: none;
+      }
+    }
+  }
+}
