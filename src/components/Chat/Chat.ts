@@ -3,7 +3,7 @@ import { Block } from '../../modules/Block.js';
 export type ChatProps = {
   mix?: string;
   chatGroups: {
-    date: string;    
+    date: string;
     chats: {
         content: string;
         read?: boolean;
@@ -17,16 +17,16 @@ export class Chat extends Block {
   messages: ChatProps[];
   constructor(props:ChatProps) {
     super("main", 'chat', props);
-  } 
-  
+  }
+
   render() {
-    const Handlebars = window.Handlebars;   
+    const Handlebars = window.Handlebars;
     let template = `
       {{#each chatGroups as |chatGroup|}}
         <article class="chat__group">
           <h2 class="chat__date">
             <time dateTime="2020-07-19">{{chatGroup.date}}</time>
-          </h2>        
+          </h2>
           <div class="chat__dialog-list">
             {{#each chatGroup.chats as |chat|}}
               <article class="chat__dialog {{chat.mix}}">
@@ -45,17 +45,16 @@ export class Chat extends Block {
                         transform="matrix(0.705933 -0.708278 0.705933 0.708278 6.01611 5)"
                         stroke="#40375C" />
                     </svg>
-                  {{/if}}                  
+                  {{/if}}
                   <time dateTime="2020-07-19 11:56">{{chat.time}}</time>
                 </footer>
               </article>
             {{/each}}
-          </div> 
-        </article> 
+          </div>
+        </article>
       {{/each}}`
-    let result = Handlebars.compile(template)({...this.props, messages: this.messages}) 
-    return result;
+    return Handlebars.compile(template)({...this.props, messages: this.messages})
   }
 }
-  
-  
+
+

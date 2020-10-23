@@ -7,8 +7,6 @@ export const fieldsIsValueClassAdding = (selector: string) => {
       const inputField = field.querySelector('input');
       if (inputField) {
         inputField?.classList.toggle('is-value', !!inputField.value.length);
-  
       }
-      
     });
   }

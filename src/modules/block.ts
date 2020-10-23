@@ -21,7 +21,7 @@ import { SimpleObject } from '../interface'
     props:SimpleObject;
 
     eventBus: (...args: any[] ) => EventBus;
-  
+
     constructor(tagName:string = "div", classNames:string = '', props:SimpleObject = {}) {
       const eventBus = new EventBus();
       this._meta = {
@@ -31,11 +31,11 @@ import { SimpleObject } from '../interface'
       };
       this._instances = [];
       this._id = `uniq_${Math.floor(Math.random() * 1000000)}`;
-  
+
       this.props = this._makePropsProxy(props);
-  
+
       this.eventBus = () => eventBus;
-  
+
       this._registerEvents(eventBus);
       eventBus.emit(Block.EVENTS.INIT);
     }
@@ -56,7 +56,7 @@ import { SimpleObject } from '../interface'
     }
 
     initEvents():void { }
-    
+
 
     renderToString() {
       const wrapper = document.createElement(this._meta.tagName);
@@ -64,78 +64,72 @@ import { SimpleObject } from '../interface'
       wrapper.appendChild(this._element);
       return wrapper.innerHTML;
     }
-  
+
     _registerEvents(eventBus:EventBus):void {
       eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
       eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     }
-  
+
     _createResources() {
       const { tagName } = this._meta;
       this._element = this._createDocumentElement(tagName);
       this._element.setAttribute('_key', this.getId());
     }
-  
+
     init():void {
       this._createResources();
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
-  
-    _componentDidMount():void {      
+
+    _componentDidMount():void {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
       this.componentDidMount();
     }
-  
+
     componentDidMount() {}
-  
+
     _componentDidUpdate():void {
-        //oldProps : object, newProps: object
-        //this.componentDidUpdate(oldProps, newProps);    
-        this.componentDidUpdate();    
+
+        this.componentDidUpdate();
     }
-  
-    // Может переопределять пользователь, необязательно трогать
+
     componentDidUpdate():void {
-      //oldProps : object, newProps: object
-      //TODO - разобраться что здесь происходит с пропсами
-      //console.log(oldProps)
-      //console.log(newProps)
-      
+
     }
-  
+
     setProps = (nextProps: object):boolean => {
       if (!nextProps) {
         return false;
-      }    
+      }
 
-      Object.assign(this._makePropsProxy(this.props), nextProps);     
+      Object.assign(this._makePropsProxy(this.props), nextProps);
       return false;
     };
-  
+
     get element() {
       return this._element;
     }
-  
+
     _render() {
-      const block = this.render();   
+      const block = this.render();
       if (block) {
         this._element.innerHTML = block;
-      }      
+      }
     }
-  
+
     render(): string {
       return '';
     }
-  
+
     getContent(): HTMLElement {
       return this.element;
     }
-  
+
     _makePropsProxy(props:{[key:string]: unknown}) {
       const self = this;
-      const proxyData = new Proxy(props, { 
+      const proxyData = new Proxy(props, {
         set(target, prop:string | number, value) {
           const oldProps = { ...self._meta.props };
           if (target[prop] !== value) {
@@ -148,30 +142,31 @@ import { SimpleObject } from '../interface'
          }
         },
         deleteProperty() {
-           throw new Error('Нет прав');         
+           throw new Error('Нет прав');
         },
       });
-  
+
       return proxyData;
     }
-  
+
     _createDocumentElement(tagName: string): HTMLElement {
-      // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
       const element = document.createElement(tagName);
+      //Добавляем класс к обертке
       if (!!this._meta.classNames.length) {
-        element.classList.add(...this._meta.classNames.split(' ')); 
+        element.classList.add(...this._meta.classNames.split(' '));
+        //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
         if (this.props?.mix) element.classList.add(...this.props?.mix.split(' '))
-      }   
-     
+      }
+
       return element
     }
-  
+
     show(): void {
       this.getContent().style.display = "block";
-      
+
     }
-  
+
     hide(): void {
-      this.getContent().style.display = "none";   
+      this.getContent().style.display = "none";
     }
   }

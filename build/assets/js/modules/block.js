@@ -62,16 +62,9 @@ export class Block {
     }
     componentDidMount() { }
     _componentDidUpdate() {
-        //oldProps : object, newProps: object
-        //this.componentDidUpdate(oldProps, newProps);    
         this.componentDidUpdate();
     }
-    // Может переопределять пользователь, необязательно трогать
     componentDidUpdate() {
-        //oldProps : object, newProps: object
-        //TODO - разобраться что здесь происходит с пропсами
-        //console.log(oldProps)
-        //console.log(newProps)
     }
     get element() {
         return this._element;
@@ -111,10 +104,11 @@ export class Block {
     }
     _createDocumentElement(tagName) {
         var _a, _b;
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         const element = document.createElement(tagName);
+        //Добавляем класс к обертке
         if (!!this._meta.classNames.length) {
             element.classList.add(...this._meta.classNames.split(' '));
+            //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
             if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.mix)
                 element.classList.add(...(_b = this.props) === null || _b === void 0 ? void 0 : _b.mix.split(' '));
         }

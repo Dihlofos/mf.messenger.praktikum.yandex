@@ -33,6 +33,7 @@ function loginPageRender() {
     });
     if (root) {
         root.appendChild(form.getContent());
+        //Линкуем конкретные инстансы, для валидации
         fields.forEach((item) => {
             item.hydrate();
         });

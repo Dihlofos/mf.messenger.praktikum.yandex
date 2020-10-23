@@ -25,7 +25,6 @@ export class Form extends Block {
         let errors: string[] = [];
         this.props.fieldInstances.forEach((field:any)=>{
           field.validation();
-
           if (field.getValidationError()) errors.push(field.getValidationError());
         })
 
