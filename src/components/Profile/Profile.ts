@@ -1,26 +1,25 @@
-import { Block } from "../../modules/Block.js";
-import { ProfileData } from "../ProfileData/ProfileData.js";
-import { ProfileForm } from "../ProfileForm/ProfileForm.js";
-
+import { Block } from '../../modules/Block.js';
+import { ProfileShow } from '../ProfileShow/ProfileShow.js';
+import { ProfileForm } from '../ProfileForm/ProfileForm.js';
 
 export type ProfileProps = {
-  backlink:string;
+  backlink: string;
   backText: string;
-  contentInstance: ProfileData | ProfileForm;
-}
+  contentInstance: ProfileShow | ProfileForm;
+};
 
 export class Profile extends Block {
-    content: ProfileData | ProfileForm;
-    constructor(props:ProfileProps) {
-      super("div", 'profile', props);
-    }
+  content: string;
+  constructor(props: ProfileProps) {
+    super('div', 'profile', props);
+  }
 
-    render() {
-      const Handlebars = window.Handlebars;
-      if (this.props) {
-        this.content = this.props.contentInstance.renderToString();
-      }
-      const template = `
+  render() {
+    const Handlebars = window.Handlebars;
+    if (this.props) {
+      this.content = this.props.contentInstance.renderToString();
+    }
+    const template = `
         <aside class="profile__aside">
           <a class="profile__back-link" href="{{backlink}}">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,8 +32,11 @@ export class Profile extends Block {
         <main class="profile__content">
           {{{content}}}
         </main>
-      `
+      `;
 
-      return Handlebars.compile(template)({...this.props, content: this.content})
-    }
+    return Handlebars.compile(template)({
+      ...this.props,
+      content: this.content,
+    });
   }
+}

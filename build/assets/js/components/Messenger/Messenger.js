@@ -16,7 +16,7 @@ export class Messenger extends Block {
         }
         const template = `
       {{{messagesBoard}}}
-      
+
       <div class="messenger__content">
         {{#if currentChat}}
             {{{currentChat}}}
@@ -24,7 +24,7 @@ export class Messenger extends Block {
             {{{sender}}}
         {{^}}
           <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-        {{/if}}          
+        {{/if}}
       </div>
     `;
         return Handlebars.compile(template)(Object.assign(Object.assign({}, this.props), { messagesBoard: this.messagesBoard, currentChat: this.currentChat, chat: this.chat, sender: this.sender }));

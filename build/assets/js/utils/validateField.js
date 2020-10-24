@@ -1,21 +1,21 @@
 export function validateField(element) {
     const validationData = {
         password: {
-            required: "Введите пароль",
-            length: "Пароль должен быть длиной не менее 5ти символов",
-            content: "Недопустимые знаки в пароле",
+            required: 'Введите пароль',
+            length: 'Пароль должен быть длиной не менее 5ти символов',
+            content: 'Недопустимые знаки в пароле',
         },
         email: {
-            required: "Введите E-mail",
-            content: "Недопустимый адрес"
+            required: 'Введите E-mail',
+            content: 'Недопустимый адрес',
         },
         login: {
-            required: "Придумайте логин",
-            length: 'Логин должен быть длиной не менее 2х символов'
+            required: 'Придумайте логин',
+            length: 'Логин должен быть длиной не менее 2х символов',
         },
         name: {
-            required: "Введите своё имя"
-        }
+            required: 'Введите своё имя',
+        },
     };
     if (element) {
         switch (element.type) {
@@ -30,7 +30,8 @@ export function validateField(element) {
             case 'email':
                 if (element.value.length === 0)
                     return validationData.email.required;
-                if (element.value.length > 0 && !element.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+                if (element.value.length > 0 &&
+                    !element.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
                     return validationData.email.content;
                 return '';
         }

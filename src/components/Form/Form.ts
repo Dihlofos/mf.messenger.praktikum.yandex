@@ -12,8 +12,9 @@ export type FormProps = {
 }
 
 export class Form extends Block {
-    button:string;
-    fields: Field[];
+    button: string;
+    fields: string;
+
     constructor(props:FormProps) {
       super("div", 'form', props);
     }

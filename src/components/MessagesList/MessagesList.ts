@@ -6,7 +6,7 @@ export type MessagesListProps = {
 }
 
 export class MessagesList extends Block {
-  messages: ChatCard[];
+  messages: string[];
   constructor(props:MessagesListProps) {
     super("ul", 'messages-list', props);
   }

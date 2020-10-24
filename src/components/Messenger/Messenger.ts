@@ -12,27 +12,27 @@ export type MessengerProps = {
 }
 
 export class Messenger extends Block {
-  messagesBoard: MessagesBoard;
-  currentChat: CurrentChat;
-  chat: Chat;
-  sender: Sender;
+  messagesBoard: string;
+  currentChat: string;
+  chat: string;
+  sender: string;
 
   constructor(props:MessengerProps) {
     super("div", 'messenger', props);
-  } 
-  
+  }
+
   render() {
     const Handlebars = window.Handlebars;
     if (this.props) {
-      this.messagesBoard = this.props.messagesBoardInstance.renderToString();  
-      if (this.props.currentChatInstance) this.currentChat = this.props.currentChatInstance.renderToString();    
+      this.messagesBoard = this.props.messagesBoardInstance.renderToString();
+      if (this.props.currentChatInstance) this.currentChat = this.props.currentChatInstance.renderToString();
       if (this.props.chatInstance) this.chat = this.props.chatInstance.renderToString();
       if (this.props.senderInstance) this.sender = this.props.senderInstance.renderToString();
     }
 
     const template:string = `
       {{{messagesBoard}}}
-      
+
       <div class="messenger__content">
         {{#if currentChat}}
             {{{currentChat}}}
@@ -40,9 +40,9 @@ export class Messenger extends Block {
             {{{sender}}}
         {{^}}
           <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-        {{/if}}          
+        {{/if}}
       </div>
-    ` 
+    `
     return Handlebars.compile(template)(
       {
         ...this.props,
@@ -52,7 +52,7 @@ export class Messenger extends Block {
         sender: this.sender
       }
     );
-    
-    
+
+
   }
 }

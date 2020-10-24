@@ -1,7 +1,7 @@
-import { Block } from "../../modules/Block.js";
+import { Block } from '../../modules/Block.js';
 export class Profile extends Block {
     constructor(props) {
-        super("div", 'profile', props);
+        super('div', 'profile', props);
     }
     render() {
         const Handlebars = window.Handlebars;

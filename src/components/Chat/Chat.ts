@@ -14,7 +14,7 @@ export type ChatProps = {
 }
 
 export class Chat extends Block {
-  messages: ChatProps[];
+  messages: string[];
   constructor(props:ChatProps) {
     super("main", 'chat', props);
   }

@@ -4,7 +4,7 @@
       "target": "ES6",
       "lib": ["esnext", "dom", "dom.iterable"],
       "outDir": "./build/assets/js",
-      "declaration": false,
+      "declaration": true,
       "module": "ES6",
       "noImplicitAny": true,
       "noUnusedLocals": true,
