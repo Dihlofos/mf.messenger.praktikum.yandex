@@ -9,43 +9,45 @@ export type FormProps = {
   fieldsInstances: ProfileField[];
   nameInstance: ProfileField;
   buttonInstance: Button;
-}
+};
 
 export class ProfileForm extends Block {
-    button: string;
-    name: string;
-    fields: string[];
-    avatar: string;
+  button: string;
+  name: string;
+  fields: string[];
+  avatar: string;
 
-    constructor(props:FormProps) {
-      super("div", '', props);
-      this._instances.push(this);
+  constructor(props: FormProps) {
+    super('div', '', props);
+    this._instances.push(this);
+  }
+
+  initEvents() {
+    let form: HTMLFormElement | null = this._element.querySelector('form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let errors: string[] = [];
+      this.props.fieldsInstances.forEach((field: any) => {
+        field.validation();
+        if (field.getValidationError()) errors.push(field.getValidationError());
+      });
+      if (this.props.nameInstance.getValidationError())
+        errors.push(this.props.nameInstance.getValidationError());
+      if (!!!errors.length && form) formConsole(form);
+    });
+  }
+
+  render() {
+    const Handlebars = window.Handlebars;
+    if (this.props) {
+      this.avatar = this.props.avatarInstance.renderToString();
+      this.button = this.props.buttonInstance.renderToString();
+      this.name = this.props.nameInstance.renderToString();
+      this.fields = this.props.fieldsInstances.map((item: ProfileField) =>
+        item.renderToString()
+      );
     }
-
-    initEvents() {
-      let form: HTMLFormElement | null = this._element.querySelector('form');
-      console.log(form)
-      form?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let errors: string[] = [];
-        this.props.fieldsInstances.forEach((field:any)=>{
-          field.validation();
-          if (field.getValidationError()) errors.push(field.getValidationError());
-        })
-        if (this.props.nameInstance.getValidationError()) errors.push(this.props.nameInstance.getValidationError());
-        if (!!!errors.length && form) formConsole(form)
-      })
-    }
-
-    render() {
-      const Handlebars = window.Handlebars;
-      if (this.props) {
-        this.avatar = this.props.avatarInstance.renderToString();
-        this.button = this.props.buttonInstance.renderToString();
-        this.name = this.props.nameInstance.renderToString();
-        this.fields = this.props.fieldsInstances.map((item:ProfileField)=>(item.renderToString()));
-      }
-      const template = `
+    const template = `
         <form class="profile__form js-form" method="POST">
           {{{avatar}}}
           {{{name}}}
@@ -58,7 +60,13 @@ export class ProfileForm extends Block {
           </ul>
           {{{button}}}
         </form>
-      `
-      return Handlebars.compile(template)({...this.props, button: this.button, fields: this.fields, avatar: this.avatar, name: this.name})
-    }
+      `;
+    return Handlebars.compile(template)({
+      ...this.props,
+      button: this.button,
+      fields: this.fields,
+      avatar: this.avatar,
+      name: this.name,
+    });
   }
+}
