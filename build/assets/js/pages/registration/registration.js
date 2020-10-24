@@ -1,64 +1,12 @@
-import { Button } from "../../components/Button/Button.js";
-import { Field } from "../../components/Field/Field.js";
-import { Form } from "../../components/Form/Form.js";
+import { Button } from '../../components/Button/Button.js';
+import { Field } from '../../components/Field/Field.js';
+import { Form } from '../../components/Form/Form.js';
+import { registrationData } from './data.js';
 function registrationPageRender() {
-    const root = document.querySelector(".root");
-    const fields = [
-        new Field({
-            name: 'email',
-            type: 'email',
-            label: 'Почта',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'login',
-            type: 'text',
-            label: 'Логин',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'password',
-            type: 'password',
-            label: 'Пароль',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'password_repeat',
-            type: 'password',
-            label: 'Пароль (еще раз)',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'first_name',
-            type: 'text',
-            label: 'Имя',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'second_name',
-            type: 'text',
-            label: 'Фамилия',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'phone',
-            type: 'text',
-            label: 'Телефон',
-            value: '',
-            mix: 'form__field'
-        })
-    ];
-    const button = new Button({
-        text: 'Зарегистрироваться',
-        mix: 'form__button',
-        type: 'submit'
-    });
+    const root = document.querySelector('.root');
+    const { fieldsData, buttonData } = registrationData;
+    const fields = fieldsData.map((item) => new Field(item));
+    const button = new Button(buttonData);
     const form = new Form({
         title: 'Регистрация',
         fieldInstances: fields,
@@ -75,7 +23,7 @@ function registrationPageRender() {
         form.hydrate();
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     registrationPageRender();
 });
 export default registrationPageRender;

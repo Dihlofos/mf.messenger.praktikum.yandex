@@ -11,8 +11,8 @@ export type MessagesBoardProps = {
 };
 
 export class MessagesBoard extends Block {
-    messagesList: MessagesList;
-    searchField: Field;
+    messagesList: string;
+    searchField: string;
     constructor(props:MessagesBoardProps) {
       super("aside", 'messages-board messenger__board', props);
     }

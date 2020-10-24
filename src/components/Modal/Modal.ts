@@ -8,8 +8,9 @@ export type ModalProps = {
 }
 
 export class Modal extends Block {
-    deleteButton: Button;
-    cancelButton: Button;
+    deleteButton: string;
+    cancelButton: string;
+
     constructor(props:ModalProps) {
       super("div", 'modal', props);
     }

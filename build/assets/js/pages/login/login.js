@@ -1,29 +1,12 @@
-import { Button } from "../../components/Button/Button.js";
-import { Field } from "../../components/Field/Field.js";
-import { Form } from "../../components/Form/Form.js";
+import { Button } from '../../components/Button/Button.js';
+import { Field } from '../../components/Field/Field.js';
+import { Form } from '../../components/Form/Form.js';
+import { loginData } from './data.js';
 function loginPageRender() {
-    const root = document.querySelector(".root");
-    const fields = [
-        new Field({
-            name: 'login',
-            type: 'email',
-            label: 'Почта',
-            value: '',
-            mix: 'form__field'
-        }),
-        new Field({
-            name: 'password',
-            type: 'password',
-            label: 'Пароль',
-            value: '',
-            mix: 'form__field'
-        })
-    ];
-    const button = new Button({
-        text: 'Авторизоваться',
-        mix: 'form__button',
-        type: 'submit'
-    });
+    const root = document.querySelector('.root');
+    const { fieldsData, buttonData } = loginData;
+    const fields = fieldsData.map((item) => new Field(item));
+    const button = new Button(buttonData);
     const form = new Form({
         title: 'Вход',
         fieldInstances: fields,
@@ -33,13 +16,14 @@ function loginPageRender() {
     });
     if (root) {
         root.appendChild(form.getContent());
+        //Линкуем конкретные инстансы, для валидации
         fields.forEach((item) => {
             item.hydrate();
         });
         form.hydrate();
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     loginPageRender();
 });
 export default loginPageRender;

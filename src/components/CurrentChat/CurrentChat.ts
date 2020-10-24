@@ -13,8 +13,9 @@ export type CurrentChatProps = {
 }
 
 export class CurrentChat extends Block {
-  tooltip:Tooltip;
-  renameForm: RenameForm;
+  tooltip:string;
+  renameForm: string;
+
   constructor(props:CurrentChatProps) {
     super("header", 'current-chat', props);
   }

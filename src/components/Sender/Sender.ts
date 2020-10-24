@@ -7,7 +7,7 @@ export type SenderProps = {
 
 
 export class Sender extends Block {
-  tooltip: Tooltip;
+  tooltip: string;
   constructor(props:SenderProps) {
     super("footer", 'sender', props);
     this._instances.push(this);

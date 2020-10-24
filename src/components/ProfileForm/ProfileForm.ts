@@ -12,10 +12,10 @@ export type FormProps = {
 }
 
 export class ProfileForm extends Block {
-    button:Button;
-    name: ProfileField;
-    fields: ProfileField[];
-    avatar: Avatar;
+    button: string;
+    name: string;
+    fields: string[];
+    avatar: string;
 
     constructor(props:FormProps) {
       super("div", '', props);

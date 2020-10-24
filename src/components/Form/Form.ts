@@ -12,8 +12,9 @@ export type FormProps = {
 }
 
 export class Form extends Block {
-    button:string;
-    fields: Field[];
+    button: string;
+    fields: string;
+
     constructor(props:FormProps) {
       super("div", 'form', props);
     }
@@ -25,7 +26,6 @@ export class Form extends Block {
         let errors: string[] = [];
         this.props.fieldInstances.forEach((field:any)=>{
           field.validation();
-
           if (field.getValidationError()) errors.push(field.getValidationError());
         })
 

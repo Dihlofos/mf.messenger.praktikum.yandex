@@ -1,38 +1,24 @@
-import { Profile } from "../../components/Profile/Profile.js";
-import { ProfileData } from "../../components/ProfileData/ProfileData.js";
+import { Profile } from '../../components/Profile/Profile.js';
+import { ProfileShow } from '../../components/ProfileShow/ProfileShow.js';
+import { profileData } from './data.js';
 
+function profilePage(): void {
+  const root: HTMLElement | null = document.querySelector('.root');
 
-function profilePage():void {
-  const root: HTMLElement | null = document.querySelector(".root");
-
-  const profileData = new ProfileData({
-    name: 'Евгений',
-    backlink:'/messenger_default.html',
-    backText: 'Выйти',
-    imageLink: 'assets/images/avatar.jpg',
-    imageAlt: 'avatar',
-    email: 'mail@inbox.com',
-    emailLabel: 'Почта',
-    login: 'username',
-    loginLabel: 'Логин',
-    editLink: '/profile-edit.html',
-    editLinkText: 'Изменить данные',
-  })
+  const profileShow = new ProfileShow(profileData);
 
   const profile = new Profile({
-    backlink:'/messenger_default.html',
+    backlink: '/messenger_default.html',
     backText: 'Выйти',
-    contentInstance: profileData,
-    })
-
+    contentInstance: profileShow,
+  });
 
   if (root) {
-    root.appendChild(profile.getContent())
+    root.appendChild(profile.getContent());
   }
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   profilePage();
-
 });
 
 export default profilePage;

@@ -1,6 +1,6 @@
 import { EventBus } from './EventBus.js';
 export class Block {
-    constructor(tagName = "div", classNames = '', props = {}) {
+    constructor(tagName = 'div', classNames = '', props = {}) {
         this._meta = { tagName: '', classNames: '', props: {} };
         this.hydrate = function () {
             for (const i of this._instances) {
@@ -12,14 +12,14 @@ export class Block {
             if (!nextProps) {
                 return false;
             }
-            Object.assign(this._makePropsProxy(this.props), nextProps);
+            Object.assign(this.props, nextProps);
             return false;
         };
         const eventBus = new EventBus();
         this._meta = {
             classNames,
             tagName,
-            props
+            props,
         };
         this._instances = [];
         this._id = `uniq_${Math.floor(Math.random() * 1000000)}`;
@@ -62,17 +62,9 @@ export class Block {
     }
     componentDidMount() { }
     _componentDidUpdate() {
-        //oldProps : object, newProps: object
-        //this.componentDidUpdate(oldProps, newProps);    
         this.componentDidUpdate();
     }
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate() {
-        //oldProps : object, newProps: object
-        //TODO - разобраться что здесь происходит с пропсами
-        //console.log(oldProps)
-        //console.log(newProps)
-    }
+    componentDidUpdate() { }
     get element() {
         return this._element;
     }
@@ -89,19 +81,15 @@ export class Block {
         return this.element;
     }
     _makePropsProxy(props) {
-        const self = this;
         const proxyData = new Proxy(props, {
-            set(target, prop, value) {
-                const oldProps = Object.assign({}, self._meta.props);
+            set: (target, prop, value) => {
+                const oldProps = Object.assign({}, this._meta.props);
                 if (target[prop] !== value) {
                     target[prop] = value;
-                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
-                    self.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                    return true;
+                    this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
+                    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
                 }
-                else {
-                    return true;
-                }
+                return true;
             },
             deleteProperty() {
                 throw new Error('Нет прав');
@@ -111,26 +99,28 @@ export class Block {
     }
     _createDocumentElement(tagName) {
         var _a, _b;
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         const element = document.createElement(tagName);
+        //Добавляем класс к обертке
         if (!!this._meta.classNames.length) {
             element.classList.add(...this._meta.classNames.split(' '));
-            if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.mix)
+            //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
+            if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.mix) {
                 element.classList.add(...(_b = this.props) === null || _b === void 0 ? void 0 : _b.mix.split(' '));
+            }
         }
         return element;
     }
     show() {
-        this.getContent().style.display = "block";
+        this.getContent().style.display = 'block';
     }
     hide() {
-        this.getContent().style.display = "none";
+        this.getContent().style.display = 'none';
     }
 }
 Block.EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_RENDER: "flow:render",
-    FLOW_CDU: "flow:component-did-update"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_RENDER: 'flow:render',
+    FLOW_CDU: 'flow:component-did-update',
 };
 //# sourceMappingURL=Block.js.map

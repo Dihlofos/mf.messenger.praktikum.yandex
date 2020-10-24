@@ -18,7 +18,7 @@ export class Avatar extends Block {
       <label class="avatar__image" for="avatar">
         <img width="176" height="176" src="{{imageLink}}" alt="{{name}}" />
       </label>
-    `;
+    `
     return Handlebars.compile(template)(this.props);
   }
 }
