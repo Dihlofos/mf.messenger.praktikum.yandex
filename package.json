@@ -13,7 +13,8 @@
   "scripts": {
     "start": "node server.js",
     "ts": "tsc --build ./tsconfig.json --watch",
-    "styles": "sass  src/scss/:build/assets/css"
+    "styles": "sass  src/scss/:build/assets/css",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

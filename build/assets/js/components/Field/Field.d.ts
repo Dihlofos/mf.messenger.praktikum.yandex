@@ -9,6 +9,7 @@ export declare type FieldProps = {
 };
 export declare class Field extends Block {
     constructor(props: FieldProps);
+    componentDidMount(): void;
     initEvents(): void;
     onFocus(): void;
     onBlur(): void;

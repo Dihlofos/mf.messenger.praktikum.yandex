@@ -3,7 +3,7 @@ import { Block } from '../../modules/Block.js';
 export type ButtonProps = {
   text: string;
   type: 'submit' | 'button';
-  mix: string;
+  mix?: string;
 };
 
 export class Button extends Block {

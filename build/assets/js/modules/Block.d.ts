@@ -35,6 +35,7 @@ export declare class Block {
     _render(): void;
     render(): string;
     getContent(): HTMLElement;
+    _hydrateAll(props: SimpleObject): void;
     _makePropsProxy(props: {
         [key: string]: unknown;
     }): {
@@ -43,4 +44,5 @@ export declare class Block {
     _createDocumentElement(tagName: string): HTMLElement;
     show(): void;
     hide(): void;
+    remove(): void;
 }

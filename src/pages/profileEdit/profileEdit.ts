@@ -1,50 +1,58 @@
+import { Block } from '../../modules/Block.js';
 import { Avatar } from '../../components/Avatar/Avatar.js';
 import { Button } from '../../components/Button/Button.js';
 import { Profile } from '../../components/Profile/Profile.js';
 import { ProfileField } from '../../components/ProfileField/ProfileField.js';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm.js';
 import { profileEditData } from './data.js';
+import { Router } from '../../modules/Router.js';
+import { UserService } from '../../services/UserService.js';
 
-function profilePage(): void {
-  const root: HTMLElement | null = document.querySelector('.root');
-  const {
-    buttonData,
-    nameData,
-    avatarData,
-    profileFieldsData,
-  } = profileEditData;
+export class ProfileEditPage extends Block {
+  userService: UserService;
+  router: Router;
+  constructor() {
+    super('div', 'page');
+  }
 
-  const button = new Button(buttonData);
-  const name = new ProfileField(nameData);
-  const avatar = new Avatar(avatarData);
+  componentDidMount() {
+    this.userService = new UserService({});
+    this.router = new Router('root');
+    this.userService
+      .getUser()
+      .then((item) => {
+        this.setProps(Object.assign(profileEditData, item));
+      })
+      .catch((_) => {
+        this.router.go('/login');
+      });
+  }
 
-  const fields = profileFieldsData.map((item) => new ProfileField(item));
+  render() {
+    const { buttonData, display_name, avatar, fields } = profileEditData;
 
-  const profileForm = new ProfileForm({
-    nameInstance: name,
-    avatarInstance: avatar,
-    buttonInstance: button,
-    fieldsInstances: fields,
-  });
+    const button = new Button(buttonData);
+    const name = new ProfileField(display_name);
+    const avatarField = new Avatar(avatar);
 
-  const profile = new Profile({
-    backlink: '/messenger_default.html',
-    backText: 'Выйти',
-    contentInstance: profileForm,
-  });
+    const profileFields = fields.map((item) => new ProfileField(item));
 
-  if (root) {
-    root.appendChild(profile.getContent());
-
-    fields.forEach((item) => {
-      item.hydrate();
+    const profileForm = new ProfileForm({
+      nameInstance: name,
+      avatarInstance: avatarField,
+      buttonInstance: button,
+      fieldsInstances: profileFields,
+      error: '',
     });
-    name.hydrate();
-    profileForm.hydrate();
+
+    const profile = new Profile({
+      backlink: '/profile',
+      backText: 'Выйти',
+      contentInstance: profileForm,
+    });
+    document.title = 'Profile';
+    return profile.renderToString();
   }
 }
-document.addEventListener('DOMContentLoaded', function () {
-  profilePage();
-});
 
-export default profilePage;
+export default ProfileEditPage;

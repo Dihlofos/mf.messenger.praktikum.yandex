@@ -6,10 +6,10 @@ import { Sender } from '../Sender/Sender.js';
 
 export type MessengerProps = {
   messagesBoardInstance: MessagesBoard;
-  currentChatInstance?:CurrentChat;
+  currentChatInstance?: CurrentChat;
   chatInstance?: Chat;
   senderInstance?: Sender;
-}
+};
 
 export class Messenger extends Block {
   messagesBoard: string;
@@ -17,42 +17,42 @@ export class Messenger extends Block {
   chat: string;
   sender: string;
 
-  constructor(props:MessengerProps) {
-    super("div", 'messenger', props);
+  constructor(props: MessengerProps) {
+    super('div', 'light full-screen', props);
   }
 
   render() {
     const Handlebars = window.Handlebars;
     if (this.props) {
       this.messagesBoard = this.props.messagesBoardInstance.renderToString();
-      if (this.props.currentChatInstance) this.currentChat = this.props.currentChatInstance.renderToString();
-      if (this.props.chatInstance) this.chat = this.props.chatInstance.renderToString();
-      if (this.props.senderInstance) this.sender = this.props.senderInstance.renderToString();
+      if (this.props.currentChatInstance)
+        this.currentChat = this.props.currentChatInstance.renderToString();
+      if (this.props.chatInstance)
+        this.chat = this.props.chatInstance.renderToString();
+      if (this.props.senderInstance)
+        this.sender = this.props.senderInstance.renderToString();
     }
 
-    const template:string = `
-      {{{messagesBoard}}}
+    const template: string = `
+      <div class="messenger">
+        {{{messagesBoard}}}
 
-      <div class="messenger__content">
-        {{#if currentChat}}
-            {{{currentChat}}}
-            {{{chat}}}
-            {{{sender}}}
-        {{^}}
-          <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-        {{/if}}
+        <div class="messenger__content">
+          {{#if currentChat}}
+              {{{currentChat}}}
+              {{{chat}}}
+              {{{sender}}}
+          {{^}}
+            <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
+          {{/if}}
+        </div>
       </div>
-    `
-    return Handlebars.compile(template)(
-      {
-        ...this.props,
-        messagesBoard: this.messagesBoard,
-        currentChat: this.currentChat,
-        chat: this.chat,
-        sender: this.sender
-      }
-    );
-
-
+    `;
+    return Handlebars.compile(template)({
+      messagesBoard: this.messagesBoard,
+      currentChat: this.currentChat,
+      chat: this.chat,
+      sender: this.sender,
+    });
   }
 }

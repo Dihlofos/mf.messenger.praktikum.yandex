@@ -3,32 +3,38 @@ import { Tooltip } from '../Tooltip/Tooltip.js';
 
 export type SenderProps = {
   tooltipInstance: Tooltip;
-}
-
+};
 
 export class Sender extends Block {
   tooltip: string;
-  constructor(props:SenderProps) {
-    super("footer", 'sender', props);
+  constructor(props: SenderProps) {
+    super('footer', 'sender', props);
     this._instances.push(this);
   }
 
+  componentDidMount() {
+    //TODO - как бы избавиться от setTimeout
+    setTimeout(() => {
+      this.hydrate();
+    }, 0);
+  }
+
   initEvents() {
-    const form: HTMLFormElement | null = this._element.querySelector('form');
-    const input: HTMLInputElement | null = this._element.querySelector('input');
+    const form: HTMLFormElement | null = this._element?.querySelector('form');
+    const input: HTMLInputElement | null = this._element?.querySelector(
+      'input'
+    );
 
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!!!input?.value.length) {
         return false;
       } else {
-        console.log(
-          {
-            message: input?.value
-          }
-        )
+        console.log({
+          message: input?.value,
+        });
       }
-    })
+    });
   }
 
   render() {
@@ -76,11 +82,13 @@ export class Sender extends Block {
           </svg>
         </button>
       </form>
-    `
+    `;
 
     this.tooltip = this.props.tooltipInstance.renderToString();
 
-    return Handlebars.compile(template)({...this.props, tooltip: this.tooltip})
-
+    return Handlebars.compile(template)({
+      ...this.props,
+      tooltip: this.tooltip,
+    });
   }
 }

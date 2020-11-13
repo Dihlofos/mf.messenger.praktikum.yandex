@@ -1,32 +1,45 @@
 import { Block } from '../../modules/Block.js';
 
 export type ChatCardProps = {
-  imageHref: string;
-  imageAlt: string;
-  name: string;
+  id: number;
+  onChatCardClick: (chat: ChatCardProps) => void;
+  avatar: string;
+  title: string;
   text: string;
   fulltime: string;
   time: string;
   unread?: number;
   mix?: string;
-}
+};
 
 export class ChatCard extends Block {
-  constructor(props:ChatCardProps) {
-    super("li", '', props);
+  constructor(props: ChatCardProps) {
+    super('li', '', props);
     this._instances.push(this);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.hydrate();
+    }, 0);
+  }
+
+  initEvents() {
+    this.element?.addEventListener('click', () => {
+      this.props.onChatCardClick(this.props);
+    });
   }
 
   render() {
     const Handlebars = window.Handlebars;
     const template = `
-        <div class="chat-card {{mix}} js-focus-visible" tabindex="0">
+        <div class="chat-card {{mix}} js-focus-visible" tabindex="0" role="button">
           <div class="chat-card__wrapper">
             <div class="chat-card__image">
-              <img width="47" height="47" src="{{imageHref}}" alt="{{imageAlt}}" />
+              <img width="47" height="47" src="{{imageHref}}" alt="{{title}}_avatar" />
             </div>
             <div class="chat-card__content">
-              <p class="chat-card__name">{{name}}</p>
+              <p class="chat-card__name">{{title}}</p>
               <p class="chat-card__text">{{{text}}}</p>
             </div>
             <div class="chat-card__info">
@@ -38,9 +51,7 @@ export class ChatCard extends Block {
             </div>
           </div>
         </div>
-    `
-    return Handlebars.compile(template)(this.props)
+    `;
+    return Handlebars.compile(template)(this.props);
   }
 }
-
-

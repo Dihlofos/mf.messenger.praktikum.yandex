@@ -17,7 +17,7 @@
   }
 
   input {
-    font-family: 'Noto Sans';
+    font-family: "Noto Sans";
     width: 100%;
     border: none;
     background: transparent;
@@ -56,18 +56,19 @@
   &--search {
     svg {
       position: absolute;
-      left: 0;
+      left: 0.8rem;
       top: 0.3rem;
       width: 2.4rem;
       height: 2.4rem;
     }
 
     label {
-      left: 2.5rem;
+      left: 3.5rem;
+      width: auto;
     }
 
     input {
-      padding-left: 2.5rem;
+      padding-left: 3.5rem;
 
       &:active + label,
       &:focus + label,

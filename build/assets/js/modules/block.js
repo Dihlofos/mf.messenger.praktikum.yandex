@@ -13,6 +13,9 @@ export class Block {
                 return false;
             }
             Object.assign(this.props, nextProps);
+            this.eventBus().emit(Block.EVENTS.FLOW_CDU, this.props, nextProps);
+            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            this._hydrateAll(this._meta.props);
             return false;
         };
         const eventBus = new EventBus();
@@ -37,8 +40,10 @@ export class Block {
     initEvents() { }
     renderToString() {
         const wrapper = document.createElement(this._meta.tagName);
-        this._element.innerHTML = this.render();
-        wrapper.appendChild(this._element);
+        if (this._element) {
+            this._element.innerHTML = this.render();
+            wrapper === null || wrapper === void 0 ? void 0 : wrapper.appendChild(this._element);
+        }
         return wrapper.innerHTML;
     }
     _registerEvents(eventBus) {
@@ -57,8 +62,8 @@ export class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
     _componentDidMount() {
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         this.componentDidMount();
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
     componentDidMount() { }
     _componentDidUpdate() {
@@ -70,7 +75,7 @@ export class Block {
     }
     _render() {
         const block = this.render();
-        if (block) {
+        if (block && this._element) {
             this._element.innerHTML = block;
         }
     }
@@ -80,14 +85,36 @@ export class Block {
     getContent() {
         return this.element;
     }
+    _hydrateAll(props) {
+        this.hydrate();
+        Object.entries(props).map(([_, value]) => {
+            doInit(value);
+        });
+        function doInit(value) {
+            if (typeof value === 'string')
+                return;
+            if (Array.isArray(value)) {
+                value.map((item) => {
+                    doInit(item);
+                });
+            }
+            if (value === null || value === void 0 ? void 0 : value.hasOwnProperty('hydrate')) {
+                return value.hydrate();
+            }
+            else {
+                return;
+            }
+        }
+    }
     _makePropsProxy(props) {
         const proxyData = new Proxy(props, {
             set: (target, prop, value) => {
-                const oldProps = Object.assign({}, this._meta.props);
+                //const oldProps = { ...this._meta.props };
                 if (target[prop] !== value) {
                     target[prop] = value;
-                    this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
-                    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    // this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
+                    // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    // this._hydrateAll(this._meta.props);
                 }
                 return true;
             },
@@ -101,7 +128,7 @@ export class Block {
         var _a, _b;
         const element = document.createElement(tagName);
         //Добавляем класс к обертке
-        if (!!this._meta.classNames.length) {
+        if (this._meta.classNames.length > 0) {
             element.classList.add(...this._meta.classNames.split(' '));
             //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
             if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.mix) {
@@ -115,6 +142,9 @@ export class Block {
     }
     hide() {
         this.getContent().style.display = 'none';
+    }
+    remove() {
+        console.log('remove it!');
     }
 }
 Block.EVENTS = {

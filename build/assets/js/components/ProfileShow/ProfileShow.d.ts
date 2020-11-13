@@ -1,14 +1,11 @@
 import { Block } from '../../modules/Block.js';
 export declare type ProfileShowProps = {
-    name: string;
+    display_name: string;
     backlink: string;
     backText: string;
-    imageLink: string;
-    imageAlt: string;
+    avatar: string;
     email: string;
-    emailLabel: string;
-    login: string;
-    loginLabel: string;
+    fields: Record<string, string>[];
     editLink: string;
     editLinkText: string;
 };

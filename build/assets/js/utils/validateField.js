@@ -16,42 +16,46 @@ export function validateField(element) {
         name: {
             required: 'Введите своё имя',
         },
+        display_name: {
+            required: 'Введите своё имя',
+        },
     };
-    if (element) {
-        switch (element.type) {
-            case 'password':
-                if (element.value.length === 0)
-                    return validationData.password.required;
-                if (element.value.length > 0 && element.value.length < 5)
-                    return validationData.password.length;
-                if (element.value.match(/[^a-z0-9]/gi))
-                    return validationData.password.content;
-                return '';
-            case 'email':
-                if (element.value.length === 0)
-                    return validationData.email.required;
-                if (element.value.length > 0 &&
-                    !element.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-                    return validationData.email.content;
-                return '';
-        }
-        switch (element.name) {
-            case 'login':
-                if (element.value.length === 0)
-                    return validationData.login.required;
-                if (element.value.length > 0 && element.value.length < 2)
-                    return validationData.login.length;
-                return '';
-            case 'name':
-                if (element.value.length === 0)
-                    return validationData.name.required;
-                return '';
-            default:
-                return '';
-        }
-    }
-    else {
+    if (!element)
         return '';
+    switch (element.type) {
+        case 'password':
+            if (element.value.length === 0)
+                return validationData.password.required;
+            if (element.value.length > 0 && element.value.length < 5)
+                return validationData.password.length;
+            if (element.value.match(/[^a-z0-9]/gi))
+                return validationData.password.content;
+            return '';
+        case 'email':
+            if (element.value.length === 0)
+                return validationData.email.required;
+            if (element.value.length > 0 &&
+                !element.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+                return validationData.email.content;
+            return '';
+    }
+    switch (element.name) {
+        case 'login':
+            if (element.value.length === 0)
+                return validationData.login.required;
+            if (element.value.length > 0 && element.value.length < 2)
+                return validationData.login.length;
+            return '';
+        case 'name':
+            if (element.value.length === 0)
+                return validationData.name.required;
+            return '';
+        case 'display_name':
+            if (element.value.length === 0)
+                return validationData.name.required;
+            return '';
+        default:
+            return '';
     }
 }
 //# sourceMappingURL=validateField.js.map

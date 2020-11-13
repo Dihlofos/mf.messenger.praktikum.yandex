@@ -1,1 +1,3 @@
-export declare function formConsole(form: HTMLFormElement): void;
+export declare function formConsole(form: HTMLFormElement): {
+    [key: string]: FormDataEntryValue;
+} | undefined;

@@ -1,24 +1,52 @@
+import { Block } from '../../modules/Block.js';
 import { Profile } from '../../components/Profile/Profile.js';
 import { ProfileShow } from '../../components/ProfileShow/ProfileShow.js';
 import { profileData } from './data.js';
+import { AuthService } from '../../services/AuthService.js';
+import { Router } from '../../modules/Router.js';
 
-function profilePage(): void {
-  const root: HTMLElement | null = document.querySelector('.root');
+export class ProfilePage extends Block {
+  authService: AuthService;
+  router: Router;
 
-  const profileShow = new ProfileShow(profileData);
+  constructor() {
+    super('div', 'page');
+  }
+  componentDidMount() {
+    this.authService = new AuthService({});
+    this.router = new Router('root');
+    this.authService
+      .getUser()
+      .then((item) => {
+        this.setProps(Object.assign(profileData, item));
+      })
+      .catch((_) => {
+        this.router.go('/login');
+      });
+  }
 
-  const profile = new Profile({
-    backlink: '/messenger_default.html',
-    backText: 'Выйти',
-    contentInstance: profileShow,
-  });
+  initEvents() {
+    document.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target && target.classList.contains('js-logout')) {
+        event.preventDefault();
+        this.authService.logout();
+        this.router.go('/login');
+      }
+    });
+  }
 
-  if (root) {
-    root.appendChild(profile.getContent());
+  render() {
+    const profileShow = new ProfileShow(profileData);
+
+    const profile = new Profile({
+      backlink: '/messenger',
+      backText: 'Выйти',
+      contentInstance: profileShow,
+    });
+    document.title = 'Profile';
+    return profile.renderToString();
   }
 }
-document.addEventListener('DOMContentLoaded', function () {
-  profilePage();
-});
 
-export default profilePage;
+export default ProfilePage;

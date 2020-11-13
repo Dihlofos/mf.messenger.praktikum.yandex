@@ -4,16 +4,16 @@ import { ProfileFieldProps } from '../../components/ProfileField/ProfileField';
 
 export const profileEditData: {
   buttonData: ButtonProps;
-  profileFieldsData: ProfileFieldProps[];
-  avatarData: AvatarProps;
-  nameData: ProfileFieldProps;
+  fields: ProfileFieldProps[];
+  avatar: AvatarProps;
+  display_name: ProfileFieldProps;
 } = {
   buttonData: {
     text: 'Сохранить',
     type: 'submit',
     mix: 'profile__submit-btn',
   },
-  profileFieldsData: [
+  fields: [
     {
       name: 'email',
       type: 'email',
@@ -64,11 +64,11 @@ export const profileEditData: {
       placeholder: 'Введите новый пароль',
     },
   ],
-  avatarData: {
+  avatar: {
     name: 'avatar',
     imageLink: 'assets/images/avatar.jpg',
   },
-  nameData: {
+  display_name: {
     name: 'name',
     type: 'text',
     label: '',

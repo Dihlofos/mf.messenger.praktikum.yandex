@@ -5,33 +5,32 @@ export type ModalProps = {
   title: string;
   deleteButtonInstance: Button;
   cancelButtonInstance: Button;
-}
+};
 
 export class Modal extends Block {
-    deleteButton: string;
-    cancelButton: string;
+  deleteButton: string;
+  cancelButton: string;
 
-    constructor(props:ModalProps) {
-      super("div", 'modal', props);
+  constructor(props: ModalProps) {
+    super('div', 'modal', props);
+  }
+
+  show(): void {
+    this.element.classList.add('is-shown');
+  }
+
+  hide(): void {
+    this.element.classList.remove('is-shown');
+  }
+
+  render() {
+    const Handlebars = window.Handlebars;
+    if (this.props) {
+      this.deleteButton = this.props.deleteButtonInstance.renderToString();
+      this.cancelButton = this.props.cancelButtonInstance.renderToString();
     }
 
-    show(): void {
-      this.element.classList.add('is-shown');
-    }
-
-    hide(): void {
-      this.element.classList.remove('is-shown');
-    }
-
-
-    render() {
-      const Handlebars = window.Handlebars;
-      if (this.props) {
-        this.deleteButton = this.props.deleteButtonInstance.renderToString();
-        this.cancelButton = this.props.cancelButtonInstance.renderToString();
-      }
-
-      const template = `
+    const template = `
         <div class="modal__milk js-milk"></div>
         <div class="modal__box">
             <div class="modal__delete-dialog">
@@ -42,7 +41,11 @@ export class Modal extends Block {
                 </div>
             </div>
         </div>
-        `
-      return Handlebars.compile(template)({...this.props, deleteButton: this.deleteButton, cancelButton: this.cancelButton})
-    }
+        `;
+    return Handlebars.compile(template)({
+      ...this.props,
+      deleteButton: this.deleteButton,
+      cancelButton: this.cancelButton,
+    });
   }
+}

@@ -5,7 +5,7 @@ export function formConsole(form) {
         for (let pair of formData.entries()) {
             result[pair[0]] = pair[1];
         }
-        console.log(result);
+        return result;
     }
 }
 //# sourceMappingURL=formConsole.js.map

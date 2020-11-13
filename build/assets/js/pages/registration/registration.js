@@ -1,30 +1,28 @@
 import { Button } from '../../components/Button/Button.js';
 import { Field } from '../../components/Field/Field.js';
 import { Form } from '../../components/Form/Form.js';
+import { Block } from '../../modules/Block.js';
 import { registrationData } from './data.js';
-function registrationPageRender() {
-    const root = document.querySelector('.root');
-    const { fieldsData, buttonData } = registrationData;
-    const fields = fieldsData.map((item) => new Field(item));
-    const button = new Button(buttonData);
-    const form = new Form({
-        title: 'Регистрация',
-        fieldInstances: fields,
-        buttonInstance: button,
-        linkText: 'Войти',
-        linkHref: '/login.html',
-    });
-    if (root) {
-        root.appendChild(form.getContent());
-        fields.forEach((item) => {
-            item.hydrate();
+export class RegistrationPage extends Block {
+    constructor() {
+        super('div', 'page');
+    }
+    render() {
+        const { fieldsData, buttonData } = registrationData;
+        const fields = fieldsData.map((item) => new Field(item));
+        const button = new Button(buttonData);
+        const form = new Form({
+            title: 'Регистрация',
+            fieldInstances: fields,
+            buttonInstance: button,
+            linkText: 'Войти',
+            linkHref: '/messenger',
+            action: 'signup',
+            error: '',
         });
-        button.hydrate();
-        form.hydrate();
+        document.title = 'Registration';
+        return form.renderToString();
     }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    registrationPageRender();
-});
-export default registrationPageRender;
+export default RegistrationPage;
 //# sourceMappingURL=registration.js.map

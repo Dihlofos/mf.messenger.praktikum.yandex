@@ -63,8 +63,11 @@ export class Block {
 
   renderToString(): string {
     const wrapper = document.createElement(this._meta.tagName);
-    this._element.innerHTML = this.render();
-    wrapper.appendChild(this._element);
+    if (this._element) {
+      this._element.innerHTML = this.render();
+      wrapper?.appendChild(this._element);
+    }
+
     return wrapper.innerHTML;
   }
 
@@ -87,8 +90,8 @@ export class Block {
   }
 
   _componentDidMount(): void {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.componentDidMount();
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount(): void {}
@@ -105,6 +108,10 @@ export class Block {
     }
 
     Object.assign(this.props, nextProps);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, this.props, nextProps);
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this._hydrateAll(this._meta.props);
+
     return false;
   };
 
@@ -114,7 +121,7 @@ export class Block {
 
   _render(): void {
     const block = this.render();
-    if (block) {
+    if (block && this._element) {
       this._element.innerHTML = block;
     }
   }
@@ -127,14 +134,38 @@ export class Block {
     return this.element;
   }
 
+  _hydrateAll(props: SimpleObject) {
+    this.hydrate();
+    Object.entries(props).map(([_, value]) => {
+      doInit(value);
+    });
+
+    function doInit(value: any) {
+      if (typeof value === 'string') return;
+
+      if (Array.isArray(value)) {
+        value.map((item) => {
+          doInit(item);
+        });
+      }
+
+      if (value?.hasOwnProperty('hydrate')) {
+        return value.hydrate();
+      } else {
+        return;
+      }
+    }
+  }
+
   _makePropsProxy(props: { [key: string]: unknown }) {
     const proxyData = new Proxy(props, {
       set: (target, prop: string | number, value) => {
-        const oldProps = { ...this._meta.props };
+        //const oldProps = { ...this._meta.props };
         if (target[prop] !== value) {
           target[prop] = value;
-          this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
-          this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+          // this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
+          // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+          // this._hydrateAll(this._meta.props);
         }
         return true;
       },
@@ -149,7 +180,7 @@ export class Block {
   _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName);
     //Добавляем класс к обертке
-    if (!!this._meta.classNames.length) {
+    if (this._meta.classNames.length > 0) {
       element.classList.add(...this._meta.classNames.split(' '));
       //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
       if (this.props?.mix) {
@@ -166,5 +197,9 @@ export class Block {
 
   hide(): void {
     this.getContent().style.display = 'none';
+  }
+
+  remove(): void {
+    console.log('remove it!');
   }
 }

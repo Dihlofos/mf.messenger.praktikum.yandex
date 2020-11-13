@@ -1,14 +1,16 @@
 export const profileData = {
-    name: 'Евгений',
-    backlink: '/messenger_default.html',
+    display_name: 'Евгений',
+    backlink: '/login',
     backText: 'Выйти',
-    imageLink: 'assets/images/avatar.jpg',
-    imageAlt: 'avatar',
+    avatar: 'assets/images/avatar.jpg',
     email: 'mail@inbox.com',
-    emailLabel: 'Почта',
-    login: 'username',
-    loginLabel: 'Логин',
-    editLink: '/profile-edit.html',
+    fields: [
+        {
+            value: 'username',
+            label: 'Логин',
+        },
+    ],
+    editLink: '/profileEdit',
     editLinkText: 'Изменить данные',
 };
 //# sourceMappingURL=data.js.map

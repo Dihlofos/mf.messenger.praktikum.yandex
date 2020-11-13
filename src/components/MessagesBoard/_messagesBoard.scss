@@ -1,5 +1,5 @@
 .messages-board {
-  padding: 7.3rem 0 0;
+  padding: 6rem 0 0;
   border-right: 1px solid var(--border);
   height: 100%;
   overflow: scroll;
@@ -17,21 +17,30 @@
     top: 0;
     width: calc(31rem - 1px);
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding: 2rem 1rem 0;
     background-color: var(--board);
     z-index: 2;
   }
 
+  &__create {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--main);
+    cursor: pointer;
+  }
+
   &__link {
     display: inline-flex;
-    align-self: flex-end;
     align-items: center;
     text-decoration: none;
     font-size: 1.2rem;
     line-height: 1;
     color: var(--main);
-    margin: 0 0 1rem;
 
     svg {
       width: 0.8rem;

@@ -2,11 +2,18 @@ import { Block } from '../../modules/Block.js';
 import { validateField } from '../../utils/validateField.js';
 export class ProfileField extends Block {
     constructor(props) {
-        super("div", 'profile-field js-field', props);
+        super('div', 'profile-field js-field', props);
         this._instances.push(this);
     }
+    componentDidMount() {
+        //TODO - как бы избавиться от setTimeout
+        setTimeout(() => {
+            this.hydrate();
+        }, 0);
+    }
     initEvents() {
-        let inputElement = this._element.querySelector('input');
+        var _a;
+        let inputElement = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector('input');
         inputElement === null || inputElement === void 0 ? void 0 : inputElement.addEventListener('focus', () => {
             this.onFocus();
         });
