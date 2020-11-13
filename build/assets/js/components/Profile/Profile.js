@@ -1,7 +1,7 @@
 import { Block } from '../../modules/Block.js';
 export class Profile extends Block {
     constructor(props) {
-        super('div', 'profile', props);
+        super('div', 'light full-screen', props);
     }
     render() {
         const Handlebars = window.Handlebars;
@@ -9,6 +9,7 @@ export class Profile extends Block {
             this.content = this.props.contentInstance.renderToString();
         }
         const template = `
+      <div class="profile">
         <aside class="profile__aside">
           <a class="profile__back-link" href="{{backlink}}">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +22,7 @@ export class Profile extends Block {
         <main class="profile__content">
           {{{content}}}
         </main>
-      `;
+      </div>`;
         return Handlebars.compile(template)(Object.assign(Object.assign({}, this.props), { content: this.content }));
     }
 }

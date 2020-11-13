@@ -1,7 +1,7 @@
 import { Block } from '../../modules/Block.js';
 export class Chat extends Block {
     constructor(props) {
-        super("main", 'chat', props);
+        super('main', 'chat', props);
     }
     render() {
         const Handlebars = window.Handlebars;

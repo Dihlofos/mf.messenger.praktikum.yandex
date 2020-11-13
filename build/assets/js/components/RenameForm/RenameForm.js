@@ -1,8 +1,14 @@
 import { Block } from '../../modules/Block.js';
 export class RenameForm extends Block {
     constructor(props) {
-        super("div", 'rename-form', props);
+        super('div', 'rename-form', props);
         this._instances.push(this);
+    }
+    componentDidMount() {
+        //TODO - как бы избавиться от setTimeout
+        setTimeout(() => {
+            this.hydrate();
+        }, 0);
     }
     show() {
         this.element.classList.add('is-shown');
@@ -13,11 +19,11 @@ export class RenameForm extends Block {
     render() {
         const Handlebars = window.Handlebars;
         const template = `
-        <form class="rename-form__form js-form" method="POST">
-          <input type="text" name="rename-chat" value="Фотография" />
-          <button class="button button--mini rename-form__rename-btn js-focus-visible" type="submit">Сохранить</button>
-        </form>
-        `;
+      <form class="rename-form__form js-form" method="POST">
+        <input type="text" name="rename-chat" value="{{value}}" />
+        <button class="button button--mini rename-form__rename-btn js-focus-visible" type="submit">Сохранить</button>
+      </form>
+    `;
         return Handlebars.compile(template)(this.props);
     }
 }

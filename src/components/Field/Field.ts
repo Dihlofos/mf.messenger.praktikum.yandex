@@ -1,5 +1,5 @@
 import { Block } from '../../modules/Block.js';
-import { validateField } from '../../utils/validateField.js'
+import { validateField } from '../../utils/validateField.js';
 
 export type FieldProps = {
   name: string;
@@ -8,25 +8,32 @@ export type FieldProps = {
   value: string;
   search?: boolean;
   mix: string;
-}
+};
 
 export class Field extends Block {
-  constructor(props:FieldProps) {
-    super("div", 'field js-field', props);
+  constructor(props: FieldProps) {
+    super('div', 'field js-field', props);
     this._instances.push(this);
   }
 
+  componentDidMount() {
+    //TODO - как бы избавиться от setTimeout
+    setTimeout(() => {
+      this.hydrate();
+    }, 0);
+  }
+
   initEvents() {
-    let inputElement = this._element.querySelector('input');
+    let inputElement = this._element?.querySelector('input');
     inputElement?.classList.toggle('is-value', !!inputElement.value.length);
 
     inputElement?.addEventListener('focus', () => {
       this.onFocus();
-    })
+    });
 
     inputElement?.addEventListener('blur', () => {
       this.onBlur();
-    })
+    });
   }
 
   onFocus(): void {
@@ -37,7 +44,7 @@ export class Field extends Block {
     const el = this._element.querySelector('input');
     if (el) {
       el.classList.toggle('is-value', !!el.value.length);
-      this.validation()
+      this.validation();
     }
   }
 
@@ -46,17 +53,17 @@ export class Field extends Block {
     let errorElement = this._element.querySelector('.js-error');
     if (errorElement && element) {
       if (validateField(element).length) {
-        errorElement.textContent = validateField(element)
+        errorElement.textContent = validateField(element);
       } else {
         errorElement.textContent = '';
       }
     }
   }
 
-  getValidationError():string {
+  getValidationError(): string {
     const element = this._element.querySelector('input');
     if (element) return validateField(element);
-    return ''
+    return '';
   }
 
   render() {
@@ -70,6 +77,6 @@ export class Field extends Block {
         <input id="{{name}}" type="{{type}}" name="{{name}}" value="{{value}}">
         <label for="{{name}}">{{label}}</label>
         <span class="field__error js-error"></span>
-    `)(this.props)
+    `)(this.props);
   }
 }

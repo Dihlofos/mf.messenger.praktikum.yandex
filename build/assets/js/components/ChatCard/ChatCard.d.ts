@@ -1,8 +1,9 @@
 import { Block } from '../../modules/Block.js';
 export declare type ChatCardProps = {
-    imageHref: string;
-    imageAlt: string;
-    name: string;
+    id: number;
+    onChatCardClick: (chat: ChatCardProps) => void;
+    avatar: string;
+    title: string;
     text: string;
     fulltime: string;
     time: string;
@@ -11,5 +12,7 @@ export declare type ChatCardProps = {
 };
 export declare class ChatCard extends Block {
     constructor(props: ChatCardProps);
+    componentDidMount(): void;
+    initEvents(): void;
     render(): any;
 }

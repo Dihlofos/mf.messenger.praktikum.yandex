@@ -8,8 +8,8 @@ export const loginData: {
   fieldsData: [
     {
       name: 'login',
-      type: 'email',
-      label: 'Почта',
+      type: 'text',
+      label: 'Логин',
       value: '',
       mix: 'form__field',
     },

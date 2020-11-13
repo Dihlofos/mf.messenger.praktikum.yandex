@@ -5,18 +5,18 @@ export type ChatProps = {
   chatGroups: {
     date: string;
     chats: {
-        content: string;
-        read?: boolean;
-        mix?: string;
-        time: string;
-    }[]
-  }[]
-}
+      content: string;
+      read?: boolean;
+      mix?: string;
+      time: string;
+    }[];
+  }[];
+};
 
 export class Chat extends Block {
   messages: string[];
-  constructor(props:ChatProps) {
-    super("main", 'chat', props);
+  constructor(props: ChatProps) {
+    super('main', 'chat', props);
   }
 
   render() {
@@ -52,9 +52,10 @@ export class Chat extends Block {
             {{/each}}
           </div>
         </article>
-      {{/each}}`
-    return Handlebars.compile(template)({...this.props, messages: this.messages})
+      {{/each}}`;
+    return Handlebars.compile(template)({
+      ...this.props,
+      messages: this.messages,
+    });
   }
 }
-
-

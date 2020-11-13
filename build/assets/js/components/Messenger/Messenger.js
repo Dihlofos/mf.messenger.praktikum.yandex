@@ -1,7 +1,7 @@
 import { Block } from '../../modules/Block.js';
 export class Messenger extends Block {
     constructor(props) {
-        super("div", 'messenger', props);
+        super('div', 'light full-screen', props);
     }
     render() {
         const Handlebars = window.Handlebars;
@@ -15,19 +15,26 @@ export class Messenger extends Block {
                 this.sender = this.props.senderInstance.renderToString();
         }
         const template = `
-      {{{messagesBoard}}}
+      <div class="messenger">
+        {{{messagesBoard}}}
 
-      <div class="messenger__content">
-        {{#if currentChat}}
-            {{{currentChat}}}
-            {{{chat}}}
-            {{{sender}}}
-        {{^}}
-          <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-        {{/if}}
+        <div class="messenger__content">
+          {{#if currentChat}}
+              {{{currentChat}}}
+              {{{chat}}}
+              {{{sender}}}
+          {{^}}
+            <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
+          {{/if}}
+        </div>
       </div>
     `;
-        return Handlebars.compile(template)(Object.assign(Object.assign({}, this.props), { messagesBoard: this.messagesBoard, currentChat: this.currentChat, chat: this.chat, sender: this.sender }));
+        return Handlebars.compile(template)({
+            messagesBoard: this.messagesBoard,
+            currentChat: this.currentChat,
+            chat: this.chat,
+            sender: this.sender,
+        });
     }
 }
 //# sourceMappingURL=Messenger.js.map

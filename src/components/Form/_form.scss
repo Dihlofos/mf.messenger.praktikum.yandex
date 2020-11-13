@@ -31,6 +31,13 @@
     margin: 0 0 1.5rem;
   }
 
+  &__error {
+    padding: 7px 0 7px;
+    font-size: 1.4rem;
+    color: var(--error);
+    min-height: 23px;
+  }
+
   &__link {
     display: block;
     text-align: center;

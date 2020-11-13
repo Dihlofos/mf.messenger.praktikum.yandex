@@ -1,34 +1,33 @@
 import { Button } from '../../components/Button/Button.js';
 import { Field } from '../../components/Field/Field.js';
 import { Form } from '../../components/Form/Form.js';
+import { Block } from '../../modules/Block.js';
 import { loginData } from './data.js';
 
-function loginPageRender(): void {
-  const root: HTMLElement | null = document.querySelector('.root');
-  const { fieldsData, buttonData } = loginData;
-  const fields = fieldsData.map((item) => new Field(item));
-  const button = new Button(buttonData);
+export class LoginPage extends Block {
+  constructor() {
+    super('div', 'page');
+  }
 
-  const form = new Form({
-    title: 'Вход',
-    fieldInstances: fields,
-    buttonInstance: button,
-    linkText: 'Нет аккаунта?',
-    linkHref: '/registration.html',
-  });
+  render() {
+    const { fieldsData, buttonData } = loginData;
+    const fields = fieldsData.map((item) => new Field(item));
+    const button = new Button(buttonData);
 
-  if (root) {
-    root.appendChild(form.getContent());
-
-    //Линкуем конкретные инстансы, для валидации
-    fields.forEach((item) => {
-      item.hydrate();
+    const form = new Form({
+      title: 'Вход',
+      fieldInstances: fields,
+      buttonInstance: button,
+      linkText: 'Нет аккаунта?',
+      linkHref: '/registration',
+      action: 'signin',
+      error: '',
     });
-    form.hydrate();
+
+    document.title = 'Login';
+
+    return form.renderToString();
   }
 }
-document.addEventListener('DOMContentLoaded', function () {
-  loginPageRender();
-});
 
-export default loginPageRender;
+export default LoginPage;

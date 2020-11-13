@@ -1,7 +1,7 @@
 import { Block } from '../../modules/Block.js';
 export class Modal extends Block {
     constructor(props) {
-        super("div", 'modal', props);
+        super('div', 'modal', props);
     }
     show() {
         this.element.classList.add('is-shown');

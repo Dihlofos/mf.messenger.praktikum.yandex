@@ -10,6 +10,7 @@ export declare type ProfileFieldProps = {
 };
 export declare class ProfileField extends Block {
     constructor(props: ProfileFieldProps);
+    componentDidMount(): void;
     initEvents(): void;
     onFocus(): void;
     onBlur(): void;

@@ -5,5 +5,8 @@ export declare type AvatarProps = {
 };
 export declare class Avatar extends Block {
     constructor(props: AvatarProps);
+    componentDidMount(): void;
+    initEvents(): void;
+    onChange(event: Event): void;
     render(): any;
 }
