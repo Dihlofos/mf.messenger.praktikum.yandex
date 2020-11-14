@@ -2,13 +2,13 @@ import { Block } from '../../modules/Block.js';
 import { formDataToObject } from '../../utils/formDataToObject.js';
 import { UserService } from '../../services/UserService.js';
 import { Router } from '../../modules/Router.js';
+import { ProfileFormTemplate } from './ProfileForm.template.js';
 export class ProfileForm extends Block {
     constructor(props) {
         super('div', '', props);
         this._instances.push(this);
     }
     componentDidMount() {
-        //TODO - как бы избавиться от setTimeout
         setTimeout(() => {
             this.hydrate();
         }, 0);
@@ -55,22 +55,7 @@ export class ProfileForm extends Block {
             this.name = this.props.nameInstance.renderToString();
             this.fields = this.props.fieldsInstances.map((item) => item.renderToString());
         }
-        const template = `
-        <form class="profile__form js-form" method="POST">
-          {{{avatar}}}
-          {{{name}}}
-          <ul class="profile__field-list">
-            {{#each fields}}
-              <li class="profile__field-item">
-                {{{this}}}
-              </li>
-            {{/each}}
-          </ul>
-          <p class="profile__error">{{error}}</p>
-          {{{button}}}
-        </form>
-      `;
-        return Handlebars.compile(template)(Object.assign(Object.assign({}, this.props), { button: this.button, fields: this.fields, avatar: this.avatar, name: this.name }));
+        return Handlebars.compile(ProfileFormTemplate)(Object.assign(Object.assign({}, this.props), { button: this.button, fields: this.fields, avatar: this.avatar, name: this.name }));
     }
 }
 //# sourceMappingURL=ProfileForm.js.map

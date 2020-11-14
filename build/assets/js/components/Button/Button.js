@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { ButtonTemplate } from './Button.template.js';
 export class Button extends Block {
     constructor(props) {
         super('div', '', props);
@@ -6,8 +7,7 @@ export class Button extends Block {
     }
     render() {
         const Handlebars = window.Handlebars;
-        const template = `<button class="button js-focus-visible {{mix}}" type="{{type}}">{{text}}</button>`;
-        return Handlebars.compile(template)(this.props);
+        return Handlebars.compile(ButtonTemplate)(this.props);
     }
 }
 //# sourceMappingURL=Button.js.map

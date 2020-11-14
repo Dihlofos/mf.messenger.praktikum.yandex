@@ -1,5 +1,6 @@
 import { Block } from '../../modules/Block.js';
 import { validateField } from '../../utils/validateField.js';
+import { ProfileFieldTemplate } from './ProfileField.template.js';
 
 export type ProfileFieldProps = {
   name: string;
@@ -18,7 +19,6 @@ export class ProfileField extends Block {
   }
 
   componentDidMount() {
-    //TODO - как бы избавиться от setTimeout
     setTimeout(() => {
       this.hydrate();
     }, 0);
@@ -64,26 +64,6 @@ export class ProfileField extends Block {
 
   render() {
     const Handlebars = window.Handlebars;
-    return Handlebars.compile(`
-      {{#if nameField}}
-        <input
-        class="profile-field__input profile-field__input--name"
-        id="{{name}}"
-        type="{{type}}"
-        name="{{name}}"
-        value="{{value}}">
-      {{^}}
-        <input
-          class="profile-field__input"
-          id="{{name}}"
-          type="{{type}}"
-          name="{{name}}"
-          value="{{value}}"
-          placeholder="{{placeholder}}">
-        <label class="profile-field__label"
-          for="{{name}}">{{label}}</label>
-      {{/if}}
-        <span class="profile-field__error js-error">{{error}}</span>
-    `)(this.props);
+    return Handlebars.compile(ProfileFieldTemplate)(this.props);
   }
 }

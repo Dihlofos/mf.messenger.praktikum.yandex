@@ -3,6 +3,7 @@ import { ChatService } from '../../services/ChatsService.js';
 import { UserService } from '../../services/UserService.js';
 import { formDataToObject } from '../../utils/formDataToObject.js';
 import { Button } from '../Button/Button.js';
+import { UserModalTemplate } from './UserModal.template.js';
 export class UserModal extends Block {
     constructor(props) {
         super('div', 'user-modal', props);
@@ -15,7 +16,7 @@ export class UserModal extends Block {
                 this.props.onUserAdded(Number(user === null || user === void 0 ? void 0 : user.dataset.id));
                 setTimeout(() => {
                     this.updateUsers();
-                }, 300);
+                }, 0);
             }
         };
         this.onUserRemoveClick = (e) => {
@@ -25,7 +26,7 @@ export class UserModal extends Block {
                 this.props.onUserRemoved(Number(user === null || user === void 0 ? void 0 : user.dataset.id));
                 setTimeout(() => {
                     this.updateUsers();
-                }, 300);
+                }, 0);
             }
         };
         this.show = () => {
@@ -82,45 +83,7 @@ export class UserModal extends Block {
             text: 'Найти',
             type: 'submit',
         }).renderToString();
-        let template = `
-      <div class="user-modal__box is-shown">
-        <div class="user-modal__col">
-          <h4 class="user-modal__title">Собеседники</h4>
-          <ul class="user-modal__list">
-            {{#each usersInChat}}
-              <li class="user-modal__item user-modal__item--remove js-user-remove" data-id="{{id}}" title="Выгнать наглеца из чата">
-                <img class="user-modal__avatar" src="{{avatar}}" />
-                <span class="user-modal__user">{{display_name}}</span>
-              </li>
-            {{/each}}
-          </ul>
-        </div>
-        <div class="user-modal__col">
-          <h4 class="user-modal__title">Добавить собеседника</h4>
-          <form class="user-modal__form js-user-add-form">
-          <input class="user-modal__input js-focus-visible" id="login" name="login" type="text" autocomplete="off" placeholder="Введите логин пользователя"/>
-          {{{findButton}}}
-        </form>
-        {{#if userList}}
-          <ul class="user-modal__list">
-            {{#each userList}}
-              <li class="user-modal__item js-user-add" data-id="{{id}}">
-                <img class="user-modal__avatar" src="{{avatar}}" />
-                <span class="user-modal__user">{{display_name}}</span>
-              </li>
-            {{/each}}
-          </ul>
-        {{/if}}
-        {{#if nothingFound}}
-          <div class="user-modal__nothingFound">Не найдено пользователя с таким логином</div>
-        {{/if}}
-        </div>
-
-
-      </div>
-      <div class="chat-create-modal__milk js-user-add-milk"></div>
-    `;
-        return Handlebars.compile(template)(Object.assign(Object.assign({}, this.props), { userInChat: this.usersInChat, findButton: this.findButton }));
+        return Handlebars.compile(UserModalTemplate)(Object.assign(Object.assign({}, this.props), { userInChat: this.usersInChat, findButton: this.findButton }));
     }
 }
 //# sourceMappingURL=UserModal.js.map

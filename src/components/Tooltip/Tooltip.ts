@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { TooltipTemplate } from './Tooltip.template.js';
 
 export type TooltipProps = {
   mix: string;
@@ -17,7 +18,6 @@ export class Tooltip extends Block {
   }
 
   componentDidMount() {
-    //TODO - как бы избавиться от setTimeout
     setTimeout(() => {
       this.hydrate();
     }, 0);
@@ -44,18 +44,6 @@ export class Tooltip extends Block {
 
   render() {
     const Handlebars = window.Handlebars;
-
-    let template = `
-        <ul class="icon-buttons">
-            {{#each iconButtons}}
-                <li class="icon-buttons__item">
-                    <button class="js-icon-button icon-buttons__btn js-focus-visible" data-target="{{target}}" type="button">
-                        {{{svg}}}
-                        <span>{{name}}</span>
-                    </button>
-                </li>
-            {{/each}}
-        </ul>`;
-    return Handlebars.compile(template)({ ...this.props });
+    return Handlebars.compile(TooltipTemplate)({ ...this.props });
   }
 }

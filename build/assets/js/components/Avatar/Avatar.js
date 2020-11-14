@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { AvatarTemplate } from './Avatar.template.js';
 export class Avatar extends Block {
     constructor(props) {
         super('div', 'avatar', props);
@@ -26,13 +27,7 @@ export class Avatar extends Block {
     }
     render() {
         const Handlebars = window.Handlebars;
-        const template = `
-      <input class="avatar__input js-avatar-input" id="{{name}}" name="{{name}}" type="file" />
-      <label class="avatar__image" for="avatar">
-        <img class="js-avatar-image" width="176" height="176" src="{{imageLink}}" alt="{{name}}" />
-      </label>
-    `;
-        return Handlebars.compile(template)(this.props);
+        return Handlebars.compile(AvatarTemplate)(this.props);
     }
 }
 //# sourceMappingURL=Avatar.js.map

@@ -1,0 +1,12 @@
+export const ModalTemplate = `
+  <div class="modal__milk js-milk"></div>
+  <div class="modal__box">
+      <div class="modal__delete-dialog">
+          <h3 class="modal__title">{{title}}</h3>
+          <div class="modal__buttons">
+              {{{deleteButton}}}
+              {{{cancelButton}}}
+          </div>
+      </div>
+  </div>
+  `;

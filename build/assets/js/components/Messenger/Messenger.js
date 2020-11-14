@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { MessengerTemplate } from './Messenger.template.js';
 export class Messenger extends Block {
     constructor(props) {
         super('div', 'light full-screen', props);
@@ -14,22 +15,7 @@ export class Messenger extends Block {
             if (this.props.senderInstance)
                 this.sender = this.props.senderInstance.renderToString();
         }
-        const template = `
-      <div class="messenger">
-        {{{messagesBoard}}}
-
-        <div class="messenger__content">
-          {{#if currentChat}}
-              {{{currentChat}}}
-              {{{chat}}}
-              {{{sender}}}
-          {{^}}
-            <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-          {{/if}}
-        </div>
-      </div>
-    `;
-        return Handlebars.compile(template)({
+        return Handlebars.compile(MessengerTemplate)({
             messagesBoard: this.messagesBoard,
             currentChat: this.currentChat,
             chat: this.chat,
