@@ -6,7 +6,7 @@ export class ChatService {
   avatarDefault: string = '/assets/images/avatar.png';
 
   constructor() {
-    this.transport = new HTTPTransport();
+    this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
   }
 
   getChats() {

@@ -1,12 +1,13 @@
 import { SimpleObject } from '../interface.js';
 import { HTTPTransport } from '../modules/Api.js';
+import { baseAvatarUrl } from './constans.js';
 
 export class AuthService {
   transport: HTTPTransport;
   props: SimpleObject;
 
   constructor(props: SimpleObject) {
-    this.transport = new HTTPTransport();
+    this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
     this.props = props;
   }
 
@@ -26,7 +27,7 @@ export class AuthService {
     return this.transport
       .get('/auth/user', { data: this.props })
       .then((data: XMLHttpRequest) => {
-        let dataObj = JSON.parse(data.response);
+        const dataObj = JSON.parse(data.response);
         dataObj.fields = [];
 
         if (dataObj.login) {
@@ -58,7 +59,7 @@ export class AuthService {
           dataObj.display_name = dataObj.first_name;
         }
         if (dataObj.avatar === null) {
-          dataObj.avatar = 'assets/images/avatar.png';
+          dataObj.avatar = baseAvatarUrl;
         } else {
           dataObj.avatar = `${this.transport.BASEURL}${dataObj.avatar}`;
         }

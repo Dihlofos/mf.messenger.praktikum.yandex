@@ -3,7 +3,6 @@ import { HTTPTransport } from '../modules/Api.js';
 export declare class UserService {
     transport: HTTPTransport;
     props: SimpleObject;
-    avatarDefault: string;
     constructor(props: SimpleObject);
     getUser(): Promise<any>;
     putProfile(): Promise<PromiseSettledResult<unknown>[]>;

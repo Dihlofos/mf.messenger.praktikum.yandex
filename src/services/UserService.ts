@@ -1,13 +1,13 @@
 import { SimpleObject, UserItemProps } from '../interface.js';
 import { HTTPTransport } from '../modules/Api.js';
+import { baseAvatarUrl } from './constans.js';
 
 export class UserService {
   transport: HTTPTransport;
   props: SimpleObject;
-  avatarDefault: string = '/assets/images/avatar.png';
 
   constructor(props: SimpleObject) {
-    this.transport = new HTTPTransport();
+    this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
     this.props = props;
   }
 
@@ -175,7 +175,7 @@ export class UserService {
           display_name: item.display_name ? item.display_name : item.first_name,
           avatar: item.avatar
             ? `${this.transport.BASEURL}${item.avatar}`
-            : this.avatarDefault,
+            : baseAvatarUrl,
         }));
       });
   }

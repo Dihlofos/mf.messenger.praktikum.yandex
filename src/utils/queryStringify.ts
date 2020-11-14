@@ -1,12 +1,16 @@
 import { StringIndexed } from '../interface.js';
 
 export function queryStringify(data: StringIndexed): string | never {
-  if (Object.keys(data).length === 0) return '';
+  if (Object.keys(data).length === 0) {
+    return '';
+  }
 
   if (typeof data !== 'object') throw new Error('Это не объект!');
   let result = Object.entries(data).map(([key, value]) => {
     if (typeof value === 'object') {
-      if (Array.isArray(value)) return arrayToString(key, value);
+      if (Array.isArray(value)) {
+        return arrayToString(key, value);
+      }
       return `${key}${flattenObject(value)}`;
     }
     return `${key}=${value}`;
@@ -16,7 +20,7 @@ export function queryStringify(data: StringIndexed): string | never {
     let result: string[] = [];
     rec(obj);
 
-    function rec(obj: any) {
+    function rec(obj: Record<string, any>) {
       return Object.keys(obj).map((key) => {
         if (typeof obj[key] === 'object') {
           result.push(`[${key}]`);
@@ -30,7 +34,7 @@ export function queryStringify(data: StringIndexed): string | never {
   }
 
   function arrayToString(key: string, obj: StringIndexed[]) {
-    let arr: string[] = [];
+    const arr: string[] = [];
     obj.map((item, index) => {
       if (typeof item !== 'object') {
         arr.push(`${key}[${index}]=${item}`);

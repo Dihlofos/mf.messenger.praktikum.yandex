@@ -1,5 +1,5 @@
 import { StringIndexed } from '../interface.js';
-import { queryStringify } from '../utils/queryStringify.js';
+import { sendDataFormatting } from '../utils/sendDataFormatting.js';
 
 export type RequestOptions = {
   timeout?: number;
@@ -7,21 +7,26 @@ export type RequestOptions = {
   headers?: Record<string, string>;
 };
 
+export enum METHODS {
+  GET = 'GET',
+  PUT = 'PUT',
+  POST = 'POST',
+  DELETE = 'DELETE',
+}
+
 export class HTTPTransport {
-  METHODS: Record<string, string> = {
-    GET: 'GET',
-    PUT: 'PUT',
-    POST: 'POST',
-    DELETE: 'DELETE',
-  };
-  BASEURL = 'https://ya-praktikum.tech';
-  API = '/api/v2';
+  BASEURL: string;
+  API: string;
+  constructor(BASEURL: string, API: string) {
+    this.BASEURL = BASEURL;
+    this.API = API;
+  }
 
   get = (url: string, options: RequestOptions): Promise<unknown> => {
     return this.request(
       `${this.BASEURL}${this.API}${url}`,
       { ...options },
-      this.METHODS.GET
+      METHODS.GET
     );
   };
 
@@ -29,7 +34,7 @@ export class HTTPTransport {
     return this.request(
       `${this.BASEURL}${this.API}${url}`,
       { ...options },
-      this.METHODS.POST
+      METHODS.POST
     );
   };
 
@@ -37,7 +42,7 @@ export class HTTPTransport {
     return this.request(
       `${this.BASEURL}${this.API}${url}`,
       { ...options },
-      this.METHODS.PUT
+      METHODS.PUT
     );
   };
 
@@ -45,7 +50,7 @@ export class HTTPTransport {
     return this.request(
       `${this.BASEURL}${this.API}${url}`,
       { ...options },
-      this.METHODS.DELETE
+      METHODS.DELETE
     );
   };
 
@@ -87,19 +92,7 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === this.METHODS.GET && !(data instanceof FormData)) {
-        if (data) {
-          xhr.send(queryStringify(data));
-        } else {
-          xhr.send();
-        }
-      } else {
-        if (data instanceof FormData) {
-          xhr.send(data);
-        } else {
-          xhr.send(JSON.stringify(data));
-        }
-      }
+      xhr.send(sendDataFormatting(method, data));
     });
   };
 }

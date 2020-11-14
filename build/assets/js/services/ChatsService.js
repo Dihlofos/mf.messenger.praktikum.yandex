@@ -2,7 +2,7 @@ import { HTTPTransport } from '../modules/Api.js';
 export class ChatService {
     constructor() {
         this.avatarDefault = '/assets/images/avatar.png';
-        this.transport = new HTTPTransport();
+        this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
     }
     getChats() {
         return this.transport
