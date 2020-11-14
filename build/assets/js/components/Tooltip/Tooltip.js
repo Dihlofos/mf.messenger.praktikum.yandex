@@ -1,11 +1,11 @@
 import { Block } from '../../modules/Block.js';
+import { TooltipTemplate } from './Tooltip.template.js';
 export class Tooltip extends Block {
     constructor(props) {
         super('ul', 'tooltip', props);
         this._instances.push(this);
     }
     componentDidMount() {
-        //TODO - как бы избавиться от setTimeout
         setTimeout(() => {
             this.hydrate();
         }, 0);
@@ -26,18 +26,7 @@ export class Tooltip extends Block {
     }
     render() {
         const Handlebars = window.Handlebars;
-        let template = `
-        <ul class="icon-buttons">
-            {{#each iconButtons}}
-                <li class="icon-buttons__item">
-                    <button class="js-icon-button icon-buttons__btn js-focus-visible" data-target="{{target}}" type="button">
-                        {{{svg}}}
-                        <span>{{name}}</span>
-                    </button>
-                </li>
-            {{/each}}
-        </ul>`;
-        return Handlebars.compile(template)(Object.assign({}, this.props));
+        return Handlebars.compile(TooltipTemplate)(Object.assign({}, this.props));
     }
 }
 //# sourceMappingURL=Tooltip.js.map

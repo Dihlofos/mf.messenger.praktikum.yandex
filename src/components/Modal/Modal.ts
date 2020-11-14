@@ -1,5 +1,6 @@
 import { Block } from '../../modules/Block.js';
 import { Button } from '../Button/Button.js';
+import { ModalTemplate } from './Modal.template.js';
 
 export type ModalProps = {
   title: string;
@@ -29,20 +30,7 @@ export class Modal extends Block {
       this.deleteButton = this.props.deleteButtonInstance.renderToString();
       this.cancelButton = this.props.cancelButtonInstance.renderToString();
     }
-
-    const template = `
-        <div class="modal__milk js-milk"></div>
-        <div class="modal__box">
-            <div class="modal__delete-dialog">
-                <h3 class="modal__title">{{title}}</h3>
-                <div class="modal__buttons">
-                    {{{deleteButton}}}
-                    {{{cancelButton}}}
-                </div>
-            </div>
-        </div>
-        `;
-    return Handlebars.compile(template)({
+    return Handlebars.compile(ModalTemplate)({
       ...this.props,
       deleteButton: this.deleteButton,
       cancelButton: this.cancelButton,

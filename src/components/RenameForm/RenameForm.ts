@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { RenamteFormTemplate } from './RenanmeForm.template.js';
 
 export type RenameFormProps = {
   mix: string;
@@ -28,12 +29,6 @@ export class RenameForm extends Block {
 
   render() {
     const Handlebars = window.Handlebars;
-    const template: string | undefined = `
-      <form class="rename-form__form js-form" method="POST">
-        <input type="text" name="rename-chat" value="{{value}}" />
-        <button class="button button--mini rename-form__rename-btn js-focus-visible" type="submit">Сохранить</button>
-      </form>
-    `;
-    return Handlebars.compile(template)(this.props);
+    return Handlebars.compile(RenamteFormTemplate)(this.props);
   }
 }

@@ -3,6 +3,7 @@ import { Chat } from '../Chat/Chat.js';
 import { CurrentChat } from '../CurrentChat/CurrentChat.js';
 import { MessagesBoard } from '../MessagesBoard/MessagesBoard.js';
 import { Sender } from '../Sender/Sender.js';
+import { MessengerTemplate } from './Messenger.template.js';
 
 export type MessengerProps = {
   messagesBoardInstance: MessagesBoard;
@@ -32,23 +33,7 @@ export class Messenger extends Block {
       if (this.props.senderInstance)
         this.sender = this.props.senderInstance.renderToString();
     }
-
-    const template: string = `
-      <div class="messenger">
-        {{{messagesBoard}}}
-
-        <div class="messenger__content">
-          {{#if currentChat}}
-              {{{currentChat}}}
-              {{{chat}}}
-              {{{sender}}}
-          {{^}}
-            <main class="messenger__empty">Выберите чат чтобы отправить сообщение</main>
-          {{/if}}
-        </div>
-      </div>
-    `;
-    return Handlebars.compile(template)({
+    return Handlebars.compile(MessengerTemplate)({
       messagesBoard: this.messagesBoard,
       currentChat: this.currentChat,
       chat: this.chat,

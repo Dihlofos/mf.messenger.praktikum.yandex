@@ -1,5 +1,6 @@
 import { Block } from '../../modules/Block.js';
 import { Button } from '../Button/Button.js';
+import { ChatCreateModalTemplate } from './ChatCreateModal.template.js';
 
 export type ChatCreateModalProps = {
   onChatCreateSubmit: (event: Event) => void;
@@ -41,14 +42,7 @@ export class ChatCreateModal extends Block {
   render() {
     const Handlebars = window.Handlebars;
     this.submitButton = this.props.submitButtonInstance.renderToString();
-    let template = `
-      <form class="chat-create-modal__form js-chat-create-form">
-        <input class="chat-create-modal__input js-focus-visible" id="create-chat" name="create-chat" type="text" placeholder="Название нового чата"/>
-        {{{submitButton}}}
-      </form>
-      <div class="chat-create-modal__milk js-chat-create-modal-milk"></div>
-    `;
-    return Handlebars.compile(template)({
+    return Handlebars.compile(ChatCreateModalTemplate)({
       ...this.props,
       submitButton: this.submitButton,
     });

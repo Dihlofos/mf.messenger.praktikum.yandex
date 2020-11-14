@@ -1,0 +1,1 @@
+export declare const ErrorTemplate = "\n  <div class=\"error\">\n    <h1 class=\"error__title\">{{errorText}}</h1>\n    <p class=\"error__text\">{{errorDescription}}</p>\n    <a href=\"{{backLink}}\" class=\"error__link js-focus-visible\">{{backText}}</a>\n    {{{button}}}\n  </div>\n";

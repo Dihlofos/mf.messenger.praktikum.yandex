@@ -5,6 +5,7 @@ import { Button } from '../Button/Button.js';
 import { ProfileField } from '../ProfileField/ProfileField.js';
 import { UserService } from '../../services/UserService.js';
 import { Router } from '../../modules/Router.js';
+import { ProfileFormTemplate } from './ProfileForm.template.js';
 
 export type ProfileFormProps = {
   avatarInstance: Avatar;
@@ -28,7 +29,6 @@ export class ProfileForm extends Block {
   }
 
   componentDidMount() {
-    //TODO - как бы избавиться от setTimeout
     setTimeout(() => {
       this.hydrate();
     }, 0);
@@ -80,22 +80,7 @@ export class ProfileForm extends Block {
         item.renderToString()
       );
     }
-    const template = `
-        <form class="profile__form js-form" method="POST">
-          {{{avatar}}}
-          {{{name}}}
-          <ul class="profile__field-list">
-            {{#each fields}}
-              <li class="profile__field-item">
-                {{{this}}}
-              </li>
-            {{/each}}
-          </ul>
-          <p class="profile__error">{{error}}</p>
-          {{{button}}}
-        </form>
-      `;
-    return Handlebars.compile(template)({
+    return Handlebars.compile(ProfileFormTemplate)({
       ...this.props,
       button: this.button,
       fields: this.fields,
