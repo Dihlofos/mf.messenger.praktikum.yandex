@@ -13,7 +13,7 @@ export class ProfileField extends Block {
     }
     initEvents() {
         var _a;
-        let inputElement = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector('input');
+        const inputElement = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector('input');
         inputElement === null || inputElement === void 0 ? void 0 : inputElement.addEventListener('focus', () => {
             this.onFocus();
         });

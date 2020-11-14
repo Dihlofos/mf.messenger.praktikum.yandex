@@ -21,10 +21,10 @@ export class ChatCreateModal extends Block {
   }
 
   initEvents() {
-    let form: HTMLFontElement | null = document.querySelector(
+    const form: HTMLFontElement | null = document.querySelector(
       '.js-chat-create-form'
     );
-    let milk: HTMLElement | null = document.querySelector(
+    const milk: HTMLElement | null = document.querySelector(
       '.js-chat-create-modal-milk'
     );
     milk?.addEventListener('click', this.hide.bind(this));

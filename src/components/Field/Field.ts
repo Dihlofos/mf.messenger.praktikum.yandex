@@ -24,7 +24,7 @@ export class Field extends Block {
   }
 
   initEvents() {
-    let inputElement = this._element?.querySelector('input');
+    const inputElement = this._element?.querySelector('input');
     inputElement?.classList.toggle('is-value', !!inputElement.value.length);
 
     inputElement?.addEventListener('focus', () => {

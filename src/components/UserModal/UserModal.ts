@@ -72,7 +72,7 @@ export class UserModal extends Block {
       this.props.onUserAdded(Number(user?.dataset.id));
       setTimeout(() => {
         this.updateUsers();
-      }, 0);
+      }, 300);
     }
   };
 
@@ -83,7 +83,7 @@ export class UserModal extends Block {
       this.props.onUserRemoved(Number(user?.dataset.id));
       setTimeout(() => {
         this.updateUsers();
-      }, 0);
+      }, 300);
     }
   };
 
