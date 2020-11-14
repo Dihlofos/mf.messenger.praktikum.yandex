@@ -11,8 +11,8 @@ export class ChatCreateModal extends Block {
         }, 0);
     }
     initEvents() {
-        let form = document.querySelector('.js-chat-create-form');
-        let milk = document.querySelector('.js-chat-create-modal-milk');
+        const form = document.querySelector('.js-chat-create-form');
+        const milk = document.querySelector('.js-chat-create-modal-milk');
         milk === null || milk === void 0 ? void 0 : milk.addEventListener('click', this.hide.bind(this));
         form === null || form === void 0 ? void 0 : form.addEventListener('submit', this.props.onChatCreateSubmit);
     }

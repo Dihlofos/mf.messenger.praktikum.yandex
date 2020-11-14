@@ -16,7 +16,7 @@ export class UserModal extends Block {
                 this.props.onUserAdded(Number(user === null || user === void 0 ? void 0 : user.dataset.id));
                 setTimeout(() => {
                     this.updateUsers();
-                }, 0);
+                }, 300);
             }
         };
         this.onUserRemoveClick = (e) => {
@@ -26,7 +26,7 @@ export class UserModal extends Block {
                 this.props.onUserRemoved(Number(user === null || user === void 0 ? void 0 : user.dataset.id));
                 setTimeout(() => {
                     this.updateUsers();
-                }, 0);
+                }, 300);
             }
         };
         this.show = () => {

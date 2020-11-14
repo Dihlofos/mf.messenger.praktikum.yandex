@@ -25,7 +25,7 @@ export class ProfileField extends Block {
   }
 
   initEvents() {
-    let inputElement = this._element?.querySelector('input');
+    const inputElement = this._element?.querySelector('input');
 
     inputElement?.addEventListener('focus', () => {
       this.onFocus();
