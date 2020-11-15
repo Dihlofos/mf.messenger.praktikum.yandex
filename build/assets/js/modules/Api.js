@@ -1,25 +1,24 @@
-import { queryStringify } from '../utils/queryStringify.js';
+import { sendDataFormatting } from '../utils/sendDataFormatting.js';
+export var METHODS;
+(function (METHODS) {
+    METHODS["GET"] = "GET";
+    METHODS["PUT"] = "PUT";
+    METHODS["POST"] = "POST";
+    METHODS["DELETE"] = "DELETE";
+})(METHODS || (METHODS = {}));
 export class HTTPTransport {
-    constructor() {
-        this.METHODS = {
-            GET: 'GET',
-            PUT: 'PUT',
-            POST: 'POST',
-            DELETE: 'DELETE',
-        };
-        this.BASEURL = 'https://ya-praktikum.tech';
-        this.API = '/api/v2';
+    constructor(BASEURL, API) {
         this.get = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), this.METHODS.GET);
+            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.GET);
         };
         this.post = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), this.METHODS.POST);
+            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.POST);
         };
         this.put = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), this.METHODS.PUT);
+            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.PUT);
         };
         this.delete = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), this.METHODS.DELETE);
+            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.DELETE);
         };
         this.request = (url, options, method) => {
             const { data, headers } = options;
@@ -53,24 +52,11 @@ export class HTTPTransport {
                 xhr.onabort = reject;
                 xhr.onerror = reject;
                 xhr.ontimeout = reject;
-                if (method === this.METHODS.GET && !(data instanceof FormData)) {
-                    if (data) {
-                        xhr.send(queryStringify(data));
-                    }
-                    else {
-                        xhr.send();
-                    }
-                }
-                else {
-                    if (data instanceof FormData) {
-                        xhr.send(data);
-                    }
-                    else {
-                        xhr.send(JSON.stringify(data));
-                    }
-                }
+                xhr.send(sendDataFormatting(method, data));
             });
         };
+        this.BASEURL = BASEURL;
+        this.API = API;
     }
 }
 //# sourceMappingURL=Api.js.map

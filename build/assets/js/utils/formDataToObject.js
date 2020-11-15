@@ -1,5 +1,5 @@
 export function formDataToObject(form) {
-    let result = {};
+    const result = {};
     if (form) {
         const formData = new FormData(form);
         for (let pair of formData.entries()) {

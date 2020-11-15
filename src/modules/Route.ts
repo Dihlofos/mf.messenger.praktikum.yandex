@@ -28,7 +28,9 @@ export class Route {
   }
 
   leave(): void {
-    document.querySelector(this._props.rootQuery).textContent = ' ';
+    if (document.querySelector(this._props.rootQuery)) {
+      document.querySelector(this._props.rootQuery).textContent = ' ';
+    }
   }
 
   match(pathname: string): boolean {

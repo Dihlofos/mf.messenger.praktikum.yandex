@@ -14,7 +14,9 @@ export class Route {
         }
     }
     leave() {
-        document.querySelector(this._props.rootQuery).textContent = ' ';
+        if (document.querySelector(this._props.rootQuery)) {
+            document.querySelector(this._props.rootQuery).textContent = ' ';
+        }
     }
     match(pathname) {
         return isEqual(pathname, this._pathname);

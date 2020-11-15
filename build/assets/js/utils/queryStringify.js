@@ -1,12 +1,14 @@
 export function queryStringify(data) {
-    if (Object.keys(data).length === 0)
+    if (Object.keys(data).length === 0) {
         return '';
+    }
     if (typeof data !== 'object')
         throw new Error('Это не объект!');
     let result = Object.entries(data).map(([key, value]) => {
         if (typeof value === 'object') {
-            if (Array.isArray(value))
+            if (Array.isArray(value)) {
                 return arrayToString(key, value);
+            }
             return `${key}${flattenObject(value)}`;
         }
         return `${key}=${value}`;
@@ -28,7 +30,7 @@ export function queryStringify(data) {
         return result.join('');
     }
     function arrayToString(key, obj) {
-        let arr = [];
+        const arr = [];
         obj.map((item, index) => {
             if (typeof item !== 'object') {
                 arr.push(`${key}[${index}]=${item}`);

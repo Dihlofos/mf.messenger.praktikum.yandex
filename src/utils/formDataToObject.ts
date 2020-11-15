@@ -1,5 +1,5 @@
 export function formDataToObject(form: HTMLFormElement) {
-  let result: { [key: string]: FormDataEntryValue } = {};
+  const result: { [key: string]: FormDataEntryValue } = {};
   if (form) {
     const formData: FormData = new FormData(form);
     for (let pair of formData.entries()) {

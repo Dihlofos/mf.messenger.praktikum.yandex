@@ -65,7 +65,7 @@ export class Form extends Block {
         this.authService
           .signup()
           .then((_) => {
-            this.router.go('/login');
+            this.router.go('/messenger');
           })
           .catch((error) => {
             this.onError(error.reason);

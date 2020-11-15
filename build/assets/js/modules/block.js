@@ -109,12 +109,8 @@ export class Block {
     _makePropsProxy(props) {
         const proxyData = new Proxy(props, {
             set: (target, prop, value) => {
-                //const oldProps = { ...this._meta.props };
                 if (target[prop] !== value) {
                     target[prop] = value;
-                    // this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target[prop]);
-                    // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                    // this._hydrateAll(this._meta.props);
                 }
                 return true;
             },
@@ -138,13 +134,10 @@ export class Block {
         return element;
     }
     show() {
-        this.getContent().style.display = 'block';
+        this.element.style.display = 'block';
     }
     hide() {
         this.getContent().style.display = 'none';
-    }
-    remove() {
-        console.log('remove it!');
     }
 }
 Block.EVENTS = {

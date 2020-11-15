@@ -15,17 +15,3 @@ export class Error404Page extends Block {
 }
 
 export default Error404Page;
-
-// function errorPage(): void {
-//   const root: HTMLElement | null = document.querySelector('.root');
-
-//   const errorContent = new Error(error404Data);
-//   if (root) {
-//     root.appendChild(errorContent.getContent());
-//   }
-// }
-// document.addEventListener('DOMContentLoaded', function () {
-//   errorPage();
-// });
-
-// export default errorPage;

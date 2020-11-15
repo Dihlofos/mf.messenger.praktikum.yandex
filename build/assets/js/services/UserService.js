@@ -1,8 +1,8 @@
 import { HTTPTransport } from '../modules/Api.js';
+import { baseAvatarUrl } from './constans.js';
 export class UserService {
     constructor(props) {
-        this.avatarDefault = '/assets/images/avatar.png';
-        this.transport = new HTTPTransport();
+        this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
         this.props = props;
     }
     getUser() {
@@ -144,7 +144,7 @@ export class UserService {
             const jsonArray = JSON.parse(data.response);
             return jsonArray.map((item) => (Object.assign(Object.assign({}, item), { display_name: item.display_name ? item.display_name : item.first_name, avatar: item.avatar
                     ? `${this.transport.BASEURL}${item.avatar}`
-                    : this.avatarDefault })));
+                    : baseAvatarUrl })));
         });
     }
 }

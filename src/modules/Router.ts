@@ -29,9 +29,7 @@ export class Router {
 
   start() {
     window.onpopstate = (event: PopStateEvent) => {
-      console.log('popstate');
       if (event) {
-        //TODO это по идее не должно работать, надо будет поправить по докам из MDN
         this._onRoute(window.location.pathname);
       }
     };
