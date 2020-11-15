@@ -11,8 +11,15 @@
       "noUnusedParameters": true,
       "alwaysStrict": true,
       "sourceMap": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true
     },
+    "types": [
+      "handlebars",
+      "node",
+      "jest"
+    ],
     "include": ["src/**/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts", "src/interface.ts"]
+    "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts","**/*.mock.ts", "src/interface.ts", ]
   }

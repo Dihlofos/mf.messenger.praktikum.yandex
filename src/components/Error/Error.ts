@@ -15,6 +15,10 @@ export class Error extends Block {
 
   render() {
     const Handlebars = window.Handlebars;
-    return Handlebars.compile(ErrorTemplate)(this.props);
+    if (Handlebars) {
+      return Handlebars.compile(ErrorTemplate)(this.props);
+    } else {
+      return null;
+    }
   }
 }

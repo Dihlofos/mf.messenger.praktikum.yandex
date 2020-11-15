@@ -44,5 +44,4 @@ export declare class Block {
     _createDocumentElement(tagName: string): HTMLElement;
     show(): void;
     hide(): void;
-    remove(): void;
 }
