@@ -30,8 +30,12 @@ export class ProfilePage extends Block {
       const target = event.target as HTMLElement;
       if (target && target.classList.contains('js-logout')) {
         event.preventDefault();
-        this.authService.logout();
-        this.router.go('/login');
+        this.authService
+          .logout()
+          .then(() => {
+            this.router.go('/login');
+          })
+          .catch((e) => console.log('logout error occured:', e));
       }
     });
   }

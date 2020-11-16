@@ -1,5 +1,5 @@
 import { HTTPTransport } from '../modules/Api.js';
-import { baseAvatarUrl } from './constans.js';
+import { BASEAVATARURL } from './constants.js';
 export class UserService {
     constructor(props) {
         this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
@@ -9,7 +9,7 @@ export class UserService {
         return this.transport
             .get('/auth/user', { data: this.props })
             .then((data) => {
-            let dataObj = JSON.parse(data.response);
+            const dataObj = JSON.parse(data.response);
             //Transform data
             dataObj.fields = [];
             dataObj.fields.push({
@@ -79,7 +79,7 @@ export class UserService {
             else {
                 dataObj.avatar = {
                     name: 'avatar',
-                    imageLink: `${this.transport.BASEURL}${dataObj.avatar}`,
+                    imageLink: `${this.transport.baseUrl}${dataObj.avatar}`,
                 };
             }
             //delete unusables
@@ -143,8 +143,8 @@ export class UserService {
             .then((data) => {
             const jsonArray = JSON.parse(data.response);
             return jsonArray.map((item) => (Object.assign(Object.assign({}, item), { display_name: item.display_name ? item.display_name : item.first_name, avatar: item.avatar
-                    ? `${this.transport.BASEURL}${item.avatar}`
-                    : baseAvatarUrl })));
+                    ? `${this.transport.baseUrl}${item.avatar}`
+                    : BASEAVATARURL })));
         });
     }
 }

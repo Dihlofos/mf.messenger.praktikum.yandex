@@ -1,6 +1,6 @@
 import { SimpleObject } from '../interface.js';
 import { HTTPTransport } from '../modules/Api.js';
-import { baseAvatarUrl } from './constans.js';
+import { BASEAVATARURL } from './constants.js';
 
 export class AuthService {
   transport: HTTPTransport;
@@ -26,8 +26,8 @@ export class AuthService {
   getUser() {
     return this.transport
       .get('/auth/user', { data: this.props })
-      .then((data: XMLHttpRequest) => {
-        const dataObj = JSON.parse(data.response);
+      .then((data: string) => {
+        const dataObj = JSON.parse(data);
         dataObj.fields = [];
 
         if (dataObj.login) {
@@ -59,9 +59,9 @@ export class AuthService {
           dataObj.display_name = dataObj.first_name;
         }
         if (dataObj.avatar === null) {
-          dataObj.avatar = baseAvatarUrl;
+          dataObj.avatar = BASEAVATARURL;
         } else {
-          dataObj.avatar = `${this.transport.BASEURL}${dataObj.avatar}`;
+          dataObj.avatar = `${this.transport.baseUrl}${dataObj.avatar}`;
         }
         return dataObj;
       });

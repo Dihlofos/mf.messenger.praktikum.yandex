@@ -5,8 +5,8 @@
   "main": "server.js",
   "dependencies": {
     "express": "4.17.1",
-    "handlebars": "^4.7.6",
-    "sass": "^1.27.0"
+    "handlebars": "4.7.6",
+    "sass": "1.27.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",

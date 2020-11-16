@@ -1,56 +1,38 @@
 import { HTTPTransport } from '../modules/Api';
+import { mockFetch } from '../__mocks__/request.mock';
 
-let httpTransport: HTTPTransport;
-function initTest() {
-  httpTransport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
-}
+describe('XHR API', () => {
+  const data = {
+    id: '0',
+    title: 'string',
+    avatar: 'string',
+  };
 
-beforeAll(() => {
-  initTest();
-});
-
-it('Post works, returns error on wrong signin', () => {
-  expect.assertions(1);
-  return httpTransport
-    .post('/auth/signin', {
-      data: {
-        login: 'test',
-        password: 'wrongPass',
-      },
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((e) => {
-      return expect(e.reason).toBe('Login or password is incorrect');
+  it('return expect data', async () => {
+    const httpTransport = new HTTPTransport(
+      'https://ya-praktikum.tech',
+      '/api/v2'
+    );
+    mockFetch(200, [data]);
+    const res: XMLHttpRequest | unknown = await httpTransport.get('/chats', {
+      data: {},
     });
-});
+    expect(res).toEqual([data]);
+  });
 
-it('signin works on success', () => {
-  expect.assertions(1);
-  return httpTransport
-    .post('/auth/signin', {
-      data: {
-        login: 'JeyForTest',
-        password: '12345',
-      },
-    })
-    .then((data) => {
-      return expect(!!data).toBeTruthy();
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-});
+  it('throw an error', async () => {
+    mockFetch(500, [data]);
 
-it('get works, got data of User', () => {
-  expect.assertions(1);
-  return httpTransport
-    .get('/auth/user', { data: {} })
-    .then((data) => {
-      return expect(!!data).toBeTruthy();
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+    try {
+      const httpTransport = new HTTPTransport(
+        'https://ya-praktikum.tech',
+        '/api/v2'
+      );
+      await httpTransport.get('/chats', {
+        data: {},
+      });
+    } catch (e) {
+      expect(e).toEqual([data]);
+    }
+  });
 });

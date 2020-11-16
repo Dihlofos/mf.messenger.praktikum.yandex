@@ -1,6 +1,6 @@
 import { SimpleObject, UserItemProps } from '../interface.js';
 import { HTTPTransport } from '../modules/Api.js';
-import { baseAvatarUrl } from './constans.js';
+import { BASEAVATARURL } from './constants.js';
 
 export class UserService {
   transport: HTTPTransport;
@@ -14,8 +14,8 @@ export class UserService {
   getUser() {
     return this.transport
       .get('/auth/user', { data: this.props })
-      .then((data: XMLHttpRequest) => {
-        let dataObj = JSON.parse(data.response);
+      .then((data: string) => {
+        const dataObj = JSON.parse(data);
         //Transform data
         dataObj.fields = [];
         dataObj.fields.push({
@@ -92,7 +92,7 @@ export class UserService {
         } else {
           dataObj.avatar = {
             name: 'avatar',
-            imageLink: `${this.transport.BASEURL}${dataObj.avatar}`,
+            imageLink: `${this.transport.baseUrl}${dataObj.avatar}`,
           };
         }
 
@@ -168,14 +168,14 @@ export class UserService {
           login,
         },
       })
-      .then((data: XMLHttpRequest) => {
-        const jsonArray: UserItemProps[] = JSON.parse(data.response);
+      .then((data: string) => {
+        const jsonArray: UserItemProps[] = JSON.parse(data);
         return jsonArray.map((item) => ({
           ...item,
           display_name: item.display_name ? item.display_name : item.first_name,
           avatar: item.avatar
-            ? `${this.transport.BASEURL}${item.avatar}`
-            : baseAvatarUrl,
+            ? `${this.transport.baseUrl}${item.avatar}`
+            : BASEAVATARURL,
         }));
       });
   }
