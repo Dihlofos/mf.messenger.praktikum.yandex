@@ -10,21 +10,19 @@ export class ChatService {
   }
 
   getChats() {
-    return this.transport
-      .get('/chats', { data: {} })
-      .then((data: XMLHttpRequest) => {
-        return JSON.parse(data.response);
-      });
+    return this.transport.get('/chats', { data: {} }).then((data: string) => {
+      return JSON.parse(data);
+    });
   }
   getChatUsers(id: number) {
     return this.transport
       .get(`/chats/${id}/users`, { data: {} })
-      .then((data: XMLHttpRequest) => {
-        const jsonArray: UserItemProps[] = JSON.parse(data.response);
+      .then((data: string) => {
+        const jsonArray: UserItemProps[] = JSON.parse(data);
         return jsonArray.map((item) => ({
           ...item,
           avatar: item.avatar
-            ? `${this.transport.BASEURL}${item.avatar}`
+            ? `${this.transport.baseUrl}${item.avatar}`
             : this.avatarDefault,
           display_name: item.display_name ? item.display_name : item.first_name,
         }));

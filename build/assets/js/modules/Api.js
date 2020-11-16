@@ -7,18 +7,18 @@ export var METHODS;
     METHODS["DELETE"] = "DELETE";
 })(METHODS || (METHODS = {}));
 export class HTTPTransport {
-    constructor(BASEURL, API) {
+    constructor(baseUrl, api) {
         this.get = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.GET);
+            return this.request(`${this.baseUrl}${this.api}${url}`, Object.assign({}, options), METHODS.GET);
         };
         this.post = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.POST);
+            return this.request(`${this.baseUrl}${this.api}${url}`, Object.assign({}, options), METHODS.POST);
         };
         this.put = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.PUT);
+            return this.request(`${this.baseUrl}${this.api}${url}`, Object.assign({}, options), METHODS.PUT);
         };
         this.delete = (url, options) => {
-            return this.request(`${this.BASEURL}${this.API}${url}`, Object.assign({}, options), METHODS.DELETE);
+            return this.request(`${this.baseUrl}${this.api}${url}`, Object.assign({}, options), METHODS.DELETE);
         };
         this.request = (url, options, method) => {
             const { data, headers } = options;
@@ -55,8 +55,8 @@ export class HTTPTransport {
                 xhr.send(sendDataFormatting(method, data));
             });
         };
-        this.BASEURL = BASEURL;
-        this.API = API;
+        this.baseUrl = baseUrl;
+        this.api = api;
     }
 }
 //# sourceMappingURL=Api.js.map

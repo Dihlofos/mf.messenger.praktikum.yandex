@@ -17,7 +17,7 @@ export class ChatService {
             .then((data) => {
             const jsonArray = JSON.parse(data.response);
             return jsonArray.map((item) => (Object.assign(Object.assign({}, item), { avatar: item.avatar
-                    ? `${this.transport.BASEURL}${item.avatar}`
+                    ? `${this.transport.baseUrl}${item.avatar}`
                     : this.avatarDefault, display_name: item.display_name ? item.display_name : item.first_name })));
         });
     }

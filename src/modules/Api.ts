@@ -15,16 +15,16 @@ export enum METHODS {
 }
 
 export class HTTPTransport {
-  BASEURL: string;
-  API: string;
-  constructor(BASEURL: string, API: string) {
-    this.BASEURL = BASEURL;
-    this.API = API;
+  baseUrl: string;
+  api: string;
+  constructor(baseUrl: string, api: string) {
+    this.baseUrl = baseUrl;
+    this.api = api;
   }
 
   get = (url: string, options: RequestOptions): Promise<unknown> => {
     return this.request(
-      `${this.BASEURL}${this.API}${url}`,
+      `${this.baseUrl}${this.api}${url}`,
       { ...options },
       METHODS.GET
     );
@@ -32,7 +32,7 @@ export class HTTPTransport {
 
   post = (url: string, options: RequestOptions): Promise<unknown> => {
     return this.request(
-      `${this.BASEURL}${this.API}${url}`,
+      `${this.baseUrl}${this.api}${url}`,
       { ...options },
       METHODS.POST
     );
@@ -40,7 +40,7 @@ export class HTTPTransport {
 
   put = (url: string, options: RequestOptions): Promise<unknown> => {
     return this.request(
-      `${this.BASEURL}${this.API}${url}`,
+      `${this.baseUrl}${this.api}${url}`,
       { ...options },
       METHODS.PUT
     );
@@ -48,7 +48,7 @@ export class HTTPTransport {
 
   delete = (url: string, options: RequestOptions): Promise<unknown> => {
     return this.request(
-      `${this.BASEURL}${this.API}${url}`,
+      `${this.baseUrl}${this.api}${url}`,
       { ...options },
       METHODS.DELETE
     );
@@ -85,7 +85,7 @@ export class HTTPTransport {
           }
           reject(res);
         } else {
-          resolve(xhr);
+          resolve(JSON.parse(xhr.response));
         }
       };
       xhr.onabort = reject;

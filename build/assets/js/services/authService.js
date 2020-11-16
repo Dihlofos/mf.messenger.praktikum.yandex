@@ -1,5 +1,5 @@
 import { HTTPTransport } from '../modules/Api.js';
-import { baseAvatarUrl } from './constans.js';
+import { BASEAVATARURL } from './constants.js';
 export class AuthService {
     constructor(props) {
         this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
@@ -48,10 +48,10 @@ export class AuthService {
                 dataObj.display_name = dataObj.first_name;
             }
             if (dataObj.avatar === null) {
-                dataObj.avatar = baseAvatarUrl;
+                dataObj.avatar = BASEAVATARURL;
             }
             else {
-                dataObj.avatar = `${this.transport.BASEURL}${dataObj.avatar}`;
+                dataObj.avatar = `${this.transport.baseUrl}${dataObj.avatar}`;
             }
             return dataObj;
         });

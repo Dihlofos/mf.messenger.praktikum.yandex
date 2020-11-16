@@ -11,9 +11,9 @@ export declare enum METHODS {
     DELETE = "DELETE"
 }
 export declare class HTTPTransport {
-    BASEURL: string;
-    API: string;
-    constructor(BASEURL: string, API: string);
+    baseUrl: string;
+    api: string;
+    constructor(baseUrl: string, api: string);
     get: (url: string, options: RequestOptions) => Promise<unknown>;
     post: (url: string, options: RequestOptions) => Promise<unknown>;
     put: (url: string, options: RequestOptions) => Promise<unknown>;
