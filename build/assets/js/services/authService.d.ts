@@ -7,5 +7,5 @@ export declare class AuthService {
     signin(): Promise<unknown>;
     signup(): Promise<unknown>;
     logout(): Promise<unknown>;
-    getUser(): Promise<any>;
+    getUser(): Promise<SimpleObject>;
 }

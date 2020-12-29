@@ -19,8 +19,9 @@ export class ProfileEditPage extends Block {
             .then((item) => {
             this.setProps(Object.assign(profileEditData, item));
         })
-            .catch((_) => {
-            this.router.go('/login');
+            .catch((e) => {
+            console.log(e);
+            //this.router.go('/login');
         });
     }
     render() {

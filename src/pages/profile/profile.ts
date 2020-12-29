@@ -20,8 +20,9 @@ export class ProfilePage extends Block {
       .then((item) => {
         this.setProps(Object.assign(profileData, item));
       })
-      .catch((_) => {
-        this.router.go('/login');
+      .catch((e) => {
+        console.log(e)
+        //this.router.go('/login');
       });
   }
 

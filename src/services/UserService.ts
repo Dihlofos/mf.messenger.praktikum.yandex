@@ -14,51 +14,50 @@ export class UserService {
   getUser() {
     return this.transport
       .get('/auth/user', { data: this.props })
-      .then((data: string) => {
-        const dataObj = JSON.parse(data);
+      .then((data: SimpleObject) => {
         //Transform data
-        dataObj.fields = [];
-        dataObj.fields.push({
-          value: dataObj.email ? dataObj.email : '',
+        data.fields = [];
+        data.fields.push({
+          value: data.email ? data.email : '',
           name: 'email',
           type: 'email',
           placeholder: 'Введите почту',
           label: 'Почта',
         });
 
-        dataObj.fields.push({
-          value: dataObj.login ? dataObj.login : '',
+        data.fields.push({
+          value: data.login ? data.login : '',
           name: 'login',
           type: 'text',
           placeholder: 'Введите логин',
           label: 'Логин',
         });
 
-        dataObj.fields.push({
-          value: dataObj.first_name ? dataObj.first_name : '',
+        data.fields.push({
+          value: data.first_name ? data.first_name : '',
           name: 'first_name',
           type: 'text',
           placeholder: 'Введите имя',
           label: 'Имя',
         });
 
-        dataObj.fields.push({
-          value: dataObj.phone ? dataObj.phone : '',
+        data.fields.push({
+          value: data.phone ? data.phone : '',
           name: 'phone',
           type: 'tel',
           placeholder: 'Введите номер телефона',
           label: 'Телефон',
         });
 
-        dataObj.fields.push({
-          value: dataObj.second_name ? dataObj.second_name : '',
+        data.fields.push({
+          value: data.second_name ? data.second_name : '',
           name: 'second_name',
           type: 'text',
           placeholder: 'Введите фамилию',
           label: 'Фамилия',
         });
 
-        dataObj.fields.push({
+        data.fields.push({
           value: '',
           name: 'oldPassword',
           type: 'text',
@@ -66,7 +65,7 @@ export class UserService {
           label: 'Старый пароль',
         });
 
-        dataObj.fields.push({
+        data.fields.push({
           value: '',
           name: 'newPassword',
           type: 'text',
@@ -74,36 +73,36 @@ export class UserService {
           label: 'Введите новый пароль',
         });
 
-        dataObj.display_name = {
+        data.display_name = {
           name: 'display_name',
           type: 'text',
           label: '',
-          value: dataObj.display_name
-            ? dataObj.display_name
-            : dataObj.first_name,
+          value: data.display_name
+            ? data.display_name
+            : data.first_name,
           nameField: true,
         };
 
-        if (dataObj.avatar === null) {
-          dataObj.avatar = {
+        if (data.avatar === null) {
+          data.avatar = {
             name: 'avatar',
             imageLink: 'assets/images/avatar.png',
           };
         } else {
-          dataObj.avatar = {
+          data.avatar = {
             name: 'avatar',
-            imageLink: `${this.transport.baseUrl}${dataObj.avatar}`,
+            imageLink: `${this.transport.baseUrl}${data.avatar}`,
           };
         }
 
         //delete unusables
-        delete dataObj.email;
-        delete dataObj.first_name;
-        delete dataObj.login;
-        delete dataObj.phone;
-        delete dataObj.second_name;
+        delete data.email;
+        delete data.first_name;
+        delete data.login;
+        delete data.phone;
+        delete data.second_name;
 
-        return dataObj;
+        return data;
       });
   }
 
@@ -168,9 +167,8 @@ export class UserService {
           login,
         },
       })
-      .then((data: string) => {
-        const jsonArray: UserItemProps[] = JSON.parse(data);
-        return jsonArray.map((item) => ({
+      .then((data: UserItemProps[]) => {
+        return data.map((item) => ({
           ...item,
           display_name: item.display_name ? item.display_name : item.first_name,
           avatar: item.avatar

@@ -1,5 +1,6 @@
 import { StringIndexed } from '../interface.js';
 import { sendDataFormatting } from '../utils/sendDataFormatting.js';
+import { transformApiResult } from '../utils/transformApiResult.js';
 
 export type RequestOptions = {
   timeout?: number;
@@ -54,6 +55,8 @@ export class HTTPTransport {
     );
   };
 
+
+
   request = (
     url: string,
     options: RequestOptions,
@@ -77,15 +80,9 @@ export class HTTPTransport {
 
       xhr.onload = function () {
         if (xhr.status !== 200) {
-          let res;
-          try {
-            res = JSON.parse(xhr.response);
-          } catch (e) {
-            res = xhr.response;
-          }
-          reject(res);
+          reject(transformApiResult(xhr.response));
         } else {
-          resolve(JSON.parse(xhr.response));
+          resolve(transformApiResult(xhr.response));
         }
       };
       xhr.onabort = reject;

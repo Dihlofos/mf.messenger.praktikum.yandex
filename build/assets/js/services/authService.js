@@ -18,42 +18,41 @@ export class AuthService {
         return this.transport
             .get('/auth/user', { data: this.props })
             .then((data) => {
-            const dataObj = JSON.parse(data.response);
-            dataObj.fields = [];
-            if (dataObj.login) {
-                dataObj.fields.push({
-                    value: dataObj.login,
+            data.fields = [];
+            if (data.login) {
+                data.fields.push({
+                    value: data.login,
                     label: 'Логин',
                 });
             }
-            if (dataObj.first_name) {
-                dataObj.fields.push({
-                    value: dataObj.first_name,
+            if (data.first_name) {
+                data.fields.push({
+                    value: data.first_name,
                     label: 'Имя',
                 });
             }
-            if (dataObj.phone) {
-                dataObj.fields.push({
-                    value: dataObj.phone,
+            if (data.phone) {
+                data.fields.push({
+                    value: data.phone,
                     label: 'Телефон',
                 });
             }
-            if (dataObj.second_name) {
-                dataObj.fields.push({
-                    value: dataObj.second_name,
+            if (data.second_name) {
+                data.fields.push({
+                    value: data.second_name,
                     label: 'Фамилия',
                 });
             }
-            if (dataObj.display_name === null) {
-                dataObj.display_name = dataObj.first_name;
+            if (data.display_name === null) {
+                data.display_name = data.first_name;
             }
-            if (dataObj.avatar === null) {
-                dataObj.avatar = BASEAVATARURL;
+            if (data.avatar === null) {
+                data.avatar = BASEAVATARURL;
             }
             else {
-                dataObj.avatar = `${this.transport.baseUrl}${dataObj.avatar}`;
+                data.avatar = `${this.transport.baseUrl}${data.avatar}`;
             }
-            return dataObj;
+            return data;
         });
     }
 }

@@ -11,15 +11,14 @@ export class ChatService {
 
   getChats() {
     return this.transport.get('/chats', { data: {} }).then((data: string) => {
-      return JSON.parse(data);
+      return data;
     });
   }
   getChatUsers(id: number) {
     return this.transport
       .get(`/chats/${id}/users`, { data: {} })
-      .then((data: string) => {
-        const jsonArray: UserItemProps[] = JSON.parse(data);
-        return jsonArray.map((item) => ({
+      .then((data: UserItemProps[]) => {
+        return data.map((item) => ({
           ...item,
           avatar: item.avatar
             ? `${this.transport.baseUrl}${item.avatar}`

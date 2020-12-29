@@ -1,0 +1,1 @@
+{"version":3,"file":"transformApiResult.js","sourceRoot":"","sources":["../../../../src/utils/transformApiResult.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,kBAAkB,CAAC,GAAW;IAC5C,IAAI,MAAM,CAAC;IACX,IAAI;QACF,MAAM,GAAG,IAAI,CAAC,KAAK,CAAC,GAAG,CAAC,CAAC;KAC1B;IAAC,OAAM,CAAC,EAAE;QACT,MAAM,GAAG,GAAG,CAAC;KACd;IACD,OAAO,MAAM,CAAC;AAChB,CAAC"}

@@ -5,18 +5,15 @@ export class ChatService {
         this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
     }
     getChats() {
-        return this.transport
-            .get('/chats', { data: {} })
-            .then((data) => {
-            return JSON.parse(data.response);
+        return this.transport.get('/chats', { data: {} }).then((data) => {
+            return data;
         });
     }
     getChatUsers(id) {
         return this.transport
             .get(`/chats/${id}/users`, { data: {} })
             .then((data) => {
-            const jsonArray = JSON.parse(data.response);
-            return jsonArray.map((item) => (Object.assign(Object.assign({}, item), { avatar: item.avatar
+            return data.map((item) => (Object.assign(Object.assign({}, item), { avatar: item.avatar
                     ? `${this.transport.baseUrl}${item.avatar}`
                     : this.avatarDefault, display_name: item.display_name ? item.display_name : item.first_name })));
         });

@@ -1,4 +1,5 @@
 import { sendDataFormatting } from '../utils/sendDataFormatting.js';
+import { transformApiResult } from '../utils/transformApiResult.js';
 export var METHODS;
 (function (METHODS) {
     METHODS["GET"] = "GET";
@@ -36,17 +37,10 @@ export class HTTPTransport {
                 }
                 xhr.onload = function () {
                     if (xhr.status !== 200) {
-                        let res;
-                        try {
-                            res = JSON.parse(xhr.response);
-                        }
-                        catch (e) {
-                            res = xhr.response;
-                        }
-                        reject(res);
+                        reject(transformApiResult(xhr.response));
                     }
                     else {
-                        resolve(xhr);
+                        resolve(transformApiResult(xhr.response));
                     }
                 };
                 xhr.onabort = reject;

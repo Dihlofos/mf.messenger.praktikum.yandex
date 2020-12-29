@@ -4,7 +4,7 @@ export declare class UserService {
     transport: HTTPTransport;
     props: SimpleObject;
     constructor(props: SimpleObject);
-    getUser(): Promise<any>;
+    getUser(): Promise<SimpleObject>;
     putProfile(): Promise<PromiseSettledResult<unknown>[]>;
     putAvatar(): Promise<unknown>;
     putPassword(): Promise<unknown>;

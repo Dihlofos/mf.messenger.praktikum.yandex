@@ -4,7 +4,7 @@ export declare class ChatService {
     transport: HTTPTransport;
     avatarDefault: string;
     constructor();
-    getChats(): Promise<any>;
+    getChats(): Promise<string>;
     getChatUsers(id: number): Promise<{
         avatar: string;
         display_name: string;
