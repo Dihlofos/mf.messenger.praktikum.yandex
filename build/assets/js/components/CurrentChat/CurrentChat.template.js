@@ -1,7 +1,14 @@
 export const CurrentChatTemplate = `
   <div class="current-chat__wrapper">
     <div class="current-chat__image">
-      <img width="34" height="34" src="{{avatar}}" alt="{{title}}_avatar" />
+
+      <img width="34" height="34" src="
+        {{#if avatar}}
+            {{avatar}}
+          {{else}}
+            /assets/images/avatar.png
+        {{/if}}
+      " alt="{{title}}_avatar" />
     </div>
     <div class="current-chat__content">
       <h1 class="current-chat__name">{{title}}</h1>

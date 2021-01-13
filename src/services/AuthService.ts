@@ -1,17 +1,21 @@
 import { SimpleObject } from '../interface.js';
 import { HTTPTransport } from '../modules/Api.js';
+import { Store } from '../modules/Store.js';
 import { BASEAVATARURL } from './constants.js';
 
 export class AuthService {
   transport: HTTPTransport;
   props: SimpleObject;
+  store: Store;
 
   constructor(props: SimpleObject) {
     this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
+    this.store = new Store();
     this.props = props;
   }
 
   signin() {
+
     return this.transport.post('/auth/signin', { data: this.props });
   }
 
@@ -28,7 +32,7 @@ export class AuthService {
       .get('/auth/user', { data: this.props })
       .then((data: SimpleObject) => {
         data.fields = [];
-
+        this.store.set({userId: data.id});
         if (data.login) {
           data.fields.push({
             value: data.login,

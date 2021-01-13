@@ -1,4 +1,9 @@
 .chat {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
   &__group {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -21,7 +26,7 @@
 
   &__time {
     position: absolute;
-    bottom: 1rem;
+    bottom: rem;
     right: 1rem;
     font-size: 0.9rem;
 
@@ -41,22 +46,20 @@
     font-size: 1.2rem;
     max-width: 40rem;
     border-radius: 3px;
-    padding: 1rem;
+    padding: 1rem 1rem 2rem;
     background-color: var(--board);
     margin: 0 0 1rem;
+    min-width: 11rem;
 
     &.--me {
       align-self: flex-end;
+      text-align: right;
       background-color: var(--lightBg);
     }
 
     &--image {
       background: none;
       padding: 0;
-    }
-
-    p {
-      margin: 0 0 1.5rem;
     }
   }
 }

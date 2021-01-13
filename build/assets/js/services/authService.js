@@ -1,8 +1,10 @@
 import { HTTPTransport } from '../modules/Api.js';
+import { Store } from '../modules/Store.js';
 import { BASEAVATARURL } from './constants.js';
 export class AuthService {
     constructor(props) {
         this.transport = new HTTPTransport('https://ya-praktikum.tech', '/api/v2');
+        this.store = new Store();
         this.props = props;
     }
     signin() {
@@ -19,6 +21,7 @@ export class AuthService {
             .get('/auth/user', { data: this.props })
             .then((data) => {
             data.fields = [];
+            this.store.set({ userId: data.id });
             if (data.login) {
                 data.fields.push({
                     value: data.login,

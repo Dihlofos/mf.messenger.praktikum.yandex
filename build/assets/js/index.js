@@ -14,13 +14,10 @@ function App(rootQuery) {
     router.use('/login', LoginPage);
     router.use('/registration', RegistrationPage);
     router.use('/profile', ProfilePage);
-    router.use('/profileEdit', ProfileEditPage); //TODO подумать как сделать адрес /profile/edit
+    router.use('/profileEdit', ProfileEditPage);
     router.use('/messenger', MessengerPage);
     //start App
     router.start();
-    //TODO тут будет блок кода редиректов,
-    // если пользовател залогинен - переводить в мессенджер
-    // если нет - редиректить на логин, пока просто на логин редирект
     if (window.location.pathname === '/')
         router.go('/login');
 }

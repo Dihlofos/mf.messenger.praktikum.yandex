@@ -13,6 +13,30 @@ export type UserItemProps = {
   second_name: string;
 };
 
+export type Message = {
+  user_id: number;
+  userId?: number;
+  chat_id: number;
+  content: string;
+  time: string;
+  id: number;
+  mix?: string;
+  type?: string;
+}
+
+export type MessageSubmit = {
+  content: string;
+  type: string;
+}
+
+export type groupMessage = {
+  date: string;
+  messages: Message[]
+
+}
+
+export type groupMessagesResult = groupMessage[];
+
 declare global {
   interface Window {
     Handlebars: any;
