@@ -23,13 +23,14 @@ export class CurrentChat extends Block {
         this.users = this.props.users || [];
     }
     componentDidMount() {
+        const { id, title } = this.props;
         this.chatService = new ChatService();
         this.renameFormInstance = new RenameForm({
             mix: '',
-            value: this.props.title,
+            value: title,
         });
         this.userAddModalIntance = new UserModal({
-            id: this.props.id,
+            id: id,
             onUserAdded: this.onUserAdded.bind(this),
             onUserRemoved: this.onUserRemoved.bind(this),
         });

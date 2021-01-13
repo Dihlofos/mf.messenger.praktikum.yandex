@@ -7,7 +7,7 @@ export declare class Route {
     _pathname: string;
     _blockClass: typeof Block;
     _block: Block | null;
-    _props: SimpleObject;
+    _props: Record<string, any>;
     constructor(pathname: string, view: typeof Block, props: SimpleObject);
     navigate(pathname: string): void;
     leave(): void;

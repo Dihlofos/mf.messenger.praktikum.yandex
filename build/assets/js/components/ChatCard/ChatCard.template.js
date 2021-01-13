@@ -2,7 +2,14 @@ export const ChatCardTemplate = `
   <div class="chat-card {{mix}} js-focus-visible" tabindex="0" role="button">
     <div class="chat-card__wrapper">
       <div class="chat-card__image">
-        <img width="47" height="47" src="{{imageHref}}" alt="{{title}}_avatar" />
+
+        <img width="47" height="47" src="
+          {{#if imageHref}}
+              {{imageHref}}
+            {{else}}
+              /assets/images/avatar.png
+          {{/if}}
+      " alt="{{title}}_avatar" />
       </div>
       <div class="chat-card__content">
         <p class="chat-card__name">{{title}}</p>

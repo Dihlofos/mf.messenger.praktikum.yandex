@@ -1,4 +1,5 @@
 import { Route } from './Route.js';
+import { Store } from './Store.js';
 
 export class Router {
   routes: Route[];
@@ -19,9 +20,10 @@ export class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: any) {
+  use(pathname: string, block: any, store?:Store) {
     const route = new Route(pathname, block, {
       rootQuery: this._rootQuery,
+      store
     });
     this.routes.push(route);
     return this;

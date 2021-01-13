@@ -7,6 +7,7 @@ import { UserModal } from '../UserModal/UserModal.js';
 import { currentChatStaticData } from './data.js';
 import { CurrentChatTemplate } from './CurrentChat.template.js';
 
+
 export type CurrentChatProps = {
   id: number;
   avatar: string;
@@ -34,14 +35,16 @@ export class CurrentChat extends Block {
   }
 
   componentDidMount() {
+    const { id, title } = this.props;
+
     this.chatService = new ChatService();
     this.renameFormInstance = new RenameForm({
       mix: '',
-      value: this.props.title,
+      value: title,
     });
 
     this.userAddModalIntance = new UserModal({
-      id: this.props.id,
+      id: id,
       onUserAdded: this.onUserAdded.bind(this),
       onUserRemoved: this.onUserRemoved.bind(this),
     });

@@ -1,19 +1,26 @@
+import { MessageSubmit } from '../../interface.js';
 import { Block } from '../../modules/Block.js';
+import { Store } from '../../modules/Store.js';
 import { Tooltip } from '../Tooltip/Tooltip.js';
 import { SenderTemplate } from './Sender.template.js';
 
 export type SenderProps = {
   tooltipInstance: Tooltip;
+  onSubmit: (message: MessageSubmit) => void;
+  mix?: string;
 };
 
 export class Sender extends Block {
   tooltip: string;
+  store: Store;
+
   constructor(props: SenderProps) {
     super('footer', 'sender', props);
     this._instances.push(this);
   }
 
   componentDidMount() {
+    this.store = new Store();
     setTimeout(() => {
       this.hydrate();
     }, 0);
@@ -30,9 +37,8 @@ export class Sender extends Block {
       if (!!!input?.value.length) {
         return false;
       } else {
-        console.log({
-          message: input?.value,
-        });
+        this.props.onSubmit({ content: input?.value, type: "message" })
+        input.value = '';
       }
     });
   }

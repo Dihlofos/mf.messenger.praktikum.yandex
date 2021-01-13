@@ -11,7 +11,7 @@ export class Route {
   _pathname: string;
   _blockClass: typeof Block;
   _block: Block | null;
-  _props: SimpleObject;
+  _props: Record<string,any>;
 
   constructor(pathname: string, view: typeof Block, props: SimpleObject) {
     this._pathname = pathname;
@@ -39,7 +39,7 @@ export class Route {
 
   render(): void {
     if (!this._block) {
-      this._block = new this._blockClass();
+      this._block = new this._blockClass(this._props.store);
       if (this._block) renderDom(this._props.rootQuery, this._block);
       //DO RENDER
       return;

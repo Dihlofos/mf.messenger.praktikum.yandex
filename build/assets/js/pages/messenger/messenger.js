@@ -14,12 +14,35 @@ import { messengerData } from './data.js';
 import { ChatService } from '../../services/ChatsService.js';
 import { ChatCreateModal } from '../../components/ChatCreateModal/ChatCreateModal.js';
 import { Button } from '../../components/Button/Button.js';
+import { MessageService } from '../../services/MessageService.js';
+import { AuthService } from '../../services/AuthService.js';
 export class MessengerPage extends Block {
     constructor() {
         super('div', 'page');
+        this.handleMessageSubmit = (message) => {
+            this.messageService.sendMessage(message);
+        };
+        this.handleChatCardClick = (chatCard) => {
+            this.currentChat = new CurrentChat({
+                id: chatCard.id,
+                avatar: chatCard.avatar,
+                title: chatCard.title,
+                time: '',
+                mix: 'messenger__current-chat',
+                onChatDeleted: this.onChatDeleted.bind(this),
+            });
+            this.chat = new Chat({ mix: 'messenger__chat', });
+            this.messageService = new MessageService(chatCard.id, { messagesCallback: this.chat.handleGetMessages });
+            this.setProps(Object.assign(this.props, {
+                currentChatInstance: this.currentChat,
+                chatInstance: this.chat
+            }));
+        };
     }
     componentDidMount() {
+        this.authService = new AuthService({});
         this.chatService = new ChatService();
+        this.authService.getUser();
         this.updateChats();
     }
     updateChats() {
@@ -49,23 +72,13 @@ export class MessengerPage extends Block {
         });
     }
     render() {
-        const { searchFieldData, chatCardsData, bottomtooltipData, chatData, chatCreateModalButtonData, } = messengerData;
+        const { searchFieldData, chatCardsData, bottomtooltipData, chatCreateModalButtonData, } = messengerData;
         this.searchField = new Field(searchFieldData);
         let chatCards = null;
         if (chatCardsData.length > 0) {
             chatCards = chatCardsData.map((item) => {
                 return new ChatCard(Object.assign(Object.assign({}, item), { onChatCardClick: (chatCard) => {
-                        this.currentChat = new CurrentChat({
-                            id: chatCard.id,
-                            avatar: chatCard.avatar,
-                            title: chatCard.title,
-                            time: '',
-                            mix: 'messenger__current-chat',
-                            onChatDeleted: this.onChatDeleted.bind(this),
-                        });
-                        this.setProps(Object.assign(this.props, {
-                            currentChatInstance: this.currentChat,
-                        }));
+                        this.handleChatCardClick(chatCard);
                     } }));
             });
         }
@@ -93,16 +106,12 @@ export class MessengerPage extends Block {
             searchFieldInstance: this.searchField,
             chatCreateModalInstance: chatCreateModal,
         });
-        if (chatData) {
-            // TODO
-            // Пока контент сообщений захардхожен, в дальнейшем надо сделать отдельный комопонент,
-            // который будет прогонять код через шаблонизатор
-            const bottomTooltip = new Tooltip(bottomtooltipData);
-            this.chat = new Chat(chatData);
-            this.sender = new Sender({
-                tooltipInstance: bottomTooltip,
-            });
-        }
+        const bottomTooltip = new Tooltip(bottomtooltipData);
+        this.sender = new Sender({
+            tooltipInstance: bottomTooltip,
+            onSubmit: this.handleMessageSubmit,
+            mix: 'messenger__sender',
+        });
         const messenger = new Messenger({
             messagesBoardInstance: messageBoard,
             currentChatInstance: this.currentChat ? this.currentChat : undefined,

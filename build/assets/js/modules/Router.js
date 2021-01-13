@@ -10,9 +10,10 @@ export class Router {
         this._rootQuery = rootQuery;
         Router.__instance = this;
     }
-    use(pathname, block) {
+    use(pathname, block, store) {
         const route = new Route(pathname, block, {
             rootQuery: this._rootQuery,
+            store
         });
         this.routes.push(route);
         return this;

@@ -1,4 +1,5 @@
 import { Block } from '../../modules/Block.js';
+import { Store } from '../../modules/Store.js';
 import { SenderTemplate } from './Sender.template.js';
 export class Sender extends Block {
     constructor(props) {
@@ -6,6 +7,7 @@ export class Sender extends Block {
         this._instances.push(this);
     }
     componentDidMount() {
+        this.store = new Store();
         setTimeout(() => {
             this.hydrate();
         }, 0);
@@ -20,9 +22,8 @@ export class Sender extends Block {
                 return false;
             }
             else {
-                console.log({
-                    message: input === null || input === void 0 ? void 0 : input.value,
-                });
+                this.props.onSubmit({ content: input === null || input === void 0 ? void 0 : input.value, type: "message" });
+                input.value = '';
             }
         });
     }

@@ -1,11 +1,5 @@
 .current-chat {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: calc(100% - 31rem);
-  padding: 0 2rem;
-  background-color: var(--light);
-  z-index: 2;
+
 
   &__wrapper {
     display: flex;
