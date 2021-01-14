@@ -1,8 +1,8 @@
-import { MessageSubmit } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { Store } from '../../modules/Store.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
-import { SenderTemplate } from './Sender.template.js';
+import { MessageSubmit } from '../../interface';
+import { Block } from '../../modules/Block';
+import { Store } from '../../modules/Store';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { SenderTemplate } from './Sender.template';
 
 export type SenderProps = {
   tooltipInstance: Tooltip;

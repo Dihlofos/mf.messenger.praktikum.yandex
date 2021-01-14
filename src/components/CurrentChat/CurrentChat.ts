@@ -1,11 +1,11 @@
-import { UserItemProps } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { ChatService } from '../../services/ChatsService.js';
-import { RenameForm } from '../RenameForm/RenameForm.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
-import { UserModal } from '../UserModal/UserModal.js';
-import { currentChatStaticData } from './data.js';
-import { CurrentChatTemplate } from './CurrentChat.template.js';
+import { UserItemProps } from '../../interface';
+import { Block } from '../../modules/Block';
+import { ChatService } from '../../services/ChatsService';
+import { RenameForm } from '../RenameForm/RenameForm';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { UserModal } from '../UserModal/UserModal';
+import { currentChatStaticData } from './data';
+import { CurrentChatTemplate } from './CurrentChat.template';
 
 
 export type CurrentChatProps = {

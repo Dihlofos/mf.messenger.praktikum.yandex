@@ -1,9 +1,9 @@
-import { groupMessage } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { Store } from '../../modules/Store.js';
-import { MessageService } from '../../services/MessageService.js';
-import { groupMessages } from '../../utils/groupMessages.js';
-import { ChatTemplate } from './Chat.template.js';
+import { groupMessage } from '../../interface';
+import { Block } from '../../modules/Block';
+import { Store } from '../../modules/Store';
+import { MessageService } from '../../services/MessageService';
+import { groupMessages } from '../../utils/groupMessages';
+import { ChatTemplate } from './Chat.template';
 
 export type ChatProps = {
   messagesGroup?: groupMessage[];
@@ -15,7 +15,7 @@ export class Chat extends Block {
   messageService: MessageService;
 
   constructor(props: ChatProps) {
-    super('main', 'chat', props);
+    super('main', 'chat', props)
     this._instances.push(this);
     this.store = new Store();
   }

@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { AvatarTemplate } from './Avatar.template.js';
+import { Block } from '../../modules/Block';
+import { AvatarTemplate } from './Avatar.template';
 
 export type AvatarProps = {
   name: string;

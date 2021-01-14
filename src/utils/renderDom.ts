@@ -1,4 +1,4 @@
-import { Block } from '../modules/Block.js';
+import { Block } from '../modules/Block';
 
 export function renderDom(query: string, block: Block) {
   const root: HTMLElement | null = document.querySelector(query);

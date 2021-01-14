@@ -1,6 +1,6 @@
-import { StringIndexed } from '../interface.js';
-import { arrayToString } from './arrayToString.js';
-import { flattenObject } from './flattenObject.js';
+import { StringIndexed } from '../interface';
+import { arrayToString } from './arrayToString';
+import { flattenObject } from './flattenObject';
 
 export function queryStringify(data: StringIndexed): string | never {
   if (Object.keys(data).length === 0) {

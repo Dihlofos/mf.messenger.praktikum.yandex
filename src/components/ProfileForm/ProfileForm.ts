@@ -1,11 +1,11 @@
-import { Block } from '../../modules/Block.js';
-import { Avatar } from '../Avatar/Avatar.js';
-import { formDataToObject } from '../../utils/formDataToObject.js';
-import { Button } from '../Button/Button.js';
-import { ProfileField } from '../ProfileField/ProfileField.js';
-import { UserService } from '../../services/UserService.js';
-import { Router } from '../../modules/Router.js';
-import { ProfileFormTemplate } from './ProfileForm.template.js';
+import { Block } from '../../modules/Block';
+import { Avatar } from '../Avatar/Avatar';
+import { formDataToObject } from '../../utils/formDataToObject';
+import { Button } from '../Button/Button';
+import { ProfileField } from '../ProfileField/ProfileField';
+import { UserService } from '../../services/UserService';
+import { Router } from '../../modules/Router';
+import { ProfileFormTemplate } from './ProfileForm.template';
 
 export type ProfileFormProps = {
   avatarInstance: Avatar;

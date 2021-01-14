@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { validateField } from '../../utils/validateField.js';
-import { ProfileFieldTemplate } from './ProfileField.template.js';
+import { Block } from '../../modules/Block';
+import { validateField } from '../../utils/validateField';
+import { ProfileFieldTemplate } from './ProfileField.template';
 
 export type ProfileFieldProps = {
   name: string;

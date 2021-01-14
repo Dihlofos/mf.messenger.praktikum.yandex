@@ -1,5 +1,5 @@
-import { SimpleObject, UserItemProps } from '../interface.js';
-import { HTTPTransport } from '../modules/Api.js';
+import { SimpleObject, UserItemProps } from '../interface';
+import { HTTPTransport } from '../modules/Api';
 
 export class ChatService {
   transport: HTTPTransport;

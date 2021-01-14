@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { RenamteFormTemplate } from './RenanmeForm.template.js';
+import { Block } from '../../modules/Block';
+import { RenamteFormTemplate } from './RenanmeForm.template';
 
 export type RenameFormProps = {
   mix: string;

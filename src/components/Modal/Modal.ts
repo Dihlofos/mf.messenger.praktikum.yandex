@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { Button } from '../Button/Button.js';
-import { ModalTemplate } from './Modal.template.js';
+import { Block } from '../../modules/Block';
+import { Button } from '../Button/Button';
+import { ModalTemplate } from './Modal.template';
 
 export type ModalProps = {
   title: string;

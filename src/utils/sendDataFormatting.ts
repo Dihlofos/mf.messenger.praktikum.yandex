@@ -1,6 +1,6 @@
-import { SimpleObject } from '../interface.js';
-import { METHODS } from '../modules/Api.js';
-import { queryStringify } from './queryStringify.js';
+import { SimpleObject } from '../interface';
+import { METHODS } from '../modules/Api';
+import { queryStringify } from './queryStringify';
 
 export function sendDataFormatting(
   method: string,

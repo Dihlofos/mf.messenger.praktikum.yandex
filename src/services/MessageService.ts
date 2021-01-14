@@ -1,8 +1,8 @@
-import { MessageSubmit } from '../interface.js';
-import { HTTPTransport } from '../modules/Api.js';
-import { Store } from '../modules/Store.js';
-import { AuthService } from './AuthService.js';
-import { SOCKETURL } from './constants.js';
+import { MessageSubmit } from '../interface';
+import { HTTPTransport } from '../modules/Api';
+import { Store } from '../modules/Store';
+import { AuthService } from './AuthService';
+import { SOCKETURL } from './constants';
 
 export interface MessageServiceProps {
   messagesCallback?: (chatId: number) => void

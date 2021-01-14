@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ButtonTemplate } from './Button.template.js';
+import { Block } from '../../modules/Block';
+import { ButtonTemplate } from './Button.template';
 
 export type ButtonProps = {
   text: string;

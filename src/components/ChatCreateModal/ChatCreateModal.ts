@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { Button } from '../Button/Button.js';
-import { ChatCreateModalTemplate } from './ChatCreateModal.template.js';
+import { Block } from '../../modules/Block';
+import { Button } from '../Button/Button';
+import { ChatCreateModalTemplate } from './ChatCreateModal.template';
 
 export type ChatCreateModalProps = {
   onChatCreateSubmit: (event: Event) => void;

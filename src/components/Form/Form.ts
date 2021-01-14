@@ -1,10 +1,10 @@
-import { Block } from '../../modules/Block.js';
-import { Router } from '../../modules/Router.js';
-import { AuthService } from '../../services/AuthService.js';
-import { formDataToObject } from '../../utils/formDataToObject.js';
-import { Button } from '../Button/Button.js';
-import { Field } from '../Field/Field.js';
-import { FormTemplate } from './Form.template.js';
+import { Block } from '../../modules/Block';
+import { Router } from '../../modules/Router';
+import { AuthService } from '../../services/AuthService';
+import { formDataToObject } from '../../utils/formDataToObject';
+import { Button } from '../Button/Button';
+import { Field } from '../Field/Field';
+import { FormTemplate } from './Form.template';
 
 export type FormProps = {
   title: string;

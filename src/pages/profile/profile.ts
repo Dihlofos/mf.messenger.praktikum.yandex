@@ -1,9 +1,9 @@
-import { Block } from '../../modules/Block.js';
-import { Profile } from '../../components/Profile/Profile.js';
-import { ProfileShow } from '../../components/ProfileShow/ProfileShow.js';
-import { profileData } from './data.js';
-import { AuthService } from '../../services/AuthService.js';
-import { Router } from '../../modules/Router.js';
+import { Block } from '../../modules/Block';
+import { Profile } from '../../components/Profile/Profile';
+import { ProfileShow } from '../../components/ProfileShow/ProfileShow';
+import { profileData } from './data';
+import { AuthService } from '../../services/AuthService';
+import { Router } from '../../modules/Router';
 
 export class ProfilePage extends Block {
   authService: AuthService;

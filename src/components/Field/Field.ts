@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { validateField } from '../../utils/validateField.js';
-import { FieldTemplate } from './Field.template.js';
+import { Block } from '../../modules/Block';
+import { validateField } from '../../utils/validateField';
+import { FieldTemplate } from './Field.template';
 
 export type FieldProps = {
   name: string;

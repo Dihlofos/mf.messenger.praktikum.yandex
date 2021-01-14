@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { TooltipTemplate } from './Tooltip.template.js';
+import { Block } from '../../modules/Block';
+import { TooltipTemplate } from './Tooltip.template';
 
 export type TooltipProps = {
   mix: string;

@@ -1,5 +1,5 @@
-import { StringIndexed } from '../interface.js';
-import { flattenObject } from './flattenObject.js';
+import { StringIndexed } from '../interface';
+import { flattenObject } from './flattenObject';
 
 export const arrayToString = function (key: string, obj: StringIndexed[]) {
   const arr: string[] = [];

@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ProfileShowTemplate } from './ProfileShow.template.js';
+import { Block } from '../../modules/Block';
+import { ProfileShowTemplate } from './ProfileShow.template';
 
 export type ProfileShowProps = {
   display_name: string;

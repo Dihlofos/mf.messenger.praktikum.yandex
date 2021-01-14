@@ -1,10 +1,10 @@
-import { UserItemProps } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { ChatService } from '../../services/ChatsService.js';
-import { UserService } from '../../services/UserService.js';
-import { formDataToObject } from '../../utils/formDataToObject.js';
-import { Button } from '../Button/Button.js';
-import { UserModalTemplate } from './UserModal.template.js';
+import { UserItemProps } from '../../interface';
+import { Block } from '../../modules/Block';
+import { ChatService } from '../../services/ChatsService';
+import { UserService } from '../../services/UserService';
+import { formDataToObject } from '../../utils/formDataToObject';
+import { Button } from '../Button/Button';
+import { UserModalTemplate } from './UserModal.template';
 
 export type UserModalProps = {
   id: number;

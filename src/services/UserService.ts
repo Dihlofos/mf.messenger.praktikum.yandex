@@ -1,6 +1,6 @@
-import { SimpleObject, UserItemProps } from '../interface.js';
-import { HTTPTransport } from '../modules/Api.js';
-import { BASEAVATARURL } from './constants.js';
+import { SimpleObject, UserItemProps } from '../interface';
+import { HTTPTransport } from '../modules/Api';
+import { BASEAVATARURL } from './constants';
 
 export class UserService {
   transport: HTTPTransport;

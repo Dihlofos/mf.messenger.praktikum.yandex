@@ -1,4 +1,4 @@
-import { EventBus } from './EventBus.js';
+import { EventBus } from './EventBus';
 import { SimpleObject } from '../interface';
 
 export class Block {
@@ -59,7 +59,7 @@ export class Block {
     this.initEvents();
   };
 
-  initEvents(): void {}
+  initEvents(): void { }
 
   renderToString(): string {
     const wrapper = document.createElement(this._meta.tagName);
@@ -94,13 +94,13 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount(): void {}
+  componentDidMount(): void { }
 
   _componentDidUpdate(): void {
     this.componentDidUpdate();
   }
 
-  componentDidUpdate(): void {}
+  componentDidUpdate(): void { }
 
   setProps = (nextProps: object): boolean => {
     if (!nextProps) {

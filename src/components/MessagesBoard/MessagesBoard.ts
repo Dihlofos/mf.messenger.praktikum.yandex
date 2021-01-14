@@ -1,8 +1,8 @@
-import { Block } from '../../modules/Block.js';
-import { ChatCreateModal } from '../ChatCreateModal/ChatCreateModal.js';
-import { Field } from '../Field/Field.js';
-import { MessagesList } from '../MessagesList/MessagesList.js';
-import { MessageBoardTemplate } from './MessagesBoard.template.js';
+import { Block } from '../../modules/Block';
+import { ChatCreateModal } from '../ChatCreateModal/ChatCreateModal';
+import { Field } from '../Field/Field';
+import { MessagesList } from '../MessagesList/MessagesList';
+import { MessageBoardTemplate } from './MessagesBoard.template';
 
 export type MessagesBoardProps = {
   linkText: string;

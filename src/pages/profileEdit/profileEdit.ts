@@ -1,12 +1,12 @@
-import { Block } from '../../modules/Block.js';
-import { Avatar } from '../../components/Avatar/Avatar.js';
-import { Button } from '../../components/Button/Button.js';
-import { Profile } from '../../components/Profile/Profile.js';
-import { ProfileField } from '../../components/ProfileField/ProfileField.js';
-import { ProfileForm } from '../../components/ProfileForm/ProfileForm.js';
-import { profileEditData } from './data.js';
-import { Router } from '../../modules/Router.js';
-import { UserService } from '../../services/UserService.js';
+import { Block } from '../../modules/Block';
+import { Avatar } from '../../components/Avatar/Avatar';
+import { Button } from '../../components/Button/Button';
+import { Profile } from '../../components/Profile/Profile';
+import { ProfileField } from '../../components/ProfileField/ProfileField';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import { profileEditData } from './data';
+import { Router } from '../../modules/Router';
+import { UserService } from '../../services/UserService';
 
 export class ProfileEditPage extends Block {
   userService: UserService;

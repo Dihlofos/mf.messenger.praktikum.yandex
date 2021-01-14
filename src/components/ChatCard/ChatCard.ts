@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ChatCardTemplate } from './ChatCard.template.js';
+import { Block } from '../../modules/Block';
+import { ChatCardTemplate } from './ChatCard.template';
 
 export type ChatCardProps = {
   id: number;

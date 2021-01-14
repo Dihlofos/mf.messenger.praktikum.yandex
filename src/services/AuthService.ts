@@ -1,7 +1,7 @@
-import { SimpleObject } from '../interface.js';
-import { HTTPTransport } from '../modules/Api.js';
-import { Store } from '../modules/Store.js';
-import { BASEAVATARURL } from './constants.js';
+import { SimpleObject } from '../interface';
+import { HTTPTransport } from '../modules/Api';
+import { Store } from '../modules/Store';
+import { BASEAVATARURL } from './constants';
 
 export class AuthService {
   transport: HTTPTransport;
@@ -32,7 +32,7 @@ export class AuthService {
       .get('/auth/user', { data: this.props })
       .then((data: SimpleObject) => {
         data.fields = [];
-        this.store.set({userId: data.id});
+        this.store.set({ userId: data.id });
         if (data.login) {
           data.fields.push({
             value: data.login,

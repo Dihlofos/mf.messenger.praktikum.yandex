@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { ChatCard } from '../ChatCard/ChatCard.js';
-import { MessagesListTemplate } from './MessagesList.template.js';
+import { Block } from '../../modules/Block';
+import { ChatCard } from '../ChatCard/ChatCard';
+import { MessagesListTemplate } from './MessagesList.template';
 
 export type MessagesListProps = {
   chatCardInstances: ChatCard[] | null;

@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ErrorTemplate } from './Error.template.js';
+import { Block } from '../../modules/Block';
+import { ErrorTemplate } from './Error.template';
 
 export type ErrorProps = {
   errorText: string;

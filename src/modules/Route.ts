@@ -1,7 +1,7 @@
-import { SimpleObject } from '../interface.js';
-import { isEqual } from '../utils/isEqual.js';
-import { renderDom } from '../utils/renderDom.js';
-import { Block } from './Block.js';
+import { SimpleObject } from '../interface';
+import { isEqual } from '../utils/isEqual';
+import { renderDom } from '../utils/renderDom';
+import { Block } from './Block';
 
 export type RouteProps = {
   rootQuery: string;
@@ -11,7 +11,7 @@ export class Route {
   _pathname: string;
   _blockClass: typeof Block;
   _block: Block | null;
-  _props: Record<string,any>;
+  _props: Record<string, any>;
 
   constructor(pathname: string, view: typeof Block, props: SimpleObject) {
     this._pathname = pathname;

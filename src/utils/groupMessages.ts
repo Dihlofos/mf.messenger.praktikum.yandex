@@ -1,5 +1,5 @@
 import { groupMessage, groupMessagesResult, Message } from "../interface";
-import { Store } from "../modules/Store.js";
+import { Store } from "../modules/Store";
 
 
 

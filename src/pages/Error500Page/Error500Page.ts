@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { Error } from '../../components/Error/Error.js';
-import { error500Data } from './data.js';
+import { Block } from '../../modules/Block';
+import { Error } from '../../components/Error/Error';
+import { error500Data } from './data';
 
 export class Error500Page extends Block {
   constructor() {

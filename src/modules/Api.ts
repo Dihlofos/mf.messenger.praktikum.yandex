@@ -1,6 +1,6 @@
-import { StringIndexed } from '../interface.js';
-import { sendDataFormatting } from '../utils/sendDataFormatting.js';
-import { transformApiResult } from '../utils/transformApiResult.js';
+import { StringIndexed } from '../interface';
+import { sendDataFormatting } from '../utils/sendDataFormatting';
+import { transformApiResult } from '../utils/transformApiResult';
 
 export type RequestOptions = {
   timeout?: number;

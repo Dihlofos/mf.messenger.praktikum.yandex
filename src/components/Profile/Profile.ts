@@ -1,7 +1,7 @@
-import { Block } from '../../modules/Block.js';
-import { ProfileShow } from '../ProfileShow/ProfileShow.js';
-import { ProfileForm } from '../ProfileForm/ProfileForm.js';
-import { ProfileTemplate } from './Profile.template.js';
+import { Block } from '../../modules/Block';
+import { ProfileShow } from '../ProfileShow/ProfileShow';
+import { ProfileForm } from '../ProfileForm/ProfileForm';
+import { ProfileTemplate } from './Profile.template';
 
 export type ProfileProps = {
   backlink: string;

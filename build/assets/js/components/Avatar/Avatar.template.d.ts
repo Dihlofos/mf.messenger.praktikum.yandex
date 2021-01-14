@@ -1,1 +1,0 @@
-export declare const AvatarTemplate = "\n  <input class=\"avatar__input js-avatar-input\" id=\"{{name}}\" name=\"{{name}}\" type=\"file\" />\n  <label class=\"avatar__image\" for=\"avatar\">\n    <img class=\"js-avatar-image\" width=\"176\" height=\"176\" src=\"{{imageLink}}\" alt=\"{{name}}\" />\n  </label>\n";

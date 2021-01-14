@@ -1,22 +1,20 @@
-import { Block } from '../../modules/Block.js';
-//import { Button } from '../../components/Button/Button.js';
-import { Chat } from '../../components/Chat/Chat.js';
-import { ChatCard, ChatCardProps } from '../../components/ChatCard/ChatCard.js';
-import { CurrentChat } from '../../components/CurrentChat/CurrentChat.js';
-import { Field } from '../../components/Field/Field.js';
-import { MessagesBoard } from '../../components/MessagesBoard/MessagesBoard.js';
-import { MessagesList } from '../../components/MessagesList/MessagesList.js';
-import { Messenger } from '../../components/Messenger/Messenger.js';
-//import { Modal } from '../../components/Modal/Modal.js';
-import { Sender } from '../../components/Sender/Sender.js';
-import { Tooltip } from '../../components/Tooltip/Tooltip.js';
-import { messengerData } from './data.js';
-import { ChatService } from '../../services/ChatsService.js';
-import { ChatCreateModal } from '../../components/ChatCreateModal/ChatCreateModal.js';
-import { Button } from '../../components/Button/Button.js';
-import { MessageService } from '../../services/MessageService.js';
-import { AuthService } from '../../services/AuthService.js';
-import { MessageSubmit } from '../../interface.js';
+import { Block } from '../../modules/Block';
+import { Chat } from '../../components/Chat/Chat';
+import { ChatCard, ChatCardProps } from '../../components/ChatCard/ChatCard';
+import { CurrentChat } from '../../components/CurrentChat/CurrentChat';
+import { Field } from '../../components/Field/Field';
+import { MessagesBoard } from '../../components/MessagesBoard/MessagesBoard';
+import { MessagesList } from '../../components/MessagesList/MessagesList';
+import { Messenger } from '../../components/Messenger/Messenger';
+import { Sender } from '../../components/Sender/Sender';
+import { Tooltip } from '../../components/Tooltip/Tooltip';
+import { messengerData } from './data';
+import { ChatService } from '../../services/ChatsService';
+import { ChatCreateModal } from '../../components/ChatCreateModal/ChatCreateModal';
+import { Button } from '../../components/Button/Button';
+import { MessageService } from '../../services/MessageService';
+import { AuthService } from '../../services/AuthService';
+import { MessageSubmit } from '../../interface';
 
 export class MessengerPage extends Block {
   chatService: ChatService;
@@ -170,20 +168,6 @@ export class MessengerPage extends Block {
     });
 
     document.title = 'Messenger';
-
-    // const modal = new Modal({
-    //   title: 'Вы хотите удалить чат',
-    //   deleteButtonInstance: new Button({
-    //     text: 'Удалить',
-    //     mix: 'button--red modal__button',
-    //     type: 'button',
-    //   }),
-    //   cancelButtonInstance: new Button({
-    //     text: 'Отмена',
-    //     mix: 'button--grey modal__button',
-    //     type: 'button',
-    //   }),
-    // });
     return messenger.renderToString();
   }
 }

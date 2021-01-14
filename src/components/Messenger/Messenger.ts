@@ -1,9 +1,9 @@
-import { Block } from '../../modules/Block.js';
-import { Chat } from '../Chat/Chat.js';
-import { CurrentChat } from '../CurrentChat/CurrentChat.js';
-import { MessagesBoard } from '../MessagesBoard/MessagesBoard.js';
-import { Sender } from '../Sender/Sender.js';
-import { MessengerTemplate } from './Messenger.template.js';
+import { Block } from '../../modules/Block';
+import { Chat } from '../Chat/Chat';
+import { CurrentChat } from '../CurrentChat/CurrentChat';
+import { MessagesBoard } from '../MessagesBoard/MessagesBoard';
+import { Sender } from '../Sender/Sender';
+import { MessengerTemplate } from './Messenger.template';
 
 export type MessengerProps = {
   messagesBoardInstance: MessagesBoard;
