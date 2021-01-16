@@ -1,13 +1,12 @@
 import { SimpleObject } from '../interface';
-import { isEqual } from '../utils/isEqual';
-import { renderDom } from '../utils/renderDom';
-import { Block } from './Block';
+import { isEqual, renderDom } from '../utils';
+import { Block } from './index';
 
 export type RouteProps = {
   rootQuery: string;
 };
 
-export class Route {
+export default class Route {
   _pathname: string;
   _blockClass: typeof Block;
   _block: Block | null;
@@ -41,7 +40,7 @@ export class Route {
     if (!this._block) {
       this._block = new this._blockClass(this._props.store);
       if (this._block) renderDom(this._props.rootQuery, this._block);
-      //DO RENDER
+      // DO RENDER
       return;
     }
 

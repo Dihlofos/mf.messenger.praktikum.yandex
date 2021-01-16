@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block';
-import { RenamteFormTemplate } from './RenanmeForm.template';
+import { Block } from '../../modules';
+import template from './RenameForm.handlebars';
 
 export type RenameFormProps = {
   mix: string;
@@ -13,7 +13,6 @@ export class RenameForm extends Block {
   }
 
   componentDidMount() {
-    //TODO - как бы избавиться от setTimeout
     setTimeout(() => {
       this.hydrate();
     }, 0);
@@ -28,7 +27,6 @@ export class RenameForm extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(RenamteFormTemplate)(this.props);
+    return template(this.props);
   }
 }

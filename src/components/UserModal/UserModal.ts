@@ -1,10 +1,9 @@
 import { UserItemProps } from '../../interface';
-import { Block } from '../../modules/Block';
-import { ChatService } from '../../services/ChatsService';
-import { UserService } from '../../services/UserService';
-import { formDataToObject } from '../../utils/formDataToObject';
+import { Block } from '../../modules';
+import { UserService, ChatsService } from '../../services';
+import { formDataToObject } from '../../utils';
 import { Button } from '../Button/Button';
-import { UserModalTemplate } from './UserModal.template';
+import template from './UserModal.handlebars';
 
 export type UserModalProps = {
   id: number;
@@ -13,11 +12,16 @@ export type UserModalProps = {
 };
 
 export class UserModal extends Block {
-  chatService: ChatService;
+  chatService: ChatsService;
+
   findButton: string;
+
   userList: UserItemProps[] | null = null;
+
   usersInChat: UserItemProps[];
+
   userService: UserService;
+
   nothingFound: boolean = false;
 
   constructor(props: UserModalProps) {
@@ -26,7 +30,7 @@ export class UserModal extends Block {
   }
 
   componentDidMount() {
-    this.chatService = new ChatService();
+    this.chatService = new ChatsService();
 
     setTimeout(() => {
       this.hydrate();
@@ -43,13 +47,13 @@ export class UserModal extends Block {
 
   initEvents() {
     const form: HTMLFormElement | null = document.querySelector(
-      '.js-user-add-form'
+      '.js-user-add-form',
     );
 
-    let milk: HTMLElement | null = document.querySelector('.js-user-add-milk');
+    const milk: HTMLElement | null = document.querySelector('.js-user-add-milk');
     milk?.addEventListener('click', this.hide);
 
-    //user search result
+    // user search result
     if (form) {
       form?.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -58,7 +62,7 @@ export class UserModal extends Block {
           if (!result.length) this.nothingFound = true;
           this.setProps({
             userList: result,
-            nothingFound: !!!result.length,
+            nothingFound: !result.length,
           });
         });
       });
@@ -88,26 +92,25 @@ export class UserModal extends Block {
   };
 
   show = (): void => {
-    //user click add
+    // user click add
     this.element?.classList.add('is-shown');
     document.addEventListener('click', this.onUserAddClick);
     document.addEventListener('click', this.onUserRemoveClick);
   };
 
   hide = (): void => {
-    //user click remove
+    // user click remove
     this.element?.classList.remove('is-shown');
     document.removeEventListener('click', this.onUserAddClick);
     document.removeEventListener('click', this.onUserRemoveClick);
   };
 
   render() {
-    const Handlebars = window.Handlebars;
     this.findButton = new Button({
       text: 'Найти',
       type: 'submit',
     }).renderToString();
-    return Handlebars.compile(UserModalTemplate)({
+    return template({
       ...this.props,
       userInChat: this.usersInChat,
       findButton: this.findButton,

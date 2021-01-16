@@ -1,4 +1,4 @@
-export const currentChatStaticData = {
+const currentChatStaticData = {
   topTooltip: {
     mix: 'tooltip--top-right',
     iconButtons: [
@@ -23,3 +23,5 @@ export const currentChatStaticData = {
     ],
   },
 };
+
+export default currentChatStaticData;

@@ -1,11 +1,14 @@
-import { Route } from './Route';
-import { Store } from './Store';
+import { Store, Route } from './index';
 
-export class Router {
+export default class Router {
   routes: Route[];
+
   history: History;
+
   _currentRoute: Route | null;
+
   _rootQuery: string;
+
   static __instance: Router;
 
   constructor(rootQuery: string) {
@@ -23,7 +26,7 @@ export class Router {
   use(pathname: string, block: any, store?: Store) {
     const route = new Route(pathname, block, {
       rootQuery: this._rootQuery,
-      store
+      store,
     });
     this.routes.push(route);
     return this;

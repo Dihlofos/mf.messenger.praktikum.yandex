@@ -1,17 +1,18 @@
-import { Block } from '../../modules/Block';
+import { Block, Router } from '../../modules';
 import { Profile } from '../../components/Profile/Profile';
 import { ProfileShow } from '../../components/ProfileShow/ProfileShow';
-import { profileData } from './data';
-import { AuthService } from '../../services/AuthService';
-import { Router } from '../../modules/Router';
+import profileData from './data';
+import { AuthService } from '../../services';
 
 export class ProfilePage extends Block {
   authService: AuthService;
+
   router: Router;
 
   constructor() {
     super('div', 'page');
   }
+
   componentDidMount() {
     this.authService = new AuthService({});
     this.router = new Router('root');
@@ -20,9 +21,8 @@ export class ProfilePage extends Block {
       .then((item) => {
         this.setProps(Object.assign(profileData, item));
       })
-      .catch((e) => {
-        console.log(e)
-        //this.router.go('/login');
+      .catch(() => {
+        this.router.go('/login');
       });
   }
 

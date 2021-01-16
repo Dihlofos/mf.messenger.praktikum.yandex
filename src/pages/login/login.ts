@@ -1,8 +1,8 @@
 import { Button } from '../../components/Button/Button';
 import { Field } from '../../components/Field/Field';
 import { Form } from '../../components/Form/Form';
-import { Block } from '../../modules/Block';
-import { loginData } from './data';
+import { Block } from '../../modules';
+import loginData from './data';
 
 export class LoginPage extends Block {
   constructor() {

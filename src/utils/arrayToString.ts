@@ -1,9 +1,9 @@
 import { StringIndexed } from '../interface';
-import { flattenObject } from './flattenObject';
+import { flattenObject } from './index';
 
-export const arrayToString = function (key: string, obj: StringIndexed[]) {
+export default function arrayToString(key: string, obj: StringIndexed[]) {
   const arr: string[] = [];
-  obj.map((item, index) => {
+  obj.forEach((item, index) => {
     if (typeof item !== 'object') {
       arr.push(`${key}[${index}]=${item}`);
     } else {

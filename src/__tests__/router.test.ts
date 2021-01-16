@@ -1,6 +1,5 @@
-import { Route } from '../modules/Route';
-import { Router } from '../modules/Router';
-import Error404Page from '../pages/Error404Page/Error404Page';
+import { Route, Router } from '../modules';
+import { Error404Page } from '../pages';
 
 describe('Router tesing', () => {
   const root = document.createElement('div');

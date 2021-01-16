@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block';
-import { TooltipTemplate } from './Tooltip.template';
+import { Block } from '../../modules';
+import template from './Tooltip.handlebars';
 
 export type TooltipProps = {
   mix: string;
@@ -43,7 +43,6 @@ export class Tooltip extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(TooltipTemplate)({ ...this.props });
+    return template({ ...this.props });
   }
 }

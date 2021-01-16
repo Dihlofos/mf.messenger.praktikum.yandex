@@ -1,9 +1,8 @@
-export const flattenObject = function (obj: any) {
-  let result: string[] = [];
-  rec(obj);
+export default function flattenObject(obj: any) {
+  const result: string[] = [];
 
   function rec(obj: Record<string, any>) {
-    return Object.keys(obj).map((key) => {
+    return Object.keys(obj).forEach((key) => {
       if (typeof obj[key] === 'object') {
         result.push(`[${key}]`);
         rec(obj[key]);
@@ -12,5 +11,7 @@ export const flattenObject = function (obj: any) {
       }
     });
   }
+
+  rec(obj);
   return result.join('');
 };

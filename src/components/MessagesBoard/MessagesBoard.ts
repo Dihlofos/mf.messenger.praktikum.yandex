@@ -1,8 +1,8 @@
-import { Block } from '../../modules/Block';
+import { Block } from '../../modules';
 import { ChatCreateModal } from '../ChatCreateModal/ChatCreateModal';
 import { Field } from '../Field/Field';
 import { MessagesList } from '../MessagesList/MessagesList';
-import { MessageBoardTemplate } from './MessagesBoard.template';
+import template from './MessagesBoard.handlebars';
 
 export type MessagesBoardProps = {
   linkText: string;
@@ -14,8 +14,11 @@ export type MessagesBoardProps = {
 
 export class MessagesBoard extends Block {
   messagesList: string;
+
   searchField: string;
+
   chatCreateModal: string;
+
   constructor(props: MessagesBoardProps) {
     super('aside', 'messages-board messenger__board', props);
   }
@@ -27,7 +30,7 @@ export class MessagesBoard extends Block {
   }
 
   initEvents() {
-    let chatCreateModalOpener = document.querySelector('.js-create-chat');
+    const chatCreateModalOpener = document.querySelector('.js-create-chat');
     if (chatCreateModalOpener) {
       chatCreateModalOpener.addEventListener('click', () => {
         this.props.chatCreateModalInstance.show();
@@ -36,13 +39,12 @@ export class MessagesBoard extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
     if (this.props) {
       this.messagesList = this.props.messagesListInstance.renderToString();
       this.searchField = this.props.searchFieldInstance.renderToString();
       this.chatCreateModal = this.props.chatCreateModalInstance.renderToString();
     }
-    return Handlebars.compile(MessageBoardTemplate)({
+    return template({
       ...this.props,
       messagesList: this.messagesList,
       searchField: this.searchField,

@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block';
-import { validateField } from '../../utils/validateField';
-import { FieldTemplate } from './Field.template';
+import { Block } from '../../modules';
+import { validateField } from '../../utils';
+import template from './Field.handlebars';
 
 export type FieldProps = {
   name: string;
@@ -50,7 +50,7 @@ export class Field extends Block {
 
   validation(): void {
     const element = this._element.querySelector('input');
-    let errorElement = this._element.querySelector('.js-error');
+    const errorElement = this._element.querySelector('.js-error');
     if (errorElement && element) {
       if (validateField(element).length) {
         errorElement.textContent = validateField(element);
@@ -67,7 +67,6 @@ export class Field extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(FieldTemplate)(this.props);
+    return template(this.props);
   }
 }

@@ -1,9 +1,8 @@
 import { SimpleObject } from '../interface';
-import { HTTPTransport } from '../modules/Api';
-import { Store } from '../modules/Store';
+import { HTTPTransport, Store } from '../modules';
 import { BASEAVATARURL } from './constants';
 
-export class AuthService {
+export default class AuthService {
   transport: HTTPTransport;
   props: SimpleObject;
   store: Store;
@@ -15,7 +14,6 @@ export class AuthService {
   }
 
   signin() {
-
     return this.transport.post('/auth/signin', { data: this.props });
   }
 

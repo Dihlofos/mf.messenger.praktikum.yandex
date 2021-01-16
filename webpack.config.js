@@ -14,6 +14,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".js", ".json"],
+    alias: {
+      handlebars: "handlebars/dist/handlebars.js",
+    },
   },
   devtool: "inline-source-map",
   devServer: {
@@ -26,6 +29,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        use: "babel-loader",
+        test: /\.js$/,
+        exclude: /node_modules/,
+      },
       {
         test: /\.tsx?$/,
         use: [
@@ -42,16 +50,16 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+
       {
-        // Now we apply rule for images
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.handlebars$/,
+        loader: "handlebars-loader",
+      },
+      {
+        test: /\.(png|jpe?g|gif|icon|xml|svg|json)$/,
         use: [
           {
-            // Using file-loader for these files
             loader: "file-loader",
-
-            // In options we can set different things like format
-            // and directory to save
             options: {
               outputPath: "./assets/images",
             },
@@ -59,11 +67,9 @@ module.exports = {
         ],
       },
       {
-        // Apply rule for fonts files
         test: /\.(woff|woff2|ttf|otf|eot)$/,
         use: [
           {
-            // Using file-loader too
             loader: "file-loader",
             options: {
               outputPath: "./assets/fonts",
@@ -81,6 +87,11 @@ module.exports = {
       patterns: [
         {
           from: "images/*",
+          context: path.resolve(__dirname, "src", "assets"),
+          to: "./assets",
+        },
+        {
+          from: "favicon/*",
           context: path.resolve(__dirname, "src", "assets"),
           to: "./assets",
         },

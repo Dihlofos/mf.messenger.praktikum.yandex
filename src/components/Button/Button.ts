@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block';
-import { ButtonTemplate } from './Button.template';
+import { Block } from '../../modules';
+import template from './Button.handlebars';
 
 export type ButtonProps = {
   text: string;
@@ -14,7 +14,6 @@ export class Button extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(ButtonTemplate)(this.props);
+    return template(this.props);
   }
 }

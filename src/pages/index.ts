@@ -1,0 +1,7 @@
+export { default as Error404Page } from './Error404Page/Error404Page'
+export { default as Error500Page } from './Error500Page/Error500Page'
+export { default as LoginPage } from './login/login'
+export { default as MessengerPage } from './messenger/messenger'
+export { default as ProfilePage } from './profile/profile'
+export { default as ProfileEditPage } from './profileEdit/profileEdit'
+export { default as RegistrationPage } from './registration/registration'

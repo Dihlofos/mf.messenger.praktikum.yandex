@@ -1,20 +1,25 @@
 import { MessageSubmit } from '../interface';
-import { HTTPTransport } from '../modules/Api';
-import { Store } from '../modules/Store';
-import { AuthService } from './AuthService';
+import { HTTPTransport, Store } from '../modules';
+import { AuthService } from './index';
 import { SOCKETURL } from './constants';
 
 export interface MessageServiceProps {
   messagesCallback?: (chatId: number) => void
 }
 
-export class MessageService {
+export default class MessageService {
   transport: HTTPTransport;
+
   authService: AuthService;
+
   chatId: number;
+
   userId: number;
+
   store: Store;
+
   socket: WebSocket;
+
   props: MessageServiceProps;
 
   constructor(chatId: number, props: MessageServiceProps) {
@@ -27,17 +32,15 @@ export class MessageService {
     this.getToken(this.chatId).then(({ token }: Record<string, any>) => {
       this.store.set({ token });
       this.openSocket(token);
-    })
-  }
-
-  getToken(id: number) {
-    return this.transport.post(`/chats/token/${id}`, {}).then((data: Record<string, unknown>) => {
-      return data;
     });
   }
 
+  getToken(id: number) {
+    return this.transport.post(`/chats/token/${id}`, {}).then((data: Record<string, unknown>) => data);
+  }
+
   openSocket(token: string) {
-    this.socket = new WebSocket(`${SOCKETURL}${this.userId}/${this.chatId}/${token}`)
+    this.socket = new WebSocket(`${SOCKETURL}${this.userId}/${this.chatId}/${token}`);
     this.initEvents();
   }
 
@@ -49,16 +52,16 @@ export class MessageService {
       }));
     });
 
-    this.socket.addEventListener('message', event => {
+    this.socket.addEventListener('message', (event) => {
       const { messagesCallback } = this.props;
       const data = JSON.parse(event.data);
       const newMessages = Array.isArray(data) ? data : [data];
       const oldMessages = this.store.get('messages')[this.chatId] ? this.store.get('messages')[this.chatId] : [];
-      this.store.set({ messages: { [this.chatId]: [...oldMessages, ...newMessages] } })
+      this.store.set({ messages: { [this.chatId]: [...oldMessages, ...newMessages] } });
       if (messagesCallback) messagesCallback(this.chatId);
     });
 
-    this.socket.addEventListener('error', event => {
+    this.socket.addEventListener('error', (event) => {
       console.log('Ошибка', event);
     });
   }
@@ -66,6 +69,4 @@ export class MessageService {
   sendMessage(messageSubmit: MessageSubmit) {
     this.socket.send(JSON.stringify(messageSubmit));
   }
-
-
 }

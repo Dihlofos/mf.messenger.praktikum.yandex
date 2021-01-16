@@ -1,16 +1,17 @@
-import { Block } from '../../modules/Block';
+import { Block, Router } from '../../modules';
 import { Avatar } from '../../components/Avatar/Avatar';
 import { Button } from '../../components/Button/Button';
 import { Profile } from '../../components/Profile/Profile';
 import { ProfileField } from '../../components/ProfileField/ProfileField';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
-import { profileEditData } from './data';
-import { Router } from '../../modules/Router';
-import { UserService } from '../../services/UserService';
+import profileEditData from './data';
+import { UserService } from '../../services';
 
 export class ProfileEditPage extends Block {
   userService: UserService;
+
   router: Router;
+
   constructor() {
     super('div', 'page');
   }
@@ -24,13 +25,15 @@ export class ProfileEditPage extends Block {
         this.setProps(Object.assign(profileEditData, item));
       })
       .catch((e) => {
-        console.log(e)
-        //this.router.go('/login');
+        console.log(e);
+        // this.router.go('/login');
       });
   }
 
   render() {
-    const { buttonData, display_name, avatar, fields } = profileEditData;
+    const {
+      buttonData, display_name, avatar, fields,
+    } = profileEditData;
 
     const button = new Button(buttonData);
     const name = new ProfileField(display_name);

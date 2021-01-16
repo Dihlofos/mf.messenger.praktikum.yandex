@@ -1,4 +1,4 @@
-import { Block } from '../../modules/Block';
+import { Block } from '../../modules';
 import { Chat } from '../../components/Chat/Chat';
 import { ChatCard, ChatCardProps } from '../../components/ChatCard/ChatCard';
 import { CurrentChat } from '../../components/CurrentChat/CurrentChat';
@@ -8,16 +8,14 @@ import { MessagesList } from '../../components/MessagesList/MessagesList';
 import { Messenger } from '../../components/Messenger/Messenger';
 import { Sender } from '../../components/Sender/Sender';
 import { Tooltip } from '../../components/Tooltip/Tooltip';
-import { messengerData } from './data';
-import { ChatService } from '../../services/ChatsService';
+import messengerData from './data';
+import { ChatsService, MessageService, AuthService } from '../../services';
 import { ChatCreateModal } from '../../components/ChatCreateModal/ChatCreateModal';
 import { Button } from '../../components/Button/Button';
-import { MessageService } from '../../services/MessageService';
-import { AuthService } from '../../services/AuthService';
 import { MessageSubmit } from '../../interface';
 
 export class MessengerPage extends Block {
-  chatService: ChatService;
+  chatService: ChatsService;
   messageService: MessageService;
   authService: AuthService;
   searchField: Field;
@@ -27,16 +25,14 @@ export class MessengerPage extends Block {
 
   constructor() {
     super('div', 'page');
-
   }
 
   componentDidMount() {
     this.authService = new AuthService({});
-    this.chatService = new ChatService();
+    this.chatService = new ChatsService();
     this.authService.getUser();
     this.updateChats();
   }
-
 
   updateChats() {
     this.chatService
@@ -45,12 +41,12 @@ export class MessengerPage extends Block {
         this.setProps(
           Object.assign(messengerData, {
             chatCardsData: chats,
-          })
+          }),
         );
         this.setProps(
           Object.assign(this.props, {
             currentChatInstance: this.currentChat,
-          })
+          }),
         );
       })
       .catch((e) => {
@@ -84,17 +80,15 @@ export class MessengerPage extends Block {
       onChatDeleted: this.onChatDeleted.bind(this),
     });
 
-    this.chat = new Chat({ mix: 'messenger__chat', });
+    this.chat = new Chat({ mix: 'messenger__chat' });
     this.messageService = new MessageService(chatCard.id, { messagesCallback: this.chat.handleGetMessages });
 
     this.setProps(
       Object.assign(this.props, {
         currentChatInstance: this.currentChat,
-        chatInstance: this.chat
-      })
+        chatInstance: this.chat,
+      }),
     );
-
-
   }
 
   render() {
@@ -110,17 +104,13 @@ export class MessengerPage extends Block {
     let chatCards: ChatCard[] | null = null;
 
     if (chatCardsData.length > 0) {
-      chatCards = chatCardsData.map((item) => {
-        return new ChatCard({
-          ...item,
-          onChatCardClick: (chatCard: ChatCardProps) => {
-            this.handleChatCardClick(chatCard)
-          },
-        });
-      });
+      chatCards = chatCardsData.map((item) => new ChatCard({
+        ...item,
+        onChatCardClick: (chatCard: ChatCardProps) => {
+          this.handleChatCardClick(chatCard);
+        },
+      }));
     }
-
-
 
     const messageList: MessagesList = new MessagesList({
       chatCardInstances: chatCards,
@@ -149,16 +139,13 @@ export class MessengerPage extends Block {
       chatCreateModalInstance: chatCreateModal,
     });
 
-
     const bottomTooltip: Tooltip = new Tooltip(bottomtooltipData);
-
 
     this.sender = new Sender({
       tooltipInstance: bottomTooltip,
       onSubmit: this.handleMessageSubmit,
       mix: 'messenger__sender',
     });
-
 
     const messenger = new Messenger({
       messagesBoardInstance: messageBoard,

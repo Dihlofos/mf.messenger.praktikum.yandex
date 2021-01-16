@@ -1,22 +1,19 @@
 import { SimpleObject } from '../interface';
-import { METHODS } from '../modules/Api';
-import { queryStringify } from './queryStringify';
+import { METHODS } from '../modules/HTTPTransport';
+import { queryStringify } from './index';
 
-export function sendDataFormatting(
+export default function sendDataFormatting(
   method: string,
-  data?: FormData | SimpleObject
+  data?: FormData | SimpleObject,
 ) {
   if (method === METHODS.GET && !(data instanceof FormData)) {
     if (data) {
       return queryStringify(data);
-    } else {
-      return null;
     }
-  } else {
-    if (data instanceof FormData) {
-      return data;
-    } else {
-      return JSON.stringify(data);
-    }
+    return null;
   }
+  if (data instanceof FormData) {
+    return data;
+  }
+  return JSON.stringify(data);
 }

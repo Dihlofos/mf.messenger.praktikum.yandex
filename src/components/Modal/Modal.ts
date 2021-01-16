@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block';
+import { Block } from '../../modules';
 import { Button } from '../Button/Button';
-import { ModalTemplate } from './Modal.template';
+import template from './Modal.handlebars';
 
 export type ModalProps = {
   title: string;
@@ -10,6 +10,7 @@ export type ModalProps = {
 
 export class Modal extends Block {
   deleteButton: string;
+
   cancelButton: string;
 
   constructor(props: ModalProps) {
@@ -25,12 +26,11 @@ export class Modal extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
     if (this.props) {
       this.deleteButton = this.props.deleteButtonInstance.renderToString();
       this.cancelButton = this.props.cancelButtonInstance.renderToString();
     }
-    return Handlebars.compile(ModalTemplate)({
+    return template({
       ...this.props,
       deleteButton: this.deleteButton,
       cancelButton: this.cancelButton,

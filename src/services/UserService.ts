@@ -1,9 +1,10 @@
 import { SimpleObject, UserItemProps } from '../interface';
-import { HTTPTransport } from '../modules/Api';
+import { HTTPTransport } from '../modules';
 import { BASEAVATARURL } from './constants';
 
-export class UserService {
+export default class UserService {
   transport: HTTPTransport;
+
   props: SimpleObject;
 
   constructor(props: SimpleObject) {
@@ -15,7 +16,7 @@ export class UserService {
     return this.transport
       .get('/auth/user', { data: this.props })
       .then((data: SimpleObject) => {
-        //Transform data
+        // Transform data
         data.fields = [];
         data.fields.push({
           value: data.email ? data.email : '',
@@ -95,7 +96,7 @@ export class UserService {
           };
         }
 
-        //delete unusables
+        // delete unusables
         delete data.email;
         delete data.first_name;
         delete data.login;
@@ -107,8 +108,8 @@ export class UserService {
   }
 
   putProfile() {
-    let requests: Promise<unknown>[] = [];
-    if (!!this.props.avatar.name.length) {
+    const requests: Promise<unknown>[] = [];
+    if (this.props.avatar.name.length) {
       requests.push(this.putAvatar());
     }
     if (!!this.props.newPassword.length && !!this.props.oldPassword.length) {
@@ -121,7 +122,7 @@ export class UserService {
 
   putAvatar() {
     const { avatar } = this.props;
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('avatar', avatar, avatar.name);
     return this.transport.put('/user/profile/avatar', {
       data: formData,
@@ -167,14 +168,12 @@ export class UserService {
           login,
         },
       })
-      .then((data: UserItemProps[]) => {
-        return data.map((item) => ({
-          ...item,
-          display_name: item.display_name ? item.display_name : item.first_name,
-          avatar: item.avatar
-            ? `${this.transport.baseUrl}${item.avatar}`
-            : BASEAVATARURL,
-        }));
-      });
+      .then((data: UserItemProps[]) => data.map((item) => ({
+        ...item,
+        display_name: item.display_name ? item.display_name : item.first_name,
+        avatar: item.avatar
+          ? `${this.transport.baseUrl}${item.avatar}`
+          : BASEAVATARURL,
+      })));
   }
 }

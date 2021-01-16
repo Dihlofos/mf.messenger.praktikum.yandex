@@ -1,4 +1,4 @@
-import { Message } from "../interface";
+import { Message } from '../interface';
 
 interface StoreProps {
   token: string | null;
@@ -8,7 +8,7 @@ interface StoreProps {
   } | null;
 }
 
-export class Store {
+export default class Store {
   store: StoreProps;
 
   static __instance: Store;
@@ -23,11 +23,10 @@ export class Store {
   }
 
   set(newValue: Record<string, any>) {
-    this.store = { ...this.store, ...newValue }
+    this.store = { ...this.store, ...newValue };
   }
 
   get(key: keyof StoreProps): any {
     return this.store[key] ?? null;
   }
-
 }

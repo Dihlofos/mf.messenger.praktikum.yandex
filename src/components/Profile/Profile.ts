@@ -1,7 +1,7 @@
-import { Block } from '../../modules/Block';
+import { Block } from '../../modules';
 import { ProfileShow } from '../ProfileShow/ProfileShow';
 import { ProfileForm } from '../ProfileForm/ProfileForm';
-import { ProfileTemplate } from './Profile.template';
+import template from './Profile.handlebars';
 
 export type ProfileProps = {
   backlink: string;
@@ -11,16 +11,17 @@ export type ProfileProps = {
 
 export class Profile extends Block {
   content: string;
+
   constructor(props: ProfileProps) {
     super('div', 'light full-screen', props);
   }
+
   render() {
-    const Handlebars = window.Handlebars;
     if (this.props) {
       this.content = this.props.contentInstance.renderToString();
     }
 
-    return Handlebars.compile(ProfileTemplate)({
+    return template({
       ...this.props,
       content: this.content,
     });

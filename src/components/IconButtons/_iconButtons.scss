@@ -1,26 +1,26 @@
 .icon-buttons {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 
-  &__item {
-    &:not(:last-child) {
-      margin: 0 0 1.4rem;
-    }
-  }
+	&__item {
+		&:not(:last-child) {
+			margin: 0 0 1.4rem;
+		}
+	}
 
-  &__btn {
-    display: flex;
-    align-items: center;
-    background: none;
-    padding: 0;
-    border: none;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
-    cursor: pointer;
+	&__btn {
+		align-items: center;
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		font-size: 1.2rem;
+		line-height: 1.4rem;
+		padding: 0;
 
-    svg {
-      margin: 0 1.5rem 0 0;
-    }
-  }
+		svg {
+			margin: 0 1.5rem 0 0;
+		}
+	}
 }

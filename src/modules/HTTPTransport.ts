@@ -1,6 +1,5 @@
 import { StringIndexed } from '../interface';
-import { sendDataFormatting } from '../utils/sendDataFormatting';
-import { transformApiResult } from '../utils/transformApiResult';
+import { transformApiResult, sendDataFormatting } from '../utils';
 
 export type RequestOptions = {
   timeout?: number;
@@ -15,52 +14,44 @@ export enum METHODS {
   DELETE = 'DELETE',
 }
 
-export class HTTPTransport {
+export default class HTTPTransport {
   baseUrl: string;
+
   api: string;
+
   constructor(baseUrl: string, api: string) {
     this.baseUrl = baseUrl;
     this.api = api;
   }
 
-  get = (url: string, options: RequestOptions): Promise<unknown> => {
-    return this.request(
-      `${this.baseUrl}${this.api}${url}`,
-      { ...options },
-      METHODS.GET
-    );
-  };
+  get = (url: string, options: RequestOptions): Promise<unknown> => this.request(
+    `${this.baseUrl}${this.api}${url}`,
+    { ...options },
+    METHODS.GET,
+  );
 
-  post = (url: string, options: RequestOptions): Promise<unknown> => {
-    return this.request(
-      `${this.baseUrl}${this.api}${url}`,
-      { ...options },
-      METHODS.POST
-    );
-  };
+  post = (url: string, options: RequestOptions): Promise<unknown> => this.request(
+    `${this.baseUrl}${this.api}${url}`,
+    { ...options },
+    METHODS.POST,
+  );
 
-  put = (url: string, options: RequestOptions): Promise<unknown> => {
-    return this.request(
-      `${this.baseUrl}${this.api}${url}`,
-      { ...options },
-      METHODS.PUT
-    );
-  };
+  put = (url: string, options: RequestOptions): Promise<unknown> => this.request(
+    `${this.baseUrl}${this.api}${url}`,
+    { ...options },
+    METHODS.PUT,
+  );
 
-  delete = (url: string, options: RequestOptions): Promise<unknown> => {
-    return this.request(
-      `${this.baseUrl}${this.api}${url}`,
-      { ...options },
-      METHODS.DELETE
-    );
-  };
-
-
+  delete = (url: string, options: RequestOptions): Promise<unknown> => this.request(
+    `${this.baseUrl}${this.api}${url}`,
+    { ...options },
+    METHODS.DELETE,
+  );
 
   request = (
     url: string,
     options: RequestOptions,
-    method: string
+    method: string,
   ): Promise<unknown> => {
     const { data, headers } = options;
     return new Promise((resolve, reject) => {
@@ -69,7 +60,7 @@ export class HTTPTransport {
       xhr.withCredentials = true;
 
       if (headers) {
-        Object.entries(headers).map(([key, value]) => {
+        Object.entries(headers).forEach(([key, value]) => {
           xhr.setRequestHeader(key, value);
         });
       }
