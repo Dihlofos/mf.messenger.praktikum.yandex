@@ -1,11 +1,10 @@
-import { Block } from '../../modules/Block.js';
-import { Avatar } from '../Avatar/Avatar.js';
-import { formDataToObject } from '../../utils/formDataToObject.js';
-import { Button } from '../Button/Button.js';
-import { ProfileField } from '../ProfileField/ProfileField.js';
-import { UserService } from '../../services/UserService.js';
-import { Router } from '../../modules/Router.js';
-import { ProfileFormTemplate } from './ProfileForm.template.js';
+import { Block, Router } from '../../modules';
+import { Avatar } from '../Avatar/Avatar';
+import { formDataToObject } from '../../utils';
+import { Button } from '../Button/Button';
+import { ProfileField } from '../ProfileField/ProfileField';
+import { UserService } from '../../services';
+import template from './ProfileForm.handlebars';
 
 export type ProfileFormProps = {
   avatarInstance: Avatar;
@@ -17,10 +16,15 @@ export type ProfileFormProps = {
 
 export class ProfileForm extends Block {
   button: string;
+
   name: string;
+
   fields: string[];
+
   avatar: string;
+
   userService: UserService;
+
   router: Router;
 
   constructor(props: ProfileFormProps) {
@@ -35,7 +39,7 @@ export class ProfileForm extends Block {
   }
 
   initEvents() {
-    let form: HTMLFormElement | null = this._element?.querySelector('form');
+    const form: HTMLFormElement | null = this._element?.querySelector('form');
     form?.addEventListener('submit', (e) => {
       this.onSubmit(e, form);
     });
@@ -43,15 +47,14 @@ export class ProfileForm extends Block {
 
   onSubmit(e: Event, form: HTMLFormElement | null) {
     e.preventDefault();
-    let errors: string[] = [];
+    const errors: string[] = [];
     this.props.fieldsInstances.forEach((field: any) => {
       field.validation();
       if (field.getValidationError()) errors.push(field.getValidationError());
     });
-    if (this.props.nameInstance.getValidationError())
-      errors.push(this.props.nameInstance.getValidationError());
+    if (this.props.nameInstance.getValidationError()) { errors.push(this.props.nameInstance.getValidationError()); }
 
-    if (!!!errors.length && form) {
+    if (!errors.length && form) {
       this.userService = new UserService(formDataToObject(form));
       this.router = new Router('root');
 
@@ -71,16 +74,13 @@ export class ProfileForm extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
     if (this.props) {
       this.avatar = this.props.avatarInstance.renderToString();
       this.button = this.props.buttonInstance.renderToString();
       this.name = this.props.nameInstance.renderToString();
-      this.fields = this.props.fieldsInstances.map((item: ProfileField) =>
-        item.renderToString()
-      );
+      this.fields = this.props.fieldsInstances.map((item: ProfileField) => item.renderToString());
     }
-    return Handlebars.compile(ProfileFormTemplate)({
+    return template({
       ...this.props,
       button: this.button,
       fields: this.fields,

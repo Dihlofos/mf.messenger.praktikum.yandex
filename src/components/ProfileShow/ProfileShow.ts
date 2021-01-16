@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ProfileShowTemplate } from './ProfileShow.template.js';
+import { Block } from '../../modules';
+import template from './ProfileShow.handlebars';
 
 export type ProfileShowProps = {
   display_name: string;
@@ -18,7 +18,6 @@ export class ProfileShow extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(ProfileShowTemplate)({ ...this.props });
+    return template(this.props);
   }
 }

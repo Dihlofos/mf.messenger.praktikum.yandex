@@ -1,6 +1,6 @@
-import { Block } from '../../modules/Block.js';
-import { validateField } from '../../utils/validateField.js';
-import { ProfileFieldTemplate } from './ProfileField.template.js';
+import { Block } from '../../modules';
+import validateField from '../../utils/validateField';
+import template from './ProfileField.handlebars';
 
 export type ProfileFieldProps = {
   name: string;
@@ -46,7 +46,7 @@ export class ProfileField extends Block {
 
   validation(): void {
     const element = this._element.querySelector('input');
-    let errorElement = this._element.querySelector('.js-error');
+    const errorElement = this._element.querySelector('.js-error');
     if (errorElement && element) {
       if (validateField(element).length) {
         errorElement.textContent = validateField(element);
@@ -63,7 +63,6 @@ export class ProfileField extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(ProfileFieldTemplate)(this.props);
+    return template(this.props);
   }
 }

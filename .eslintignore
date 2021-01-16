@@ -1,0 +1,4 @@
+/dist
+**/*.min.js
+/src/vendor
+/node_modules

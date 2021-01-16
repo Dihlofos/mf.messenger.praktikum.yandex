@@ -1,3 +1,3 @@
-export function isEqual(lhs: any, rhs: any): boolean {
+export default function isEqual(lhs: any, rhs: any): boolean {
   return lhs === rhs;
 }

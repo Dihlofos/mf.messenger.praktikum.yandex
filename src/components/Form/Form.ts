@@ -1,10 +1,9 @@
-import { Block } from '../../modules/Block.js';
-import { Router } from '../../modules/Router.js';
-import { AuthService } from '../../services/AuthService.js';
-import { formDataToObject } from '../../utils/formDataToObject.js';
-import { Button } from '../Button/Button.js';
-import { Field } from '../Field/Field.js';
-import { FormTemplate } from './Form.template.js';
+import { Block, Router } from '../../modules';
+import { AuthService } from '../../services';
+import { formDataToObject } from '../../utils';
+import { Button } from '../Button/Button';
+import { Field } from '../Field/Field';
+import template from './Form.handlebars';
 
 export type FormProps = {
   title: string;
@@ -42,29 +41,29 @@ export class Form extends Block {
 
   onSubmit(e: Event, form: HTMLFormElement | null) {
     e.preventDefault();
-    let errors: string[] = [];
+    const errors: string[] = [];
     this.props.fieldInstances.forEach((field: any) => {
       field.validation();
       if (field.getValidationError()) errors.push(field.getValidationError());
     });
 
-    if (!!!errors.length && form) {
+    if (!errors.length && form) {
       this.authService = new AuthService(formDataToObject(form));
       this.router = new Router('root');
 
       if (this.props.action === 'signin') {
         this.authService
           .signin()
-          .then((_) => {
+          .then(() => {
             this.router.go('/messenger');
           })
           .catch((error) => {
-            this.onError(error.reason);
+            if (error?.reason) this.onError(error.reason);
           });
       } else {
         this.authService
           .signup()
-          .then((_) => {
+          .then(() => {
             this.router.go('/messenger');
           })
           .catch((error) => {
@@ -79,14 +78,13 @@ export class Form extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
     if (this.props) {
       this.button = this.props.buttonInstance.renderToString();
       this.fields = this.props.fieldInstances.map((item: Field) =>
         item.renderToString()
       );
     }
-    return Handlebars.compile(FormTemplate)({
+    return template({
       ...this.props,
       button: this.button,
       fields: this.fields,

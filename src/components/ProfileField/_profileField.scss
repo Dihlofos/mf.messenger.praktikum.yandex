@@ -1,58 +1,58 @@
 .profile-field {
-  position: relative;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  font-size: 1.3rem;
-  line-height: 1;
-  padding: 1rem 0 1rem;
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 1.3rem;
+	justify-content: space-between;
+	line-height: 1;
+	padding: 1rem 0;
+	position: relative;
 
-  &__label {
-    margin: 0;
-  }
+	&__label {
+		margin: 0;
+	}
 
-  &__error {
-    position: absolute;
-    color: var(--error);
-    top: 108%;
-    font-size: 13px;
-  }
+	&__error {
+		color: var(--error);
+		font-size: 13px;
+		position: absolute;
+		top: 108%;
+	}
 
-  &__input {
-    font-family: "Noto Sans";
-    width: 50%;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    text-align: right;
+	&__input {
+		background: none;
+		border: none;
+		font-family: 'Noto Sans';
+		margin: 0;
+		padding: 0;
+		text-align: right;
+		width: 50%;
 
-    &--name {
-      font-family: "Noto Sans";
-      display: block;
-      margin: 0 auto;
-      font-size: 1.6rem;
-      line-height: 1;
-      text-align: center;
-      background: none;
-      padding: 0;
-      border: none;
-    }
+		&--name {
+			background: none;
+			border: none;
+			display: block;
+			font-family: 'Noto Sans';
+			font-size: 1.6rem;
+			line-height: 1;
+			margin: 0 auto;
+			padding: 0;
+			text-align: center;
+		}
 
-    &:active,
-    &:focus {
-      outline: none;
-    }
+		&:active,
+		&:focus {
+			outline: none;
+		}
 
-    &:read-only + label {
-      cursor: auto;
-    }
+		&:read-only + label {
+			cursor: auto;
+		}
 
-    &:focus,
-    &:active {
-      &:read-only {
-        outline: none;
-      }
-    }
-  }
+		&:focus,
+		&:active {
+			&:read-only {
+				outline: none;
+			}
+		}
+	}
 }

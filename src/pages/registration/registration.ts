@@ -1,8 +1,8 @@
-import { Button } from '../../components/Button/Button.js';
-import { Field } from '../../components/Field/Field.js';
-import { Form } from '../../components/Form/Form.js';
-import { Block } from '../../modules/Block.js';
-import { registrationData } from './data.js';
+import { Button } from '../../components/Button/Button';
+import { Field } from '../../components/Field/Field';
+import { Form } from '../../components/Form/Form';
+import { Block } from '../../modules';
+import registrationData from './data';
 
 export class RegistrationPage extends Block {
   constructor() {

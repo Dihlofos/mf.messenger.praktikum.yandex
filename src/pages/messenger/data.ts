@@ -14,7 +14,7 @@ export type messengerDataProps = {
   currentChat?: CurrentChatProps;
 };
 
-export const messengerData: messengerDataProps = {
+const messengerData: messengerDataProps = {
   searchFieldData: {
     name: 'search',
     type: 'text',
@@ -103,3 +103,5 @@ export const messengerData: messengerDataProps = {
   //   ],
   // },
 };
+
+export default messengerData;

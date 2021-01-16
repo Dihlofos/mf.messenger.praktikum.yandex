@@ -1,14 +1,13 @@
-import { StringIndexed } from '../interface.js';
-import { arrayToString } from './arrayToString.js';
-import { flattenObject } from './flattenObject.js';
+import { StringIndexed } from '../interface';
+import { arrayToString, flattenObject } from './index';
 
-export function queryStringify(data: StringIndexed): string | never {
+export default function queryStringify(data: StringIndexed): string | never {
   if (Object.keys(data).length === 0) {
     return '';
   }
 
   if (typeof data !== 'object') throw new Error('Это не объект!');
-  let result = Object.entries(data).map(([key, value]) => {
+  const result = Object.entries(data).map(([key, value]) => {
     if (typeof value === 'object') {
       if (Array.isArray(value)) {
         return arrayToString(key, value);

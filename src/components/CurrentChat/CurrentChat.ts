@@ -1,12 +1,11 @@
-import { UserItemProps } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { ChatService } from '../../services/ChatsService.js';
-import { RenameForm } from '../RenameForm/RenameForm.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
-import { UserModal } from '../UserModal/UserModal.js';
-import { currentChatStaticData } from './data.js';
-import { CurrentChatTemplate } from './CurrentChat.template.js';
-
+import { UserItemProps } from '../../interface';
+import { Block } from '../../modules';
+import { ChatsService } from '../../services';
+import { RenameForm } from '../RenameForm/RenameForm';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { UserModal } from '../UserModal/UserModal';
+import currentChatStaticData from './data';
+import template from './CurrentChat.handlebars';
 
 export type CurrentChatProps = {
   id: number;
@@ -19,13 +18,20 @@ export type CurrentChatProps = {
 };
 
 export class CurrentChat extends Block {
-  chatService: ChatService;
+  chatService: ChatsService;
+
   tooltip: string;
+
   renameForm: string;
+
   userAddModal: string;
+
   tooltipInstance: Tooltip;
+
   renameFormInstance: RenameForm;
+
   userAddModalIntance: UserModal;
+
   users: UserItemProps[];
 
   constructor(props: CurrentChatProps) {
@@ -37,14 +43,14 @@ export class CurrentChat extends Block {
   componentDidMount() {
     const { id, title } = this.props;
 
-    this.chatService = new ChatService();
+    this.chatService = new ChatsService();
     this.renameFormInstance = new RenameForm({
       mix: '',
       value: title,
     });
 
     this.userAddModalIntance = new UserModal({
-      id: id,
+      id,
       onUserAdded: this.onUserAdded.bind(this),
       onUserRemoved: this.onUserRemoved.bind(this),
     });
@@ -128,11 +134,10 @@ export class CurrentChat extends Block {
   };
 
   render() {
-    const Handlebars = window.Handlebars;
     this.tooltip = this.tooltipInstance.renderToString();
     this.renameForm = this.renameFormInstance.renderToString();
     this.userAddModal = this.userAddModalIntance.renderToString();
-    return Handlebars.compile(CurrentChatTemplate)({
+    return template({
       ...this.props,
       tooltip: this.tooltip,
       renameForm: this.renameForm,

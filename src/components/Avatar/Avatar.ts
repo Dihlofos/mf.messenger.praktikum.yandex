@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { AvatarTemplate } from './Avatar.template.js';
+import { Block } from '../../modules';
+import template from './Avatar.handlebars';
 
 export type AvatarProps = {
   name: string;
@@ -19,16 +19,16 @@ export class Avatar extends Block {
   }
 
   initEvents() {
-    let input = document.querySelector('.js-avatar-input');
+    const input = document.querySelector('.js-avatar-input');
     input?.addEventListener('change', this.onChange);
   }
 
   onChange(event: Event) {
-    let target = event.target as HTMLInputElement;
-    let image: HTMLImageElement | null = document.querySelector(
-      '.js-avatar-image'
+    const target = event.target as HTMLInputElement;
+    const image: HTMLImageElement | null = document.querySelector(
+      '.js-avatar-image',
     );
-    if (!!target?.files?.length) {
+    if (target?.files?.length) {
       const newImageUrl = URL.createObjectURL(target.files[0]);
       if (image) {
         image.src = newImageUrl;
@@ -37,7 +37,6 @@ export class Avatar extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(AvatarTemplate)(this.props);
+    return template(this.props);
   }
 }

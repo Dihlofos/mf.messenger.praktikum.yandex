@@ -4,57 +4,59 @@
   flex-grow: 1;
   opacity: 0;
   transition: opacity 0.3s ease-out;
+
   &__group {
-    padding-top: 5rem;
     padding-bottom: 5rem;
+    padding-top: 5rem;
   }
+
   &__date {
     color: var(--main);
     font-size: 1.2rem;
-    text-align: center;
-    margin: 0 0 3rem;
     font-weight: normal;
+    margin: 0 0 3rem;
+    text-align: center;
   }
 
   &__dialog-list {
     display: flex;
     flex-direction: column;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   &__time {
-    position: absolute;
     bottom: rem;
-    right: 1rem;
     font-size: 0.9rem;
+    position: absolute;
+    right: 1rem;
 
     .chat__dialog--image & {
       background-color: var(--main);
-      color: white;
       border-radius: 10px;
+      color: var(--white);
       overflow: hidden;
       padding: 0.1rem 0.4rem;
     }
   }
 
   &__dialog {
-    position: relative;
     align-self: flex-start;
+    background-color: var(--board);
+    border-radius: 3px;
     color: var(--black);
     font-size: 1.2rem;
-    max-width: 40rem;
-    border-radius: 3px;
-    padding: 1rem 1rem 2rem;
-    background-color: var(--board);
     margin: 0 0 1rem;
+    max-width: 40rem;
     min-width: 11rem;
+    padding: 1rem 1rem 2rem;
+    position: relative;
 
     &.--me {
       align-self: flex-end;
-      text-align: right;
       background-color: var(--lightBg);
+      text-align: right;
     }
 
     &--image {

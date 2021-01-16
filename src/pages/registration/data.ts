@@ -1,7 +1,7 @@
 import { ButtonProps } from '../../components/Button/Button.js';
 import { FieldProps } from '../../components/Field/Field.js';
 
-export const registrationData: {
+const registrationData: {
   fieldsData: FieldProps[];
   buttonData: ButtonProps;
 } = {
@@ -62,3 +62,5 @@ export const registrationData: {
     type: 'submit',
   },
 };
+
+export default registrationData;
