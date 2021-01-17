@@ -23,7 +23,9 @@ export default function groupMessages(messages: Message[] | null): groupMessages
     }
     // Хак, потому что при получении нвого сообщения прилетает userId вместо user_id
     if (!item.user_id && item.userId) item.user_id = item.userId;
-
+    // добавляем имена пользователей из стора
+    item.userName = store.get('users')[item.user_id]
+    // Помечаем собственные сообщения
     if (store.get('userId') === item.user_id) mix = '--me';
     result[stringDay].messages.push({ ...item, time: new Date(item.time).toLocaleString('ru-RU'), mix });
   });

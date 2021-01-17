@@ -1,27 +1,30 @@
 .avatar {
-	&__input {
-		display: none;
+  &__input {
+    display: none;
 
-		&:disabled + label {
-			cursor: auto;
-		}
-	}
+    &:disabled + label {
+      cursor: auto;
+    }
+  }
 
-	&__image {
-		border-radius: 50%;
-		display: block;
-		height: 13.1rem;
-		margin: 0 auto 2rem img {
-			height: 100%;
-			left: 50%;
-			object-fit: cover;
-			position: absolute;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			width: 100%;
-		}
-		overflow: hidden;
-		position: relative;
-		width: 13.1rem;
-	}
+  &__image {
+    border-radius: 50%;
+    display: block;
+    height: 13.1rem;
+    margin: 0 auto 2rem;
+
+    overflow: hidden;
+    position: relative;
+    width: 13.1rem;
+
+    img {
+      height: 100%;
+      left: 50%;
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+  }
 }

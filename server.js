@@ -9,6 +9,6 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
 });
 
-app.listen(PORT, function () {
+app.listen(process.env.PORT || PORT, function () {
   console.log(`Look my project at port ${PORT}`);
 });

@@ -20,6 +20,7 @@ export type Message = {
   content: string;
   time: string;
   id: number;
+  userName?: string;
   mix?: string;
   type?: string;
 }

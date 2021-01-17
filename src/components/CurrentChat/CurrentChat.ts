@@ -1,5 +1,5 @@
 import { UserItemProps } from '../../interface';
-import { Block } from '../../modules';
+import { Block, Store } from '../../modules';
 import { ChatsService } from '../../services';
 import { RenameForm } from '../RenameForm/RenameForm';
 import { Tooltip } from '../Tooltip/Tooltip';
@@ -19,20 +19,14 @@ export type CurrentChatProps = {
 
 export class CurrentChat extends Block {
   chatService: ChatsService;
-
   tooltip: string;
-
   renameForm: string;
-
   userAddModal: string;
-
   tooltipInstance: Tooltip;
-
   renameFormInstance: RenameForm;
-
   userAddModalIntance: UserModal;
-
   users: UserItemProps[];
+  store: Store;
 
   constructor(props: CurrentChatProps) {
     super('header', 'current-chat', props);
@@ -42,7 +36,7 @@ export class CurrentChat extends Block {
 
   componentDidMount() {
     const { id, title } = this.props;
-
+    this.store = new Store();
     this.chatService = new ChatsService();
     this.renameFormInstance = new RenameForm({
       mix: '',
@@ -65,6 +59,11 @@ export class CurrentChat extends Block {
 
   updateUsers() {
     this.chatService.getChatUsers(this.props.id).then((item) => {
+      const usersToStore = item.reduce((result: Record<number, string>, item) => {
+        result[item.id] = item.display_name
+        return result;
+      }, {})
+      this.store.set({ users: usersToStore })
       this.setProps({
         users: item,
         tooltipInstance: this.tooltipInstance,
