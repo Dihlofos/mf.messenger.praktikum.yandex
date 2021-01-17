@@ -1,1 +1,0 @@
-export declare const RenamteFormTemplate = "\n  <form class=\"rename-form__form js-form\" method=\"POST\">\n    <input type=\"text\" name=\"rename-chat\" value=\"{{value}}\" />\n    <button class=\"button button--mini rename-form__rename-btn js-focus-visible\" type=\"submit\">\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C</button>\n  </form>\n";

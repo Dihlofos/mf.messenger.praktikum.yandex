@@ -1,134 +1,134 @@
 .user-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--hoverTime) ease-in-out;
+	align-items: center;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	transition: opacity var(--hoverTime) ease-in-out;
+	width: 100%;
+	z-index: 3;
 
-  &.is-shown {
-    opacity: 1;
-    pointer-events: all;
-  }
+	&.is-shown {
+		opacity: 1;
+		pointer-events: all;
+	}
 
-  &__form {
-    margin: 0 0 1rem;
-  }
+	&__form {
+		margin: 0 0 1rem;
+	}
 
-  &__col {
-    width: 46%;
-  }
+	&__col {
+		width: 46%;
+	}
 
-  &__box {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    min-width: 30rem;
-    width: 48%;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
-    border-radius: 3px;
-    background: var(--white);
-    padding: 1.5rem;
-    z-index: 2;
-  }
+	&__box {
+		background: var(--white);
+		border-radius: 3px;
+		box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+		display: flex;
+		justify-content: space-between;
+		min-width: 30rem;
+		padding: 1.5rem;
+		position: relative;
+		width: 48%;
+		z-index: 2;
+	}
 
-  &__title {
-    color: var(--main);
-    font-size: 1.6rem;
-    font-weight: normal;
-    margin: 0 0 1rem;
-  }
+	&__title {
+		color: var(--main);
+		font-size: 1.6rem;
+		font-weight: normal;
+		margin: 0 0 1rem;
+	}
 
-  &__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 
-  &__item {
-    display: flex;
-    align-items: center;
-    padding: 0.7rem 1.5rem;
-    cursor: pointer;
-    margin: 0 -1.5rem 0;
+	&__item {
+		align-items: center;
+		cursor: pointer;
+		display: flex;
+		margin: 0 -1.5rem;
+		padding: 0.7rem 1.5rem;
 
-    &:hover {
-      color: var(--mainHover);
-      background: rgba(0, 0, 0, 0.01);
-    }
+		&:hover {
+			background: rgba(0, 0, 0, 0.01);
+			color: var(--mainHover);
+		}
 
-    &--remove {
-      position: relative;
+		&--remove {
+			position: relative;
 
-      &:after {
-        display: none;
-        content: "X";
-        color: var(--error);
-        font-size: 2rem;
-        font-weight: bold;
-        text-transform: lowercase;
-        position: absolute;
-        top: 1rem;
-        right: 2rem;
-      }
+			&::after {
+				color: var(--error);
+				content: 'X';
+				display: none;
+				font-size: 2rem;
+				font-weight: bold;
+				position: absolute;
+				right: 2rem;
+				text-transform: lowercase;
+				top: 1rem;
+			}
 
-      &:hover {
-        &:after {
-          display: block;
-        }
-      }
-    }
-  }
+			&:hover {
+				&::after {
+					display: block;
+				}
+			}
+		}
+	}
 
-  &__avatar {
-    width: 3.5rem;
-    height: 3.5rem;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 1rem 0 0;
-  }
+	&__avatar {
+		border-radius: 50%;
+		height: 3.5rem;
+		margin: 0 1rem 0 0;
+		object-fit: cover;
+		width: 3.5rem;
+	}
 
-  &__user {
-    font-size: 1.2rem;
-    color: var(----purple-border);
-  }
+	&__user {
+		color: var(----purple-border);
+		font-size: 1.2rem;
+	}
 
-  &__nothingFound {
-    color: var(--error);
-    font-size: 1rem;
-    margin: 1rem 0 0;
-  }
+	&__nothingFound {
+		color: var(--error);
+		font-size: 1rem;
+		margin: 1rem 0 0;
+	}
 
-  &__input {
-    font-family: "Noto Sans";
-    width: 100%;
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid var(--purple-border);
-    padding: 0.7rem 0;
-    font-size: 1.3rem;
-    line-height: 1;
-    margin: 0 0 1.5rem;
+	&__input {
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid var(--purple-border);
+		font-family: 'Noto Sans';
+		font-size: 1.3rem;
+		line-height: 1;
+		margin: 0 0 1.5rem;
+		padding: 0.7rem 0;
+		width: 100%;
 
-    &:active,
-    &:focus {
-      outline: none;
-    }
-  }
+		&:active,
+		&:focus {
+			outline: none;
+		}
+	}
 
-  &__milk {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    background: rgba(73, 73, 73, 0.3);
-    width: 100%;
-    height: 100%;
-  }
+	&__milk {
+		background: rgba(73, 73, 73, 0.3);
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+	}
 }

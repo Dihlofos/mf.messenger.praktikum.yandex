@@ -1,6 +1,6 @@
 import { ProfileShowProps } from '../../components/ProfileShow/ProfileShow';
 
-export const profileData: ProfileShowProps = {
+const profileData: ProfileShowProps = {
   display_name: 'Евгений',
   backlink: '/login',
   backText: 'Выйти',
@@ -15,3 +15,5 @@ export const profileData: ProfileShowProps = {
   editLink: '/profileEdit',
   editLinkText: 'Изменить данные',
 };
+
+export default profileData;

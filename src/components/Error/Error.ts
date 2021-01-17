@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ErrorTemplate } from './Error.template.js';
+import { Block } from '../../modules';
+import template from './Error.handlebars';
 
 export type ErrorProps = {
   errorText: string;
@@ -14,11 +14,6 @@ export class Error extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    if (Handlebars) {
-      return Handlebars.compile(ErrorTemplate)(this.props);
-    } else {
-      return null;
-    }
+    return template(this.props);
   }
 }

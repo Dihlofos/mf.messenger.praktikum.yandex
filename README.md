@@ -5,7 +5,7 @@
 
 ## Ссылка
 
-[Netlify](https://cranky-neumann-2e85f0.netlify.app)
+[Heroku](https://jeysmsg.herokuapp.com/)
 
 ## Макеты
 

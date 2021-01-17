@@ -1,6 +1,6 @@
 export const mockFetch = function (
   status: number,
-  data?: { [key: string]: string }[]
+  data?: { [key: string]: string }[],
 ) {
   const xhrMockObj = {
     open: jest.fn(),
@@ -18,6 +18,6 @@ export const mockFetch = function (
 
   setTimeout(() => {
     // @ts-ignore
-    xhrMockObj['onload']();
+    xhrMockObj.onload();
   }, 0);
 };

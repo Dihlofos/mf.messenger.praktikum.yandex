@@ -1,5 +1,5 @@
-import { Block } from '../../modules/Block.js';
-import { ChatCardTemplate } from './ChatCard.template.js';
+import { Block } from '../../modules';
+import teamplate from './ChatCard.handlebars';
 
 export type ChatCardProps = {
   id: number;
@@ -32,7 +32,6 @@ export class ChatCard extends Block {
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(ChatCardTemplate)(this.props);
+    return teamplate(this.props);
   }
 }

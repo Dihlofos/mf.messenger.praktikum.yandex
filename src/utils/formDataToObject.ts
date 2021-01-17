@@ -1,9 +1,9 @@
-export function formDataToObject(form: HTMLFormElement) {
+export default function formDataToObject(form: HTMLFormElement) {
   const result: { [key: string]: FormDataEntryValue } = {};
   if (form) {
     const formData: FormData = new FormData(form);
-    for (let pair of formData.entries()) {
-      result[pair[0]] = pair[1];
+    for (const [key, value] of formData.entries()) {
+      result[key] = value;
     }
   }
   return result;

@@ -1,9 +1,8 @@
-import { groupMessage } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { Store } from '../../modules/Store.js';
-import { MessageService } from '../../services/MessageService.js';
-import { groupMessages } from '../../utils/groupMessages.js';
-import { ChatTemplate } from './Chat.template.js';
+import { groupMessage } from '../../interface';
+import { Block, Store } from '../../modules';
+import { MessageService } from '../../services';
+import { groupMessages } from '../../utils';
+import template from './Chat.handlebars';
 
 export type ChatProps = {
   messagesGroup?: groupMessage[];
@@ -24,28 +23,21 @@ export class Chat extends Block {
     const chat: HTMLElement = this._element;
     setTimeout(() => {
       chat.scrollTop = chat.scrollHeight;
-      chat.style.opacity = "1";
-    }, 0)
+      chat.style.opacity = '1';
+    }, 0);
   }
 
   handleGetMessages = (chatId: number) => {
-
-
     this.setProps(
       Object.assign(this.props, {
-        messagesGroup: groupMessages(this.store.get('messages')[chatId])
-      })
+        messagesGroup: groupMessages(this.store.get('messages')[chatId]),
+      }),
     );
-
-
   }
 
   render() {
     const { messagesGroup } = this.props;
     if (!messagesGroup) return null;
-    const Handlebars = window.Handlebars;
-    return Handlebars.compile(ChatTemplate)({
-      messagesGroup: messagesGroup,
-    });
+    return template(this.props);
   }
 }

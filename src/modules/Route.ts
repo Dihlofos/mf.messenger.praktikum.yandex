@@ -1,17 +1,16 @@
-import { SimpleObject } from '../interface.js';
-import { isEqual } from '../utils/isEqual.js';
-import { renderDom } from '../utils/renderDom.js';
-import { Block } from './Block.js';
+import { SimpleObject } from '../interface';
+import { isEqual, renderDom } from '../utils';
+import { Block } from './index';
 
 export type RouteProps = {
   rootQuery: string;
 };
 
-export class Route {
+export default class Route {
   _pathname: string;
   _blockClass: typeof Block;
   _block: Block | null;
-  _props: Record<string,any>;
+  _props: Record<string, any>;
 
   constructor(pathname: string, view: typeof Block, props: SimpleObject) {
     this._pathname = pathname;
@@ -41,7 +40,7 @@ export class Route {
     if (!this._block) {
       this._block = new this._blockClass(this._props.store);
       if (this._block) renderDom(this._props.rootQuery, this._block);
-      //DO RENDER
+      // DO RENDER
       return;
     }
 

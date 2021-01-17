@@ -1,16 +1,17 @@
-import { Block } from '../../modules/Block.js';
-import { Avatar } from '../../components/Avatar/Avatar.js';
-import { Button } from '../../components/Button/Button.js';
-import { Profile } from '../../components/Profile/Profile.js';
-import { ProfileField } from '../../components/ProfileField/ProfileField.js';
-import { ProfileForm } from '../../components/ProfileForm/ProfileForm.js';
-import { profileEditData } from './data.js';
-import { Router } from '../../modules/Router.js';
-import { UserService } from '../../services/UserService.js';
+import { Block, Router } from '../../modules';
+import { Avatar } from '../../components/Avatar/Avatar';
+import { Button } from '../../components/Button/Button';
+import { Profile } from '../../components/Profile/Profile';
+import { ProfileField } from '../../components/ProfileField/ProfileField';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import profileEditData from './data';
+import { UserService } from '../../services';
 
 export class ProfileEditPage extends Block {
   userService: UserService;
+
   router: Router;
+
   constructor() {
     super('div', 'page');
   }
@@ -24,13 +25,15 @@ export class ProfileEditPage extends Block {
         this.setProps(Object.assign(profileEditData, item));
       })
       .catch((e) => {
-        console.log(e)
-        //this.router.go('/login');
+        console.log(e);
+        // this.router.go('/login');
       });
   }
 
   render() {
-    const { buttonData, display_name, avatar, fields } = profileEditData;
+    const {
+      buttonData, display_name, avatar, fields,
+    } = profileEditData;
 
     const button = new Button(buttonData);
     const name = new ProfileField(display_name);

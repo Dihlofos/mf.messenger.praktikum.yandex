@@ -1,0 +1,18 @@
+{{#each messagesGroup as |group|}}
+<article class="chat__group">
+  <h2 class="chat__date">
+    <time dateTime="{{group.date}}">{{group.date}}</time>
+  </h2>
+  <div class="chat__dialog-list">
+    {{#each group.messages as |message|}}
+    <article class="chat__dialog {{message.mix}}">
+      <p class="chat__name">{{message.userName}}</p>
+      {{{message.content}}}
+      <footer class="chat__time">
+        <time dateTime="2020-07-19 11:56">{{message.time}}</time>
+      </footer>
+    </article>
+    {{/each}}
+  </div>
+</article>
+{{/each}}

@@ -1,8 +1,7 @@
-import { MessageSubmit } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { Store } from '../../modules/Store.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
-import { SenderTemplate } from './Sender.template.js';
+import { MessageSubmit } from '../../interface';
+import { Block, Store } from '../../modules';
+import { Tooltip } from '../Tooltip/Tooltip';
+import template from './Sender.handlebars';
 
 export type SenderProps = {
   tooltipInstance: Tooltip;
@@ -12,6 +11,7 @@ export type SenderProps = {
 
 export class Sender extends Block {
   tooltip: string;
+
   store: Store;
 
   constructor(props: SenderProps) {
@@ -29,26 +29,23 @@ export class Sender extends Block {
   initEvents() {
     const form: HTMLFormElement | null = this._element?.querySelector('form');
     const input: HTMLInputElement | null = this._element?.querySelector(
-      'input'
+      'input',
     );
 
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!!!input?.value.length) {
+      if (!input?.value.length) {
         return false;
-      } else {
-        this.props.onSubmit({ content: input?.value, type: "message" })
-        input.value = '';
       }
+      this.props.onSubmit({ content: input?.value, type: 'message' });
+      input.value = '';
     });
   }
 
   render() {
-    const Handlebars = window.Handlebars;
-
     this.tooltip = this.props.tooltipInstance.renderToString();
 
-    return Handlebars.compile(SenderTemplate)({
+    return template({
       ...this.props,
       tooltip: this.tooltip,
     });

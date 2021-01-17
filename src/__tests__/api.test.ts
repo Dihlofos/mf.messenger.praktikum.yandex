@@ -1,4 +1,4 @@
-import { HTTPTransport } from '../modules/Api';
+import { HTTPTransport } from '../modules';
 import { mockFetch } from '../__mocks__/request.mock';
 
 describe('XHR API', () => {
@@ -11,7 +11,7 @@ describe('XHR API', () => {
   it('return expect data', async () => {
     const httpTransport = new HTTPTransport(
       'https://ya-praktikum.tech',
-      '/api/v2'
+      '/api/v2',
     );
     mockFetch(200, [data]);
     const res: XMLHttpRequest | unknown = await httpTransport.get('/chats', {
@@ -26,7 +26,7 @@ describe('XHR API', () => {
     try {
       const httpTransport = new HTTPTransport(
         'https://ya-praktikum.tech',
-        '/api/v2'
+        '/api/v2',
       );
       await httpTransport.get('/chats', {
         data: {},

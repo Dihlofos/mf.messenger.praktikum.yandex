@@ -1,7 +1,7 @@
 import { ButtonProps } from '../../components/Button/Button.js';
 import { FieldProps } from '../../components/Field/Field.js';
 
-export const loginData: {
+const loginData: {
   fieldsData: FieldProps[];
   buttonData: ButtonProps;
 } = {
@@ -27,3 +27,5 @@ export const loginData: {
     type: 'submit',
   },
 };
+
+export default loginData;

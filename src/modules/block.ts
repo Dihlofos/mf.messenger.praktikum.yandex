@@ -1,7 +1,8 @@
-import { EventBus } from './EventBus.js';
+import { EventBus } from './index';
 import { SimpleObject } from '../interface';
+import { doInit } from '../utils';
 
-export class Block {
+export default class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -9,15 +10,19 @@ export class Block {
     FLOW_CDU: 'flow:component-did-update',
   };
 
-  //types
+  // types
   _id: string;
+
   _element: HTMLElement;
+
   _instances: Block[];
+
   _meta: {
     tagName: string;
     classNames: string;
     props: SimpleObject;
   } = { tagName: '', classNames: '', props: {} };
+
   props: SimpleObject;
 
   eventBus: (...args: any[]) => EventBus;
@@ -25,7 +30,7 @@ export class Block {
   constructor(
     tagName: string = 'div',
     classNames: string = '',
-    props: SimpleObject = {}
+    props: SimpleObject = {},
   ) {
     const eventBus = new EventBus();
     this._meta = {
@@ -59,7 +64,7 @@ export class Block {
     this.initEvents();
   };
 
-  initEvents(): void {}
+  initEvents(): void { }
 
   renderToString(): string {
     const wrapper = document.createElement(this._meta.tagName);
@@ -94,13 +99,13 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount(): void {}
+  componentDidMount(): void { }
 
   _componentDidUpdate(): void {
     this.componentDidUpdate();
   }
 
-  componentDidUpdate(): void {}
+  componentDidUpdate(): void { }
 
   setProps = (nextProps: object): boolean => {
     if (!nextProps) {
@@ -136,25 +141,10 @@ export class Block {
 
   _hydrateAll(props: SimpleObject) {
     this.hydrate();
-    Object.entries(props).map(([_, value]) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    Object.entries(props).forEach(([_, value]) => {
       doInit(value);
     });
-
-    function doInit(value: any) {
-      if (typeof value === 'string') return;
-
-      if (Array.isArray(value)) {
-        value.map((item) => {
-          doInit(item);
-        });
-      }
-
-      if (value?.hasOwnProperty('hydrate')) {
-        return value.hydrate();
-      } else {
-        return;
-      }
-    }
   }
 
   _makePropsProxy(props: { [key: string]: unknown }) {
@@ -175,10 +165,10 @@ export class Block {
 
   _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName);
-    //Добавляем класс к обертке
+    // Добавляем класс к обертке
     if (this._meta.classNames.length > 0) {
       element.classList.add(...this._meta.classNames.split(' '));
-      //Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
+      // Если в пропсках прокидывается классы через mix, добавляем их тоже к обертке.
       if (this.props?.mix) {
         element.classList.add(...this.props?.mix.split(' '));
       }

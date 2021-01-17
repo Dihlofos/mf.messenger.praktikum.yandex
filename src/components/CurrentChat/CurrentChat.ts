@@ -1,12 +1,11 @@
-import { UserItemProps } from '../../interface.js';
-import { Block } from '../../modules/Block.js';
-import { ChatService } from '../../services/ChatsService.js';
-import { RenameForm } from '../RenameForm/RenameForm.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
-import { UserModal } from '../UserModal/UserModal.js';
-import { currentChatStaticData } from './data.js';
-import { CurrentChatTemplate } from './CurrentChat.template.js';
-
+import { UserItemProps } from '../../interface';
+import { Block, Store } from '../../modules';
+import { ChatsService } from '../../services';
+import { RenameForm } from '../RenameForm/RenameForm';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { UserModal } from '../UserModal/UserModal';
+import currentChatStaticData from './data';
+import template from './CurrentChat.handlebars';
 
 export type CurrentChatProps = {
   id: number;
@@ -19,7 +18,7 @@ export type CurrentChatProps = {
 };
 
 export class CurrentChat extends Block {
-  chatService: ChatService;
+  chatService: ChatsService;
   tooltip: string;
   renameForm: string;
   userAddModal: string;
@@ -27,6 +26,7 @@ export class CurrentChat extends Block {
   renameFormInstance: RenameForm;
   userAddModalIntance: UserModal;
   users: UserItemProps[];
+  store: Store;
 
   constructor(props: CurrentChatProps) {
     super('header', 'current-chat', props);
@@ -36,15 +36,15 @@ export class CurrentChat extends Block {
 
   componentDidMount() {
     const { id, title } = this.props;
-
-    this.chatService = new ChatService();
+    this.store = new Store();
+    this.chatService = new ChatsService();
     this.renameFormInstance = new RenameForm({
       mix: '',
       value: title,
     });
 
     this.userAddModalIntance = new UserModal({
-      id: id,
+      id,
       onUserAdded: this.onUserAdded.bind(this),
       onUserRemoved: this.onUserRemoved.bind(this),
     });
@@ -59,6 +59,11 @@ export class CurrentChat extends Block {
 
   updateUsers() {
     this.chatService.getChatUsers(this.props.id).then((item) => {
+      const usersToStore = item.reduce((result: Record<number, string>, item) => {
+        result[item.id] = item.display_name
+        return result;
+      }, {})
+      this.store.set({ users: usersToStore })
       this.setProps({
         users: item,
         tooltipInstance: this.tooltipInstance,
@@ -128,11 +133,10 @@ export class CurrentChat extends Block {
   };
 
   render() {
-    const Handlebars = window.Handlebars;
     this.tooltip = this.tooltipInstance.renderToString();
     this.renameForm = this.renameFormInstance.renderToString();
     this.userAddModal = this.userAddModalIntance.renderToString();
-    return Handlebars.compile(CurrentChatTemplate)({
+    return template({
       ...this.props,
       tooltip: this.tooltip,
       renameForm: this.renameForm,

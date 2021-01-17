@@ -3,4 +3,7 @@ module.exports = {
   testEnvironment: "jsdom",
   resolver: "jest-ts-webcompat-resolver",
   testMatch: ["**/__tests__/**/*.[t]s?(x)", "**/?(*.)+(spec|test).[t]s?(x)"],
+  transform: {
+    "\\.handlebars$": "jest-handlebars",
+  },
 };

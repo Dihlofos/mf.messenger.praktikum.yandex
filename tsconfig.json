@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-      "baseUrl": "./build/assets/js",
-      "target": "ES6",
+      "target": "ES5",
       "lib": ["esnext", "dom", "dom.iterable"],
-      "outDir": "./build/assets/js",
-      "declaration": true,
+      "outDir": "./build",
+      "declaration": false,
+      "downlevelIteration": true,
       "module": "ES6",
       "noImplicitAny": true,
       "noUnusedLocals": true,
@@ -13,7 +13,7 @@
       "sourceMap": true,
       "strictNullChecks": true,
       "moduleResolution": "node",
-      "esModuleInterop": true
+      "esModuleInterop": true,
     },
     "types": [
       "handlebars",

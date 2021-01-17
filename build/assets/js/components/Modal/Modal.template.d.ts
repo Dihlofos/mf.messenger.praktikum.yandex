@@ -1,1 +1,0 @@
-export declare const ModalTemplate = "\n  <div class=\"modal__milk js-milk\"></div>\n  <div class=\"modal__box\">\n      <div class=\"modal__delete-dialog\">\n          <h3 class=\"modal__title\">{{title}}</h3>\n          <div class=\"modal__buttons\">\n              {{{deleteButton}}}\n              {{{cancelButton}}}\n          </div>\n      </div>\n  </div>\n  ";
