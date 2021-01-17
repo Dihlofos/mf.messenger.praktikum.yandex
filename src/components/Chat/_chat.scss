@@ -10,6 +10,11 @@
     padding-top: 5rem;
   }
 
+  &__name {
+    font-weight: bold;
+    margin: 0 0 10px;
+  }
+
   &__date {
     color: var(--main);
     font-size: 1.2rem;

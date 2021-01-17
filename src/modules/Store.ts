@@ -6,6 +6,7 @@ interface StoreProps {
   messages: {
     [key: string]: Message[]
   } | null;
+  users: Record<number, string>;
 }
 
 export default class Store {
@@ -17,7 +18,7 @@ export default class Store {
     if (Store.__instance) {
       return Store.__instance;
     }
-    this.store = { token: null, userId: null, messages: {} };
+    this.store = { token: null, userId: null, messages: {}, users: {} };
 
     Store.__instance = this;
   }

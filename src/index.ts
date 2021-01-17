@@ -18,7 +18,7 @@ function App(rootQuery: string): void {
   // start App
   router.start();
 
-  if (window.location.pathname === '/') router.go('/login');
+  if (window.location.pathname === '/') router.go('/profile');
 }
 document.addEventListener('DOMContentLoaded', () => {
   App('.root');

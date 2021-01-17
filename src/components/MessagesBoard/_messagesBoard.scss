@@ -1,52 +1,53 @@
 .messages-board {
-	background-color: var(--board);
-	border-right: 1px solid var(--border);
-	height: 100%;
-	overflow: scroll;
+  background-color: var(--board);
+  border-right: 1px solid var(--border);
+  height: 100%;
+  overflow: scroll;
 
-	//Hide scrollbar
-	-ms-overflow-style: none;
-	padding: 6rem 0 0;
-	scrollbar-width: none;
+  //Hide scrollbar
+  -ms-overflow-style: none;
+  padding: 6rem 0 0;
+  scrollbar-width: none;
 
-	&::-webkit-scrollbar {
-		display: none;
-	}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-	&__top {
-		align-items: center;
-		background-color: var(--board);
-		display: flex;
-		justify-content: space-between;
-		padding: 2rem 1rem 0;
-		position: fixed;
-		top: 0;
-		width: calc(31rem - 1px);
-		z-index: 2;
-	}
+  &__top {
+    align-items: center;
+    background-color: var(--board);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 1rem 0;
+    position: fixed;
+    top: 0;
+    width: calc(31rem - 1px);
+    z-index: 2;
+  }
 
-	&__create {
-		background: none;
-		border: none;
-		color: var(--main);
-		cursor: pointer;
-		font-size: 3rem;
-		line-height: 1;
-		padding: 0;
-	}
+  &__create {
+    background: none;
+    border: none;
+    color: var(--main);
+    cursor: pointer;
+    font-size: 3rem;
+    line-height: 1;
+    padding: 0;
+  }
 
-	&__link {
-		align-items: center;
-		color: var(--main);
-		display: inline-flex;
-		font-size: 1.2rem;
-		line-height: 1;
-		text-decoration: none;
+  &__link {
+    align-items: center;
+    color: var(--main);
+    display: inline-flex;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-decoration: none;
 
-		svg {
-			height: 1.2rem;
-			margin-left: 0.8rem;
-			width: 0.8rem;
-		}
-	}
+    svg {
+      height: 1.2rem;
+      margin-left: 0.8rem;
+      width: 0.8rem;
+    }
+  }
 }

@@ -11,7 +11,6 @@ export type ChatProps = {
 
 export class Chat extends Block {
   store: Store;
-
   messageService: MessageService;
 
   constructor(props: ChatProps) {
