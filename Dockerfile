@@ -1,10 +1,12 @@
 FROM node:12
 
+COPY package*.json ./
+
+RUN npm install
+
 COPY . ./
 
-COPY package-lock.json /
-
-RUN ls -al && npm install && npm run build
+RUN ls -al && npm run build
 
 EXPOSE 4000
 
