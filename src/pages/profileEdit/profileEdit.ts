@@ -14,6 +14,7 @@ export class ProfileEditPage extends Block {
 
   constructor() {
     super('div', 'page');
+    this.props = this._makePropsProxy(profileEditData);
   }
 
   componentDidMount() {
@@ -22,11 +23,11 @@ export class ProfileEditPage extends Block {
     this.userService
       .getUser()
       .then((item) => {
-        this.setProps(Object.assign(profileEditData, item));
+        this.setProps({ ...this.props, ...item });
       })
       .catch((e) => {
         console.log(e);
-        // this.router.go('/login');
+        this.router.go('/login');
       });
   }
 

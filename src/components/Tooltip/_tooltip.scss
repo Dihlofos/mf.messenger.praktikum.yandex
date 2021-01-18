@@ -1,25 +1,26 @@
 .tooltip {
-	background-color: var(--tooltipBg);
-	border-radius: 12px;
-	box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-	opacity: 0;
-	padding: 1.5rem;
-	pointer-events: none;
-	position: absolute;
-	transition: opacity var(--hoverTime) ease-in-out;
+  background-color: var(--tooltipBg);
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  padding: 1.5rem;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity var(--hoverTime) ease-in-out;
+  z-index: 5;
 
-	&.is-shown {
-		opacity: 1;
-		pointer-events: all;
-	}
+  &.is-shown {
+    opacity: 1;
+    pointer-events: all;
+  }
 
-	&--bottom-left {
-		bottom: 6rem;
-		left: 1rem;
-	}
+  &--bottom-left {
+    bottom: 6rem;
+    left: 1rem;
+  }
 
-	&--top-right {
-		right: 1rem;
-		top: 6rem;
-	}
+  &--top-right {
+    right: 1rem;
+    top: 6rem;
+  }
 }

@@ -55,6 +55,10 @@ export class CurrentChat extends Block {
     });
 
     this.updateUsers();
+
+    setTimeout(() => {
+      this.hydrate();
+    }, 0);
   }
 
   updateUsers() {
@@ -115,7 +119,6 @@ export class CurrentChat extends Block {
   initEvents() {
     const trigger = document.querySelector('.js-current-chat-tooltip-trigger');
 
-    // TODO разобраться с задвоениями кликов
     document.addEventListener('click', this.hideTooltip);
     trigger?.addEventListener('click', this.showTooltip);
   }

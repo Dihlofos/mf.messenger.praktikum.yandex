@@ -20,17 +20,17 @@ export default class Block {
   _meta: {
     tagName: string;
     classNames: string;
-    props: SimpleObject;
+    props: any;
   } = { tagName: '', classNames: '', props: {} };
 
-  props: SimpleObject;
+  props: any;
 
   eventBus: (...args: any[]) => EventBus;
 
   constructor(
     tagName: string = 'div',
     classNames: string = '',
-    props: SimpleObject = {},
+    props: any = {},
   ) {
     const eventBus = new EventBus();
     this._meta = {
@@ -40,11 +40,8 @@ export default class Block {
     };
     this._instances = [];
     this._id = `uniq_${Math.floor(Math.random() * 1000000)}`;
-
     this.props = this._makePropsProxy(props);
-
     this.eventBus = () => eventBus;
-
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
@@ -141,8 +138,7 @@ export default class Block {
 
   _hydrateAll(props: SimpleObject) {
     this.hydrate();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    Object.entries(props).forEach(([_, value]) => {
+    Object.values(props).forEach((value) => {
       doInit(value);
     });
   }

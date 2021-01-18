@@ -41,7 +41,7 @@ export class UserModal extends Block {
 
   updateUsers() {
     this.chatService.getChatUsers(this.props.id).then((item) => {
-      this.setProps(Object.assign(this.props, { usersInChat: item }));
+      this.setProps({ ...this.props, usersInChat: item });
     });
   }
 

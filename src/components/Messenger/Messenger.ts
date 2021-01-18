@@ -14,11 +14,8 @@ export type MessengerProps = {
 
 export class Messenger extends Block {
   messagesBoard: string;
-
   currentChat: string;
-
   chat: string;
-
   sender: string;
 
   constructor(props: MessengerProps) {

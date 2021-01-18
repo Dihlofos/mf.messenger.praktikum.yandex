@@ -6,11 +6,11 @@ import { AuthService } from '../../services';
 
 export class ProfilePage extends Block {
   authService: AuthService;
-
   router: Router;
 
   constructor() {
     super('div', 'page');
+    this.props = this._makePropsProxy(profileData);
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ export class ProfilePage extends Block {
     this.authService
       .getUser()
       .then((item) => {
-        this.setProps(Object.assign(profileData, item));
+        this.setProps({ ...this.props, ...item });
       })
       .catch(() => {
         this.router.go('/login');
@@ -42,7 +42,7 @@ export class ProfilePage extends Block {
   }
 
   render() {
-    const profileShow = new ProfileShow(profileData);
+    const profileShow = new ProfileShow(this.props);
 
     const profile = new Profile({
       backlink: '/messenger',

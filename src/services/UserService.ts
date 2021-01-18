@@ -4,7 +4,6 @@ import { BASEAVATARURL } from './constants';
 
 export default class UserService {
   transport: HTTPTransport;
-
   props: SimpleObject;
 
   constructor(props: SimpleObject) {
@@ -96,20 +95,18 @@ export default class UserService {
           };
         }
 
-        // delete unusables
-        delete data.email;
-        delete data.first_name;
-        delete data.login;
-        delete data.phone;
-        delete data.second_name;
-
-        return data;
+        return {
+          id: data.id,
+          fields: data.fields,
+          avatar: data.avatar,
+          display_name: data.display_name
+        };
       });
   }
 
   putProfile() {
     const requests: Promise<unknown>[] = [];
-    if (this.props.avatar.name.length) {
+    if (this.props.avatar?.name?.length) {
       requests.push(this.putAvatar());
     }
     if (!!this.props.newPassword.length && !!this.props.oldPassword.length) {

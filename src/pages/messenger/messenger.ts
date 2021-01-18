@@ -25,6 +25,7 @@ export class MessengerPage extends Block {
 
   constructor() {
     super('div', 'page');
+    this.props = this._makePropsProxy(messengerData);
   }
 
   componentDidMount() {
@@ -38,16 +39,11 @@ export class MessengerPage extends Block {
     this.chatService
       .getChats()
       .then((chats) => {
-        this.setProps(
-          Object.assign(messengerData, {
-            chatCardsData: chats,
-          }),
-        );
-        this.setProps(
-          Object.assign(this.props, {
-            currentChatInstance: this.currentChat,
-          }),
-        );
+        this.setProps({
+          ...this.props,
+          chatCardsData: chats,
+          currentChatInstance: this.currentChat,
+        })
       })
       .catch((e) => {
         console.log(e);
@@ -84,10 +80,11 @@ export class MessengerPage extends Block {
     this.messageService = new MessageService(chatCard.id, { messagesCallback: this.chat.handleGetMessages });
 
     this.setProps(
-      Object.assign(this.props, {
+      {
+        ...this.props,
         currentChatInstance: this.currentChat,
         chatInstance: this.chat,
-      }),
+      }
     );
   }
 
@@ -97,14 +94,14 @@ export class MessengerPage extends Block {
       chatCardsData,
       bottomtooltipData,
       chatCreateModalButtonData,
-    } = messengerData;
+    } = this.props;
 
     this.searchField = new Field(searchFieldData);
 
     let chatCards: ChatCard[] | null = null;
 
-    if (chatCardsData.length > 0) {
-      chatCards = chatCardsData.map((item) => new ChatCard({
+    if (chatCardsData?.length > 0) {
+      chatCards = chatCardsData.map((item: ChatCardProps) => new ChatCard({
         ...item,
         onChatCardClick: (chatCard: ChatCardProps) => {
           this.handleChatCardClick(chatCard);

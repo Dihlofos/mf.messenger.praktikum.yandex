@@ -19,6 +19,12 @@ export class Chat extends Block {
     this.store = new Store();
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.hydrate();
+    }, 0);
+  }
+
   componentDidUpdate() {
     const chat: HTMLElement = this._element;
     setTimeout(() => {
@@ -28,11 +34,7 @@ export class Chat extends Block {
   }
 
   handleGetMessages = (chatId: number) => {
-    this.setProps(
-      Object.assign(this.props, {
-        messagesGroup: groupMessages(this.store.get('messages')[chatId]),
-      }),
-    );
+    this.setProps({ ...this.props, messagesGroup: groupMessages(this.store.get('messages')[chatId]) })
   }
 
   render() {
