@@ -1,16 +1,16 @@
-# Мессенджер
+# Messenger
 
-Мессенджер для Яндекс Практикума
-Студент: Самсонов Евгений
+Simple messenger written on vanilla js for Yandex Praktikum
+Studend: Samsonov Evgeny
 
-## Ссылка
+## Link
 
 [Heroku](https://jeysmsg.herokuapp.com/)
 
-## Макеты
+## Design
 
 [Figma](https://www.figma.com/file/ZbIeHga0I7rLmGDlz3PdEy/Messenger-by-Jey?node-id=0%3A1&viewport=-111%2C353%2C0.09576388448476791)
 
-Сборка для разработки - npm run start (Запускает веб сервер)
+Development - npm run start (euns dev server)
 
-Сборка на прод - npm run prod (прогоняет линтеры и запускает build)
+Production build - npm run prod (Linters and build)
